@@ -1,0 +1,972 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37FB436A-FC04-4C9B-84F8-78B02BBD727C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KK.DealMaker.Web</RootNamespace>
+    <AssemblyName>KK.DealMaker.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>dmk.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ShareDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="ThaiBMA.WebService.Key, Version=2.0.2012.420, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ShareDll\ThaiBMA.WebService.Key.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\BondMarketMaster.aspx" />
+    <Content Include="Admin\CSATypeMaster.aspx" />
+    <Content Include="Admin\TBMAConfigMaster.aspx" />
+    <Content Include="Deal\CountryInfo.aspx" />
+    <Content Include="Admin\CurrencyMaster.aspx" />
+    <Content Include="Admin\FactorConfigMaster.aspx" />
+    <Content Include="Admin\InstrumentsMaster.aspx" />
+    <Content Include="Admin\LimitProduct.aspx" />
+    <Content Include="Admin\FrequencyMaster.aspx" />
+    <Content Include="Admin\SpotRateMaster.aspx" />
+    <Content Include="Admin\UserFunctionMaster.aspx" />
+    <Content Include="Admin\LimitMaster.aspx" />
+    <Content Include="Admin\PortfolioMaster.aspx" />
+    <Content Include="Admin\ProductMaster.aspx" />
+    <Content Include="Admin\StatusMaster.aspx" />
+    <Content Include="Admin\UserMaster.aspx" />
+    <Content Include="Admin\UserProfileFunction.aspx" />
+    <Content Include="Admin\UserProfileMaster.aspx" />
+    <Content Include="blank.htm" />
+    <Content Include="Deal\BondInstrumentInfo.aspx" />
+    <Content Include="Deal\CounterpartyInfo.aspx" />
+    <Content Include="Deal\FIEntryInfo.aspx" />
+    <Content Include="Deal\FXForwardEntryInfo.aspx" />
+    <Content Include="Deal\FXSpotEntryInfo.aspx" />
+    <Content Include="Deal\FXSwapEntryInfo.aspx" />
+    <Content Include="Deal\ImportOpicsInfo.aspx" />
+    <Content Include="Deal\PCCFInfo.aspx" />
+    <Content Include="Deal\ReconcileInfo.aspx" />
+    <Content Include="Deal\RepoEntryInfo.aspx" />
+    <Content Include="Deal\SwapEntryInfo.aspx" />
+    <Content Include="Deal\TempLimitInfo.aspx" />
+    <Content Include="dmk.ico" />
+    <Content Include="Images\artwork-pattern.png" />
+    <Content Include="Images\bLogout.gif" />
+    <Content Include="Images\busy.gif" />
+    <Content Include="Images\excel_icon.png" />
+    <Content Include="Images\excel_icon17x17.png" />
+    <Content Include="Images\iBranch.gif" />
+    <Content Include="Images\iBullet1.gif" />
+    <Content Include="Images\iBullet2.gif" />
+    <Content Include="Images\iconHelp.jpg" />
+    <Content Include="Images\icons\ic_add.png" />
+    <Content Include="Images\icons\ic_cancel.png" />
+    <Content Include="Images\icons\ic_delete.png" />
+    <Content Include="Images\icons\ic_download.png" />
+    <Content Include="Images\icons\ic_edit.png" />
+    <Content Include="Images\icons\ic_favorite.png" />
+    <Content Include="Images\icons\ic_left.png" />
+    <Content Include="Images\icons\ic_lock.png" />
+    <Content Include="Images\icons\ic_power.png" />
+    <Content Include="Images\icons\ic_print.png" />
+    <Content Include="Images\icons\ic_refresh.png" />
+    <Content Include="Images\icons\ic_right.png" />
+    <Content Include="Images\icons\ic_settings.png" />
+    <Content Include="Images\icons\ic_upload.png" />
+    <Content Include="Images\icons\ic_up_circle.png" />
+    <Content Include="Images\icons\ic_zoom.png" />
+    <Content Include="Images\icons\menu\menu-email-over.png" />
+    <Content Include="Images\icons\menu\menu-email-special.png" />
+    <Content Include="Images\icons\menu\menu-email.png" />
+    <Content Include="Images\icons\menu\menu-logoff-over.png" />
+    <Content Include="Images\icons\menu\menu-logoff.png" />
+    <Content Include="Images\icons\menu\menu-settings-over.png" />
+    <Content Include="Images\icons\menu\menu-settings.png" />
+    <Content Include="Images\icons\menu\menu-user.png" />
+    <Content Include="Images\icons\message-boxes\confirmation.png" />
+    <Content Include="Images\icons\message-boxes\error.png" />
+    <Content Include="Images\icons\message-boxes\information.png" />
+    <Content Include="Images\icons\message-boxes\warning.png" />
+    <Content Include="Images\icons\table\actions-delete.png" />
+    <Content Include="Images\icons\table\actions-edit.png" />
+    <Content Include="Images\iSearch.gif" />
+    <Content Include="Images\iTime.gif" />
+    <Content Include="Images\iUser.gif" />
+    <Content Include="Images\iView.gif" />
+    <Content Include="Images\kklogo.jpg" />
+    <Content Include="Images\kklogo_new.jpg" />
+    <Content Include="Images\list_metro.png" />
+    <Content Include="Images\login-icon.png" />
+    <Content Include="Images\login_dealmaker.png" />
+    <Content Include="Images\logo_bar_dealmaker_new.png" />
+    <Content Include="Images\logo_top_dealmaker.gif" />
+    <Content Include="Images\menu-dark-indicator.png" />
+    <Content Include="Images\menu-indicator.png" />
+    <Content Include="Images\note.png" />
+    <Content Include="Images\phone.png" />
+    <Content Include="Images\separator-bg.png" />
+    <Content Include="Images\tab-dashboard.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Main.aspx" />
+    <Content Include="pagenopermission.htm" />
+    <Content Include="Report\CountryReport.aspx" />
+    <Content Include="Report\ExportToCSV.aspx" />
+    <Content Include="Report\LimitAuditReport.aspx" />
+    <Content Include="Report\LimitOverwriteReport.aspx" />
+    <Content Include="Report\PCEDetailReport.aspx" />
+    <Content Include="Report\PCEReport.aspx" />
+    <Content Include="Report\RepoReport.aspx" />
+    <Content Include="Report\SCEDetailReport.aspx" />
+    <Content Include="Report\SCEReport.aspx" />
+    <Content Include="Scripts\autoNumeric.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\date.format.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.1.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
+    <Content Include="Scripts\jquery.autonumber.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.common.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.datetime.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.hotkeys.js" />
+    <Content Include="Scripts\jquery.html5-placeholder.js" />
+    <Content Include="Scripts\jquery.jstree.js" />
+    <Content Include="Scripts\jquery.number.js" />
+    <Content Include="Scripts\jquery.tinyscrollbar.min.js" />
+    <Content Include="Scripts\jquery.ui.combobox.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\json3.min.js" />
+    <Content Include="Scripts\jtable.2.3.0\extensions\jquery.jtable.aspnetpagemethods.js" />
+    <Content Include="Scripts\jtable.2.3.0\extensions\jquery.jtable.aspnetpagemethods.min.js" />
+    <Content Include="Scripts\jtable.2.3.0\external\json2.js" />
+    <Content Include="Scripts\jtable.2.3.0\external\json2.min.js" />
+    <Content Include="Scripts\jtable.2.3.0\jquery.jtable.js" />
+    <Content Include="Scripts\jtable.2.3.0\jquery.jtable.min.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.de.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.es.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.fr.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.hu.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.it.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.lt.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.nl-NL.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.pl.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.pt-BR.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.pt-PT.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.ru.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.tr.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.vi.js" />
+    <Content Include="Scripts\jtable.2.3.0\localization\jquery.jtable.zh-CN.js" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\close.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\column-asc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\column-desc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\column-sortable.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\delete.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\edit.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\jtable_basic.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\basic\jtable_basic.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\add.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\bg-thead.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\close.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\column-asc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\column-desc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\column-sortable.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\delete.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\edit.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\jtable_jqueryui.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\jtable_jqueryui.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\jqueryui\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\add.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\bg-thead.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\blue\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\blue\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\blue\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\close.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\column-asc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\column-desc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\column-sortable.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\delete.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\edit.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\gray\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\gray\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\gray\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\green\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\green\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\green\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\orange\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\orange\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\orange\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\red\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\red\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\lightcolor\red\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\add.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\blue\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\blue\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\blue\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\brown\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\brown\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\brown\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\close.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\column-asc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\column-desc.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\column-sortable.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\crimson\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\crimson\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\crimson\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkgray\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkgray\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkgray\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkorange\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkorange\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\darkorange\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\delete.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\edit.png" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\green\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\green\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\green\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\jtable_metro_base.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\jtable_metro_base.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\lightgray\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\lightgray\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\lightgray\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\pink\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\pink\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\pink\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\purple\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\purple\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\purple\loading.gif" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\red\jtable.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\red\jtable.min.css" />
+    <Content Include="Scripts\jtable.2.3.0\themes\metro\red\loading.gif" />
+    <Content Include="Scripts\jtablesite.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\number.format.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\string.format.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushCSharp.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushCss.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushJava.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushJScript.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushPhp.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushSql.js" />
+    <Content Include="Scripts\syntaxhighligher\shBrushXml.js" />
+    <Content Include="Scripts\syntaxhighligher\shCore.js" />
+    <Content Include="Scripts\syntaxhighligher\styles\shCore.css" />
+    <Content Include="Scripts\syntaxhighligher\styles\shThemeDefault.css" />
+    <Content Include="Scripts\table2CSV.js" />
+    <Content Include="Scripts\validationEngine\jquery.validationEngine-2.6.2.js" />
+    <Content Include="Scripts\validationEngine\jquery.validationEngine-en.js" />
+    <Content Include="Scripts\validationEngine\jquery.validationEngine.js" />
+    <Content Include="Scripts\validationEngine\validationEngine.jquery.css" />
+    <Content Include="sessionexpired.htm" />
+    <Content Include="ShareDll\EntityFramework.dll" />
+    <Content Include="ShareDll\log4net.dll" />
+    <Content Include="ShareDll\log4net.xml" />
+    <Content Include="ShareDll\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="ShareDll\Microsoft.Web.Infrastructure.xml" />
+    <Content Include="ShareDll\Newtonsoft.Json.dll" />
+    <Content Include="ShareDll\Newtonsoft.Json.pdb" />
+    <Content Include="ShareDll\Newtonsoft.Json.xml" />
+    <Content Include="ShareDll\Oracle.DataAccess.dll" />
+    <Content Include="ShareDll\SignalR.dll" />
+    <Content Include="ShareDll\ThaiBMA.WebService.Key.dll" />
+    <Content Include="Styles\base\images\animated-overlay.gif" />
+    <Content Include="Styles\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Styles\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Styles\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Styles\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Styles\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Styles\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Styles\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Styles\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Styles\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Styles\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Styles\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Styles\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Styles\base\jquery-ui.css" />
+    <Content Include="Styles\base\jquery.ui.accordion.css" />
+    <Content Include="Styles\base\jquery.ui.all.css" />
+    <Content Include="Styles\base\jquery.ui.autocomplete.css" />
+    <Content Include="Styles\base\jquery.ui.base.css" />
+    <Content Include="Styles\base\jquery.ui.button.css" />
+    <Content Include="Styles\base\jquery.ui.combobox.css" />
+    <Content Include="Styles\base\jquery.ui.core.css" />
+    <Content Include="Styles\base\jquery.ui.datepicker.css" />
+    <Content Include="Styles\base\jquery.ui.dialog.css" />
+    <Content Include="Styles\base\jquery.ui.menu.css" />
+    <Content Include="Styles\base\jquery.ui.progressbar.css" />
+    <Content Include="Styles\base\jquery.ui.resizable.css" />
+    <Content Include="Styles\base\jquery.ui.selectable.css" />
+    <Content Include="Styles\base\jquery.ui.slider.css" />
+    <Content Include="Styles\base\jquery.ui.spinner.css" />
+    <Content Include="Styles\base\jquery.ui.tabs.css" />
+    <Content Include="Styles\base\jquery.ui.theme.css" />
+    <Content Include="Styles\base\jquery.ui.tooltip.css" />
+    <Content Include="Styles\base\minified\images\animated-overlay.gif" />
+    <Content Include="Styles\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Styles\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Styles\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Styles\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Styles\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Styles\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Styles\base\minified\jquery-ui.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Styles\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Styles\cupertino\images\animated-overlay.gif" />
+    <Content Include="Styles\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40 - Copy.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Styles\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Styles\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Styles\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Styles\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Styles\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Styles\cupertino\jquery-ui-1.10.0.custom.css" />
+    <Content Include="Styles\cupertino\jquery-ui-1.10.0.custom.min.css" />
+    <Content Include="Styles\highlight.css" />
+    <Content Include="Styles\metroblue\images\ui-icons_2d89ef_0.png" />
+    <Content Include="Styles\metroblue\images\ui-icons_525252_0.png" />
+    <Content Include="Styles\metroblue\images\ui-icons_66B3FF_0.png" />
+    <Content Include="Styles\metroblue\images\ui-icons_d4d4d4_0.png" />
+    <Content Include="Styles\metroblue\images\ui-icons_ffffff_0.png" />
+    <Content Include="Styles\metroblue\jquery-ui.css" />
+    <Content Include="Styles\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Styles\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Styles\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Styles\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Styles\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Styles\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Styles\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Styles\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Styles\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Styles\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Styles\redmond\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Styles\style.css" />
+    <Content Include="View\DealView.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Authen\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Authen\ThaiBMA_Calculation_Auth.disco" />
+    <None Include="Web References\ThaiBMACalc\CalculationOutput.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ThaiBMACalc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ThaiBMACalc\ThaiBMA_Calculation_Service.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Xml\FactorProp.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web References\Authen\ThaiBMA_Calculation_Auth.wsdl" />
+    <None Include="Web References\ThaiBMACalc\ThaiBMA_Calculation_Service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BondMarketMaster.aspx.cs">
+      <DependentUpon>BondMarketMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BondMarketMaster.aspx.designer.cs">
+      <DependentUpon>BondMarketMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CSATypeMaster.aspx.cs">
+      <DependentUpon>CSATypeMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CSATypeMaster.aspx.designer.cs">
+      <DependentUpon>CSATypeMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TBMAConfigMaster.aspx.cs">
+      <DependentUpon>TBMAConfigMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TBMAConfigMaster.aspx.designer.cs">
+      <DependentUpon>TBMAConfigMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\CountryInfo.aspx.cs">
+      <DependentUpon>CountryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\CountryInfo.aspx.designer.cs">
+      <DependentUpon>CountryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CurrencyMaster.aspx.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CurrencyMaster.aspx.designer.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FactorConfigMaster.aspx.cs">
+      <DependentUpon>FactorConfigMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FactorConfigMaster.aspx.designer.cs">
+      <DependentUpon>FactorConfigMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InstrumentsMaster.aspx.cs">
+      <DependentUpon>InstrumentsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InstrumentsMaster.aspx.designer.cs">
+      <DependentUpon>InstrumentsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LimitProduct.aspx.cs">
+      <DependentUpon>LimitProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\LimitProduct.aspx.designer.cs">
+      <DependentUpon>LimitProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FrequencyMaster.aspx.cs">
+      <DependentUpon>FrequencyMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FrequencyMaster.aspx.designer.cs">
+      <DependentUpon>FrequencyMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SpotRateMaster.aspx.cs">
+      <DependentUpon>SpotRateMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SpotRateMaster.aspx.designer.cs">
+      <DependentUpon>SpotRateMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserFunctionMaster.aspx.cs">
+      <DependentUpon>UserFunctionMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserFunctionMaster.aspx.designer.cs">
+      <DependentUpon>UserFunctionMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LimitMaster.aspx.cs">
+      <DependentUpon>LimitMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\LimitMaster.aspx.designer.cs">
+      <DependentUpon>LimitMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PortfolioMaster.aspx.cs">
+      <DependentUpon>PortfolioMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PortfolioMaster.aspx.designer.cs">
+      <DependentUpon>PortfolioMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductMaster.aspx.cs">
+      <DependentUpon>ProductMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProductMaster.aspx.designer.cs">
+      <DependentUpon>ProductMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StatusMaster.aspx.cs">
+      <DependentUpon>StatusMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StatusMaster.aspx.designer.cs">
+      <DependentUpon>StatusMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserMaster.aspx.cs">
+      <DependentUpon>UserMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserMaster.aspx.designer.cs">
+      <DependentUpon>UserMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserProfileFunction.aspx.cs">
+      <DependentUpon>UserProfileFunction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserProfileFunction.aspx.designer.cs">
+      <DependentUpon>UserProfileFunction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserProfileMaster.aspx.cs">
+      <DependentUpon>UserProfileMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserProfileMaster.aspx.designer.cs">
+      <DependentUpon>UserProfileMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\BaseWS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content.Master.cs">
+      <DependentUpon>Content.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content.Master.designer.cs">
+      <DependentUpon>Content.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\BondInstrumentInfo.aspx.cs">
+      <DependentUpon>BondInstrumentInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\BondInstrumentInfo.aspx.designer.cs">
+      <DependentUpon>BondInstrumentInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\CounterpartyInfo.aspx.cs">
+      <DependentUpon>CounterpartyInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\CounterpartyInfo.aspx.designer.cs">
+      <DependentUpon>CounterpartyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\FIEntryInfo.aspx.cs">
+      <DependentUpon>FIEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\FIEntryInfo.aspx.designer.cs">
+      <DependentUpon>FIEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\FXForwardEntryInfo.aspx.cs">
+      <DependentUpon>FXForwardEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\FXForwardEntryInfo.aspx.designer.cs">
+      <DependentUpon>FXForwardEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\FXSpotEntryInfo.aspx.cs">
+      <DependentUpon>FXSpotEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\FXSpotEntryInfo.aspx.designer.cs">
+      <DependentUpon>FXSpotEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\FXSwapEntryInfo.aspx.cs">
+      <DependentUpon>FXSwapEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\FXSwapEntryInfo.aspx.designer.cs">
+      <DependentUpon>FXSwapEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\ImportOpicsInfo.aspx.cs">
+      <DependentUpon>ImportOpicsInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\ImportOpicsInfo.aspx.designer.cs">
+      <DependentUpon>ImportOpicsInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\PCCFInfo.aspx.cs">
+      <DependentUpon>PCCFInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\PCCFInfo.aspx.designer.cs">
+      <DependentUpon>PCCFInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\ReconcileInfo.aspx.cs">
+      <DependentUpon>ReconcileInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\ReconcileInfo.aspx.designer.cs">
+      <DependentUpon>ReconcileInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\RepoEntryInfo.aspx.cs">
+      <DependentUpon>RepoEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\RepoEntryInfo.aspx.designer.cs">
+      <DependentUpon>RepoEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\SwapEntryInfo.aspx.cs">
+      <DependentUpon>SwapEntryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\SwapEntryInfo.aspx.designer.cs">
+      <DependentUpon>SwapEntryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deal\TempLimitInfo.aspx.cs">
+      <DependentUpon>TempLimitInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deal\TempLimitInfo.aspx.designer.cs">
+      <DependentUpon>TempLimitInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog.Master.cs">
+      <DependentUpon>Dialog.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dialog.Master.designer.cs">
+      <DependentUpon>Dialog.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CountryReport.aspx.cs">
+      <DependentUpon>CountryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\CountryReport.aspx.designer.cs">
+      <DependentUpon>CountryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ExportToCSV.aspx.cs">
+      <DependentUpon>ExportToCSV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\ExportToCSV.aspx.designer.cs">
+      <DependentUpon>ExportToCSV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\LimitAuditReport.aspx.cs">
+      <DependentUpon>LimitAuditReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\LimitAuditReport.aspx.designer.cs">
+      <DependentUpon>LimitAuditReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\LimitOverwriteReport.aspx.cs">
+      <DependentUpon>LimitOverwriteReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\LimitOverwriteReport.aspx.designer.cs">
+      <DependentUpon>LimitOverwriteReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PCEDetailReport.aspx.cs">
+      <DependentUpon>PCEDetailReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\PCEDetailReport.aspx.designer.cs">
+      <DependentUpon>PCEDetailReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PCEReport.aspx.cs">
+      <DependentUpon>PCEReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\PCEReport.aspx.designer.cs">
+      <DependentUpon>PCEReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\RepoReport.aspx.cs">
+      <DependentUpon>RepoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\RepoReport.aspx.designer.cs">
+      <DependentUpon>RepoReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\SCEDetailReport.aspx.cs">
+      <DependentUpon>SCEDetailReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\SCEDetailReport.aspx.designer.cs">
+      <DependentUpon>SCEDetailReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\SCEReport.aspx.cs">
+      <DependentUpon>SCEReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\SCEReport.aspx.designer.cs">
+      <DependentUpon>SCEReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\DealView.aspx.cs">
+      <DependentUpon>DealView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\DealView.aspx.designer.cs">
+      <DependentUpon>DealView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Authen\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ThaiBMACalc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DealMaker.Core\KK.DealMaker.Core.csproj">
+      <Project>{B6452AB8-C578-4A0D-A9E5-E4420EAD76E5}</Project>
+      <Name>KK.DealMaker.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DealMaker.UIProcessComponent\KK.DealMaker.UIProcessComponent.csproj">
+      <Project>{131D0A7B-45B4-46FC-9E96-D70183F63A9B}</Project>
+      <Name>KK.DealMaker.UIProcessComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Dialog.Master" />
+    <None Include="Scripts\jquery-1.9.0.min.map" />
+    <None Include="Scripts\jtable.2.3.0\themes\basic\jtable_basic.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\jqueryui\jtable_jqueryui.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\jtable_theme_base.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\blue\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\gray\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\green\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\jtable_lightcolor_base.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\orange\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\lightcolor\red\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\blue\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\brown\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\crimson\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\darkgray\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\darkorange\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\green\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\jtable_metro_base.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\lightgray\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\pink\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\purple\jtable.less" />
+    <None Include="Scripts\jtable.2.3.0\themes\metro\red\jtable.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Auth.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Authen\</RelPath>
+      <UpdateFromURL>http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Auth.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>KK_DealMaker_Web_Authen_ThaiBMA_Calculation_Auth</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ThaiBMACalc\</RelPath>
+      <UpdateFromURL>http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>KK_DealMaker_Web_ThaiBMACalc_ThaiBMA_Claculation_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>1896</DevelopmentServerPort>
+          <DevelopmentServerVPath>/DealMakerSystem</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6527/DealMakerSystem</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

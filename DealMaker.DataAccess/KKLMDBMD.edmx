@@ -1,0 +1,2803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KKLMDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="KKLMDBModelStoreContainer">
+    <EntitySet Name="DA_LOGIN_AUDIT" EntityType="KKLMDBModel.Store.DA_LOGIN_AUDIT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DA_TRN" EntityType="KKLMDBModel.Store.DA_TRN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DA_TRN_CASHFLOW" EntityType="KKLMDBModel.Store.DA_TRN_CASHFLOW" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PORTFOLIO" EntityType="KKLMDBModel.Store.MA_PORTFOLIO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PRODUCT" EntityType="KKLMDBModel.Store.MA_PRODUCT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_STATUS" EntityType="KKLMDBModel.Store.MA_STATUS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_USER" EntityType="KKLMDBModel.Store.MA_USER" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_COUTERPARTY" EntityType="KKLMDBModel.Store.MA_COUTERPARTY" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_INSTRUMENT" EntityType="KKLMDBModel.Store.MA_INSTRUMENT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PCCF" EntityType="KKLMDBModel.Store.MA_PCCF" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_FUNCTIONAL" EntityType="KKLMDBModel.Store.MA_FUNCTIONAL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PROFILE_FUNCTIONAL" EntityType="KKLMDBModel.Store.MA_PROFILE_FUNCTIONAL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_USER_PROFILE" EntityType="KKLMDBModel.Store.MA_USER_PROFILE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_FREQ_TYPE" EntityType="KKLMDBModel.Store.MA_FREQ_TYPE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DA_TRN_MATCH" EntityType="KKLMDBModel.Store.DA_TRN_MATCH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_LIMIT" EntityType="KKLMDBModel.Store.MA_LIMIT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CTPY_LIMIT" EntityType="KKLMDBModel.Store.MA_CTPY_LIMIT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_LIMIT_PRODUCT" EntityType="KKLMDBModel.Store.MA_LIMIT_PRODUCT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DA_LOGGING" EntityType="KKLMDBModel.Store.DA_LOGGING" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PROCESS_DATE" EntityType="KKLMDBModel.Store.MA_PROCESS_DATE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CURRENCY" EntityType="KKLMDBModel.Store.MA_CURRENCY" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_SPOT_RATE" EntityType="KKLMDBModel.Store.MA_SPOT_RATE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_BOND_MARKET" EntityType="KKLMDBModel.Store.MA_BOND_MARKET" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_PCCF_CONFIG" EntityType="KKLMDBModel.Store.MA_PCCF_CONFIG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CONFIG_ATTRIBUTE" EntityType="KKLMDBModel.Store.MA_CONFIG_ATTRIBUTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_TEMP_CTPY_LIMIT" EntityType="KKLMDBModel.Store.MA_TEMP_CTPY_LIMIT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DA_TMBA_EXTENSION" EntityType="KKLMDBModel.Store.DA_TMBA_EXTENSION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_COUNTRY" EntityType="KKLMDBModel.Store.MA_COUNTRY" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_COUNTRY_LIMIT" EntityType="KKLMDBModel.Store.MA_COUNTRY_LIMIT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CSA_TYPE" EntityType="KKLMDBModel.Store.MA_CSA_TYPE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CSA_AGREEMENT" EntityType="KKLMDBModel.Store.MA_CSA_AGREEMENT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_CSA_PRODUCT" EntityType="KKLMDBModel.Store.MA_CSA_PRODUCT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MA_TBMA_CONFIG" EntityType="KKLMDBModel.Store.MA_TBMA_CONFIG" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_DA_TRN_FLOW_DA_TRN" Association="KKLMDBModel.Store.FK_DA_TRN_FLOW_DA_TRN">
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+      <End Role="DA_TRN_FLOW" EntitySet="DA_TRN_CASHFLOW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DA_TRN_MA_PORTFOLIO" Association="KKLMDBModel.Store.FK_DA_TRN_MA_PORTFOLIO">
+      <End Role="MA_PORTFOLIO" EntitySet="MA_PORTFOLIO" />
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DA_TRN_MA_PRODUCT" Association="KKLMDBModel.Store.FK_DA_TRN_MA_PRODUCT">
+      <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DA_TRN_MA_STATUS" Association="KKLMDBModel.Store.FK_DA_TRN_MA_STATUS">
+      <End Role="MA_STATUS" EntitySet="MA_STATUS" />
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DA_TRN_MA_INSRUMENT" Association="KKLMDBModel.Store.FK_DA_TRN_MA_INSRUMENT">
+      <End Role="MA_INSRUMENT" EntitySet="MA_INSTRUMENT" />
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+    </AssociationSet>
+    <AssociationSet Name="MA_USER_PROFILEMA_USER" Association="KKLMDBModel.Store.MA_USER_PROFILEMA_USER">
+      <End Role="MA_USER_PROFILE" EntitySet="MA_USER_PROFILE" />
+      <End Role="MA_USER" EntitySet="MA_USER" />
+    </AssociationSet>
+    <AssociationSet Name="MA_FUNCTIONALMA_USER_FUNCTIONAL" Association="KKLMDBModel.Store.MA_FUNCTIONALMA_USER_FUNCTIONAL">
+      <End Role="MA_FUNCTIONAL" EntitySet="MA_FUNCTIONAL" />
+      <End Role="MA_USER_FUNCTIONAL" EntitySet="MA_PROFILE_FUNCTIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="MA_USER_PROFILEMA_PROFILE_FUNCTIONAL" Association="KKLMDBModel.Store.MA_USER_PROFILEMA_PROFILE_FUNCTIONAL">
+      <End Role="MA_USER_PROFILE" EntitySet="MA_USER_PROFILE" />
+      <End Role="MA_PROFILE_FUNCTIONAL" EntitySet="MA_PROFILE_FUNCTIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="MA_PRODUCTMA_LIMIT_PRODUCT" Association="KKLMDBModel.Store.MA_PRODUCTMA_LIMIT_PRODUCT">
+      <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+      <End Role="MA_LIMIT_PRODUCT" EntitySet="MA_LIMIT_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_LIMITMA_LIMIT_PRODUCT" Association="KKLMDBModel.Store.MA_LIMITMA_LIMIT_PRODUCT">
+      <End Role="MA_LIMIT" EntitySet="MA_LIMIT" />
+      <End Role="MA_LIMIT_PRODUCT" EntitySet="MA_LIMIT_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_PRODUCTMA_INSRUMENT" Association="KKLMDBModel.Store.MA_PRODUCTMA_INSRUMENT">
+      <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+      <End Role="MA_INSRUMENT" EntitySet="MA_INSTRUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUTERPARTYMA_CTPY_LIMIT" Association="KKLMDBModel.Store.MA_COUTERPARTYMA_CTPY_LIMIT">
+      <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+      <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUTERPARTYDA_TRN" Association="KKLMDBModel.Store.MA_COUTERPARTYDA_TRN">
+      <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+    </AssociationSet>
+    <AssociationSet Name="MA_FREQ_TYPEMA_INSTRUMENT" Association="KKLMDBModel.Store.MA_FREQ_TYPEMA_INSTRUMENT">
+      <End Role="MA_FREQ_TYPE" EntitySet="MA_FREQ_TYPE" />
+      <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CURRENCYMA_SPOT_RATE" Association="KKLMDBModel.Store.MA_CURRENCYMA_SPOT_RATE">
+      <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+      <End Role="MA_SPOT_RATE" EntitySet="MA_SPOT_RATE" />
+    </AssociationSet>
+    <AssociationSet Name="MA_BOND_MARKETMA_INSTRUMENT" Association="KKLMDBModel.Store.MA_BOND_MARKETMA_INSTRUMENT">
+      <End Role="MA_BOND_MARKET" EntitySet="MA_BOND_MARKET" />
+      <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_PRODUCTMA_PCCF_CONFIG" Association="KKLMDBModel.Store.MA_PRODUCTMA_PCCF_CONFIG">
+      <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+      <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+    </AssociationSet>
+    <AssociationSet Name="MA_PCCFMA_PCCF_CONFIG" Association="KKLMDBModel.Store.MA_PCCFMA_PCCF_CONFIG">
+      <End Role="MA_PCCF" EntitySet="MA_PCCF" />
+      <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CURRENCYMA_INSTRUMENT" Association="KKLMDBModel.Store.MA_CURRENCYMA_INSTRUMENT">
+      <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+      <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CURRENCYMA_INSTRUMENT1" Association="KKLMDBModel.Store.MA_CURRENCYMA_INSTRUMENT1">
+      <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+      <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE" Association="KKLMDBModel.Store.MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE">
+      <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+      <End Role="MA_CONFIG_ATTRIBUTE" EntitySet="MA_CONFIG_ATTRIBUTE" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUTERPARTYMA_COUTERPARTY" Association="KKLMDBModel.Store.MA_COUTERPARTYMA_COUTERPARTY">
+      <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+      <End Role="MA_COUTERPARTY1" EntitySet="MA_COUTERPARTY" />
+    </AssociationSet>
+    <AssociationSet Name="MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT" Association="KKLMDBModel.Store.MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT">
+      <End Role="MA_TEMP_CTPY_LIMIT" EntitySet="MA_TEMP_CTPY_LIMIT" />
+      <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CTPY_LIMITMA_LIMIT" Association="KKLMDBModel.Store.MA_CTPY_LIMITMA_LIMIT">
+      <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+      <End Role="MA_LIMIT" EntitySet="MA_LIMIT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUTERPARTYMA_COUNTRY" Association="KKLMDBModel.Store.MA_COUTERPARTYMA_COUNTRY">
+      <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+      <End Role="MA_COUNTRY" EntitySet="MA_COUNTRY" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUNTRY_LIMITMA_COUNTRY" Association="KKLMDBModel.Store.MA_COUNTRY_LIMITMA_COUNTRY">
+      <End Role="MA_COUNTRY_LIMIT" EntitySet="MA_COUNTRY_LIMIT" />
+      <End Role="MA_COUNTRY" EntitySet="MA_COUNTRY" />
+    </AssociationSet>
+    <AssociationSet Name="MA_COUTERPARTYMA_CSA_AGREEMENT" Association="KKLMDBModel.Store.MA_COUTERPARTYMA_CSA_AGREEMENT">
+      <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+      <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CSA_AGREEMENTMA_CSA_TYPE" Association="KKLMDBModel.Store.MA_CSA_AGREEMENTMA_CSA_TYPE">
+      <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+      <End Role="MA_CSA_TYPE" EntitySet="MA_CSA_TYPE" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CSA_PRODUCTMA_CSA_AGREEMENT" Association="KKLMDBModel.Store.MA_CSA_PRODUCTMA_CSA_AGREEMENT">
+      <End Role="MA_CSA_PRODUCT" EntitySet="MA_CSA_PRODUCT" />
+      <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="MA_CSA_PRODUCTMA_PRODUCT" Association="KKLMDBModel.Store.MA_CSA_PRODUCTMA_PRODUCT">
+      <End Role="MA_CSA_PRODUCT" EntitySet="MA_CSA_PRODUCT" />
+      <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="DA_TRNDA_TMBA_EXTENSION" Association="KKLMDBModel.Store.DA_TRNDA_TMBA_EXTENSION">
+      <End Role="DA_TRN" EntitySet="DA_TRN" />
+      <End Role="DA_TMBA_EXTENSION" EntitySet="DA_TMBA_EXTENSION" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DA_LOGIN_AUDIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOGON_DATE" Type="datetime" Nullable="true" />
+    <Property Name="TERMINAL" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="RESULT" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LOGOUT_DATE" Type="datetime" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="USER_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DA_TRN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ENGINE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="INT_DEAL_NO" Type="varchar" Nullable="true" MaxLength="11" />
+    <Property Name="EXT_DEAL_NO" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="SOURCE" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PRODUCT_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="INSTRUMENT_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="PORTFOLIO_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="EXT_PORTFOLIO" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="TRADE_DATE" Type="datetime" Nullable="true" />
+    <Property Name="START_DATE" Type="datetime" Nullable="true" />
+    <Property Name="MATURITY_DATE" Type="datetime" Nullable="true" />
+    <Property Name="FLAG_BUYSELL" Type="varchar" Nullable="true" MaxLength="1" />
+    <Property Name="KK_PCCF" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+    <Property Name="KK_CONTRIBUTE" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="BOT_PCCF" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+    <Property Name="BOT_CONTRIBUTE" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="OVER_APPROVER" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="OVER_AMOUNT" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="OVER_SETTL_AMOUNT" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="OVER_COMMENT" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="STATUS_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FIRST_NOTIONAL" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="FIRST_CCY_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="FIRST_FLAG_PAYREC" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="FIRST_INDEX" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="FIRST_FLAG_FIXED" Type="bit" Nullable="true" />
+    <Property Name="FIRST_FIRSTFIXINGAMT" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="FIRST_FREQTYPE_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="FIRST_RATE" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="FIRST_SWAP_POINT" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="SECOND_NOTIONAL" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="SECOND_CCY_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="SECOND_FLAG_PAYREC" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="SECOND_INDEX" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SECOND_FLAG_FIXED" Type="bit" Nullable="true" />
+    <Property Name="SECOND_FIRSTFIXINGAMT" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="SECOND_FREQTYPE_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="SECOND_RATE" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="SECOND_SWAP_POINT" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="CTPY_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="INSERT_BY_EXT" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="FLAG_NEARFAR" Type="char" Nullable="true" MaxLength="1" />
+    <Property Name="NOTIONAL_THB" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+    <Property Name="SPOT_DATE" Type="datetime" Nullable="true" />
+    <Property Name="FLAG_SETTLE" Type="bit" Nullable="true" />
+    <Property Name="REMARK" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="FLAG_PCE" Type="bit" Nullable="true" />
+    <Property Name="OVER_COUNTRY_AMOUNT" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="DA_TRN_CASHFLOW">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DA_TRN_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SEQ" Type="int" Nullable="false" />
+    <Property Name="RATE" Type="decimal" Nullable="true" Precision="20" Scale="8" />
+    <Property Name="FLOW_DATE" Type="datetime" Nullable="true" />
+    <Property Name="FLOW_AMOUNT" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="FLAG_FIRST" Type="bit" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="FLOW_AMOUNT_THB" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+  </EntityType>
+  <EntityType Name="MA_PORTFOLIO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="ISDEFAULT" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_STATUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="USERCODE" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="NAME" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="DEPARTMENT" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ISLOCKED" Type="bit" Nullable="true" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="USER_OPICS" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="USER_PROFILE_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_COUTERPARTY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="USERCODE" Type="int" Nullable="false" />
+    <Property Name="SNAME" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FNAME" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="BUSINESS" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="RATE" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="OUTLOOK" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="GROUP_CTPY_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="TBMA_NAME" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="COUNTRY_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_INSTRUMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ISSUER" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="LOT_SIZE" Type="int" Nullable="true" />
+    <Property Name="COUPON" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+    <Property Name="MATURITY_DATE" Type="datetime" Nullable="true" />
+    <Property Name="CAL_METHOD" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FLAG_FIXED" Type="bit" Nullable="true" />
+    <Property Name="COUPON_FREQ_TYPE_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="INS_MKT" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="FLAG_MULTIPLY" Type="bit" Nullable="true" />
+    <Property Name="CURRENCY_ID1" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="CURRENCY_ID2" Type="uniqueidentifier" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_PCCF">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="C1" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C2" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C3" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C4" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C5" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C6" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C7" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C8" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C9" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C10" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C11" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C12" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C13" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C14" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C15" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C16" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C17" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C18" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C19" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C20" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="more20" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="DEFAULT" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="C0D" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C1D" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C21" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C22" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C23" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="C24" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="MA_FUNCTIONAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="USERCODE" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LABEL" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_PROFILE_FUNCTIONAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ISREADABLE" Type="bit" Nullable="false" />
+    <Property Name="ISWRITABLE" Type="bit" Nullable="false" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ISAPPROVABLE" Type="bit" Nullable="false" />
+    <Property Name="FUNCTIONAL_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="USER_PROFILE_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_USER_PROFILE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_FREQ_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="USERCODE" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="INDEX" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DA_TRN_MATCH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="INT_TRN_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EXT_TRN_ID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="STATUS_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_LIMIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+    <Property Name="LIMIT_TYPE" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="INDEX" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_CTPY_LIMIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FLAG_CONTROL" Type="bit" Nullable="false" />
+    <Property Name="AMOUNT" Type="decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="EXPIRE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="CTPY_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="LIMIT_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_LIMIT_PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LIMIT_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DA_LOGGING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EVENT" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="TABLE_NAME" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LOG_DATE" Type="datetime" Nullable="false" />
+    <Property Name="RECORD_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_DETAIL" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_PROCESS_DATE">
+    <Key>
+      <PropertyRef Name="PROC_DATE" />
+    </Key>
+    <Property Name="PROC_DATE" Type="datetime" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PREV_PROC_DATE" Type="datetime" Nullable="false" />
+    <Property Name="NEXT_PROC_DATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="FLAG_RECONCILE" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_CURRENCY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_SPOT_RATE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CURRENCY_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PROC_DATE" Type="datetime" Nullable="false" />
+    <Property Name="RATE" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+  </EntityType>
+  <EntityType Name="MA_BOND_MARKET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MA_PCCF_CONFIG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar" Nullable="true" MaxLength="255" />
+    <Property Name="PRODUCT_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PCCF_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="PRIORITY" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_CONFIG_ATTRIBUTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="TABLE" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ATTRIBUTE" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="VALUE" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+    <Property Name="PCCF_CONFIG_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_TEMP_CTPY_LIMIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CTPY_LIMIT_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AMOUNT" Type="decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="EFFECTIVE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="EXPIRY_DATE" Type="datetime" Nullable="false" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DA_TMBA_EXTENSION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PURPOSE" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="YIELD_TYPE" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="CLEAN_PRICE" Type="decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="GROSS_PRICE" Type="decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="UNIT" Type="int" Nullable="false" />
+    <Property Name="TERM" Type="int" Nullable="true" />
+    <Property Name="RATE" Type="decimal" Nullable="true" Precision="18" Scale="6" />
+    <Property Name="REMARK" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="SENDER_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="SEND_DATE" Type="datetime" Nullable="true" />
+    <Property Name="IS_REPORT_CLEAN" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_COUNTRY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MA_COUNTRY_LIMIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="COUNTRY_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AMOUNT" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="EFFECTIVE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="EXPIRY_DATE" Type="datetime" Nullable="false" />
+    <Property Name="ISTEMP" Type="bit" Nullable="false" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="FLAG_CONTROL" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_CSA_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LABEL" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MA_CSA_AGREEMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CSA_TYPE_ID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_INSERTBYUSERID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LOG_INSERTDATE" Type="datetime" Nullable="false" />
+    <Property Name="LOG_MODIFYBYUSERID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="LOG_MODIFYDATE" Type="datetime" Nullable="true" />
+    <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_CSA_PRODUCT">
+    <Key>
+      <PropertyRef Name="CSA_AGREEMENT_ID" />
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="CSA_AGREEMENT_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MA_TBMA_CONFIG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="TBMA_CAL_USERNAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TBMA_CAL_PASSWORD" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TBMA_CAL_IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TBMA_RPT_PATH" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="TBMA_RPT_PREFIX" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TBMA_RPT_TRADERID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DA_TRN_FLOW_DA_TRN">
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="1" />
+    <End Role="DA_TRN_FLOW" Type="KKLMDBModel.Store.DA_TRN_CASHFLOW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DA_TRN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN_FLOW">
+        <PropertyRef Name="DA_TRN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DA_TRN_MA_PORTFOLIO">
+    <End Role="MA_PORTFOLIO" Type="KKLMDBModel.Store.MA_PORTFOLIO" Multiplicity="0..1" />
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PORTFOLIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN">
+        <PropertyRef Name="PORTFOLIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DA_TRN_MA_PRODUCT">
+    <End Role="MA_PRODUCT" Type="KKLMDBModel.Store.MA_PRODUCT" Multiplicity="0..1" />
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DA_TRN_MA_STATUS">
+    <End Role="MA_STATUS" Type="KKLMDBModel.Store.MA_STATUS" Multiplicity="1" />
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_STATUS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN">
+        <PropertyRef Name="STATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DA_TRN_MA_INSRUMENT">
+    <End Role="MA_INSRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="0..1" />
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_INSRUMENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN">
+        <PropertyRef Name="INSTRUMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_USER_PROFILEMA_USER">
+    <End Role="MA_USER_PROFILE" Type="KKLMDBModel.Store.MA_USER_PROFILE" Multiplicity="1" />
+    <End Role="MA_USER" Type="KKLMDBModel.Store.MA_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_USER_PROFILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_USER">
+        <PropertyRef Name="USER_PROFILE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_FUNCTIONALMA_USER_FUNCTIONAL">
+    <End Role="MA_FUNCTIONAL" Type="KKLMDBModel.Store.MA_FUNCTIONAL" Multiplicity="1" />
+    <End Role="MA_USER_FUNCTIONAL" Type="KKLMDBModel.Store.MA_PROFILE_FUNCTIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_FUNCTIONAL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_USER_FUNCTIONAL">
+        <PropertyRef Name="FUNCTIONAL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_USER_PROFILEMA_PROFILE_FUNCTIONAL">
+    <End Role="MA_USER_PROFILE" Type="KKLMDBModel.Store.MA_USER_PROFILE" Multiplicity="1" />
+    <End Role="MA_PROFILE_FUNCTIONAL" Type="KKLMDBModel.Store.MA_PROFILE_FUNCTIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_USER_PROFILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_PROFILE_FUNCTIONAL">
+        <PropertyRef Name="USER_PROFILE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_PRODUCTMA_LIMIT_PRODUCT">
+    <End Role="MA_PRODUCT" Type="KKLMDBModel.Store.MA_PRODUCT" Multiplicity="1" />
+    <End Role="MA_LIMIT_PRODUCT" Type="KKLMDBModel.Store.MA_LIMIT_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_LIMIT_PRODUCT">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_LIMITMA_LIMIT_PRODUCT">
+    <End Role="MA_LIMIT" Type="KKLMDBModel.Store.MA_LIMIT" Multiplicity="1" />
+    <End Role="MA_LIMIT_PRODUCT" Type="KKLMDBModel.Store.MA_LIMIT_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_LIMIT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_LIMIT_PRODUCT">
+        <PropertyRef Name="LIMIT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_PRODUCTMA_INSRUMENT">
+    <End Role="MA_PRODUCT" Type="KKLMDBModel.Store.MA_PRODUCT" Multiplicity="1" />
+    <End Role="MA_INSRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_INSRUMENT">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUTERPARTYMA_CTPY_LIMIT">
+    <End Role="MA_COUTERPARTY" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="1" />
+    <End Role="MA_CTPY_LIMIT" Type="KKLMDBModel.Store.MA_CTPY_LIMIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUTERPARTY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CTPY_LIMIT">
+        <PropertyRef Name="CTPY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUTERPARTYDA_TRN">
+    <End Role="MA_COUTERPARTY" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="1" />
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUTERPARTY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TRN">
+        <PropertyRef Name="CTPY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_FREQ_TYPEMA_INSTRUMENT">
+    <End Role="MA_FREQ_TYPE" Type="KKLMDBModel.Store.MA_FREQ_TYPE" Multiplicity="0..1" />
+    <End Role="MA_INSTRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_FREQ_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_INSTRUMENT">
+        <PropertyRef Name="COUPON_FREQ_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CURRENCYMA_SPOT_RATE">
+    <End Role="MA_CURRENCY" Type="KKLMDBModel.Store.MA_CURRENCY" Multiplicity="1" />
+    <End Role="MA_SPOT_RATE" Type="KKLMDBModel.Store.MA_SPOT_RATE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CURRENCY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_SPOT_RATE">
+        <PropertyRef Name="CURRENCY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_BOND_MARKETMA_INSTRUMENT">
+    <End Role="MA_BOND_MARKET" Type="KKLMDBModel.Store.MA_BOND_MARKET" Multiplicity="0..1" />
+    <End Role="MA_INSTRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_BOND_MARKET">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_INSTRUMENT">
+        <PropertyRef Name="INS_MKT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_PRODUCTMA_PCCF_CONFIG">
+    <End Role="MA_PRODUCT" Type="KKLMDBModel.Store.MA_PRODUCT" Multiplicity="1" />
+    <End Role="MA_PCCF_CONFIG" Type="KKLMDBModel.Store.MA_PCCF_CONFIG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_PCCF_CONFIG">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_PCCFMA_PCCF_CONFIG">
+    <End Role="MA_PCCF" Type="KKLMDBModel.Store.MA_PCCF" Multiplicity="1" />
+    <End Role="MA_PCCF_CONFIG" Type="KKLMDBModel.Store.MA_PCCF_CONFIG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PCCF">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_PCCF_CONFIG">
+        <PropertyRef Name="PCCF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CURRENCYMA_INSTRUMENT">
+    <End Role="MA_CURRENCY" Type="KKLMDBModel.Store.MA_CURRENCY" Multiplicity="0..1" />
+    <End Role="MA_INSTRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CURRENCY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_INSTRUMENT">
+        <PropertyRef Name="CURRENCY_ID1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CURRENCYMA_INSTRUMENT1">
+    <End Role="MA_CURRENCY" Type="KKLMDBModel.Store.MA_CURRENCY" Multiplicity="0..1" />
+    <End Role="MA_INSTRUMENT" Type="KKLMDBModel.Store.MA_INSTRUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CURRENCY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_INSTRUMENT">
+        <PropertyRef Name="CURRENCY_ID2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE">
+    <End Role="MA_PCCF_CONFIG" Type="KKLMDBModel.Store.MA_PCCF_CONFIG" Multiplicity="1" />
+    <End Role="MA_CONFIG_ATTRIBUTE" Type="KKLMDBModel.Store.MA_CONFIG_ATTRIBUTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PCCF_CONFIG">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CONFIG_ATTRIBUTE">
+        <PropertyRef Name="PCCF_CONFIG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUTERPARTYMA_COUTERPARTY">
+    <End Role="MA_COUTERPARTY" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="0..1" />
+    <End Role="MA_COUTERPARTY1" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUTERPARTY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_COUTERPARTY1">
+        <PropertyRef Name="GROUP_CTPY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT">
+    <End Role="MA_TEMP_CTPY_LIMIT" Type="KKLMDBModel.Store.MA_TEMP_CTPY_LIMIT" Multiplicity="*" />
+    <End Role="MA_CTPY_LIMIT" Type="KKLMDBModel.Store.MA_CTPY_LIMIT" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CTPY_LIMIT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_TEMP_CTPY_LIMIT">
+        <PropertyRef Name="CTPY_LIMIT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CTPY_LIMITMA_LIMIT">
+    <End Role="MA_CTPY_LIMIT" Type="KKLMDBModel.Store.MA_CTPY_LIMIT" Multiplicity="*" />
+    <End Role="MA_LIMIT" Type="KKLMDBModel.Store.MA_LIMIT" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_LIMIT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CTPY_LIMIT">
+        <PropertyRef Name="LIMIT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUTERPARTYMA_COUNTRY">
+    <End Role="MA_COUTERPARTY" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="*" />
+    <End Role="MA_COUNTRY" Type="KKLMDBModel.Store.MA_COUNTRY" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_COUTERPARTY">
+        <PropertyRef Name="COUNTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUNTRY_LIMITMA_COUNTRY">
+    <End Role="MA_COUNTRY_LIMIT" Type="KKLMDBModel.Store.MA_COUNTRY_LIMIT" Multiplicity="*" />
+    <End Role="MA_COUNTRY" Type="KKLMDBModel.Store.MA_COUNTRY" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_COUNTRY_LIMIT">
+        <PropertyRef Name="COUNTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_COUTERPARTYMA_CSA_AGREEMENT">
+    <End Role="MA_COUTERPARTY" Type="KKLMDBModel.Store.MA_COUTERPARTY" Multiplicity="1" />
+    <End Role="MA_CSA_AGREEMENT" Type="KKLMDBModel.Store.MA_CSA_AGREEMENT" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_COUTERPARTY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CSA_AGREEMENT">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CSA_AGREEMENTMA_CSA_TYPE">
+    <End Role="MA_CSA_AGREEMENT" Type="KKLMDBModel.Store.MA_CSA_AGREEMENT" Multiplicity="*" />
+    <End Role="MA_CSA_TYPE" Type="KKLMDBModel.Store.MA_CSA_TYPE" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CSA_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CSA_AGREEMENT">
+        <PropertyRef Name="CSA_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CSA_PRODUCTMA_CSA_AGREEMENT">
+    <End Role="MA_CSA_PRODUCT" Type="KKLMDBModel.Store.MA_CSA_PRODUCT" Multiplicity="*" />
+    <End Role="MA_CSA_AGREEMENT" Type="KKLMDBModel.Store.MA_CSA_AGREEMENT" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_CSA_AGREEMENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CSA_PRODUCT">
+        <PropertyRef Name="CSA_AGREEMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MA_CSA_PRODUCTMA_PRODUCT">
+    <End Role="MA_CSA_PRODUCT" Type="KKLMDBModel.Store.MA_CSA_PRODUCT" Multiplicity="*" />
+    <End Role="MA_PRODUCT" Type="KKLMDBModel.Store.MA_PRODUCT" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MA_CSA_PRODUCT">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DA_TRNDA_TMBA_EXTENSION">
+    <End Role="DA_TRN" Type="KKLMDBModel.Store.DA_TRN" Multiplicity="1" />
+    <End Role="DA_TMBA_EXTENSION" Type="KKLMDBModel.Store.DA_TMBA_EXTENSION" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DA_TRN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DA_TMBA_EXTENSION">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KKLMDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="KKLMDBEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="DA_LOGIN_AUDIT" EntityType="KKLMDBModel.DA_LOGIN_AUDIT" />
+          <EntitySet Name="DA_TRN" EntityType="KKLMDBModel.DA_TRN" />
+          <EntitySet Name="DA_TRN_CASHFLOW" EntityType="KKLMDBModel.DA_TRN_CASHFLOW" />
+          <EntitySet Name="MA_PORTFOLIO" EntityType="KKLMDBModel.MA_PORTFOLIO" />
+          <EntitySet Name="MA_PRODUCT" EntityType="KKLMDBModel.MA_PRODUCT" />
+          <EntitySet Name="MA_STATUS" EntityType="KKLMDBModel.MA_STATUS" />
+          <EntitySet Name="MA_USER" EntityType="KKLMDBModel.MA_USER" />
+          <AssociationSet Name="FK_DA_TRN_FLOW_DA_TRN" Association="KKLMDBModel.FK_DA_TRN_FLOW_DA_TRN">
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+            <End Role="DA_TRN_FLOW" EntitySet="DA_TRN_CASHFLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DA_TRN_MA_PORTFOLIO" Association="KKLMDBModel.FK_DA_TRN_MA_PORTFOLIO">
+            <End Role="MA_PORTFOLIO" EntitySet="MA_PORTFOLIO" />
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DA_TRN_MA_PRODUCT" Association="KKLMDBModel.FK_DA_TRN_MA_PRODUCT">
+            <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DA_TRN_MA_STATUS" Association="KKLMDBModel.FK_DA_TRN_MA_STATUS">
+            <End Role="MA_STATUS" EntitySet="MA_STATUS" />
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+          </AssociationSet>
+          <EntitySet Name="MA_COUTERPARTY" EntityType="KKLMDBModel.MA_COUTERPARTY" />
+          <EntitySet Name="MA_INSTRUMENT" EntityType="KKLMDBModel.MA_INSTRUMENT" />
+          <EntitySet Name="MA_PCCF" EntityType="KKLMDBModel.MA_PCCF" />
+          <AssociationSet Name="FK_DA_TRN_MA_INSRUMENT" Association="KKLMDBModel.FK_DA_TRN_MA_INSRUMENT">
+            <End Role="MA_INSRUMENT" EntitySet="MA_INSTRUMENT" />
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+          </AssociationSet>
+          <EntitySet Name="MA_FUNCTIONAL" EntityType="KKLMDBModel.MA_FUNCTIONAL" />
+          <EntitySet Name="MA_PROFILE_FUNCTIONAL" EntityType="KKLMDBModel.MA_PROFILE_FUNCTIONAL" />
+          <EntitySet Name="MA_USER_PROFILE" EntityType="KKLMDBModel.MA_USER_PROFILE" />
+          <AssociationSet Name="MA_USER_PROFILEMA_USER" Association="KKLMDBModel.MA_USER_PROFILEMA_USER">
+            <End Role="MA_USER_PROFILE" EntitySet="MA_USER_PROFILE" />
+            <End Role="MA_USER" EntitySet="MA_USER" />
+          </AssociationSet>
+          <AssociationSet Name="MA_FUNCTIONALMA_USER_FUNCTIONAL" Association="KKLMDBModel.MA_FUNCTIONALMA_USER_FUNCTIONAL">
+            <End Role="MA_FUNCTIONAL" EntitySet="MA_FUNCTIONAL" />
+            <End Role="MA_USER_FUNCTIONAL" EntitySet="MA_PROFILE_FUNCTIONAL" />
+          </AssociationSet>
+          <EntitySet Name="MA_FREQ_TYPE" EntityType="KKLMDBModel.MA_FREQ_TYPE" />
+          <EntitySet Name="DA_TRN_MATCH" EntityType="KKLMDBModel.DA_TRN_MATCH" />
+          <AssociationSet Name="MA_USER_PROFILEMA_PROFILE_FUNCTIONAL" Association="KKLMDBModel.MA_USER_PROFILEMA_PROFILE_FUNCTIONAL">
+            <End Role="MA_USER_PROFILE" EntitySet="MA_USER_PROFILE" />
+            <End Role="MA_PROFILE_FUNCTIONAL" EntitySet="MA_PROFILE_FUNCTIONAL" />
+          </AssociationSet>
+          <EntitySet Name="MA_LIMIT" EntityType="KKLMDBModel.MA_LIMIT" />
+          <EntitySet Name="MA_CTPY_LIMIT" EntityType="KKLMDBModel.MA_CTPY_LIMIT" />
+          <EntitySet Name="MA_LIMIT_PRODUCT" EntityType="KKLMDBModel.MA_LIMIT_PRODUCT" />
+          <AssociationSet Name="MA_PRODUCTMA_LIMIT_PRODUCT" Association="KKLMDBModel.MA_PRODUCTMA_LIMIT_PRODUCT">
+            <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+            <End Role="MA_LIMIT_PRODUCT" EntitySet="MA_LIMIT_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_LIMITMA_LIMIT_PRODUCT" Association="KKLMDBModel.MA_LIMITMA_LIMIT_PRODUCT">
+            <End Role="MA_LIMIT" EntitySet="MA_LIMIT" />
+            <End Role="MA_LIMIT_PRODUCT" EntitySet="MA_LIMIT_PRODUCT" />
+          </AssociationSet>
+          <EntitySet Name="DA_LOGGING" EntityType="KKLMDBModel.DA_LOGGING" />
+          <AssociationSet Name="MA_PRODUCTMA_INSRUMENT" Association="KKLMDBModel.MA_PRODUCTMA_INSRUMENT">
+            <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+            <End Role="MA_INSRUMENT" EntitySet="MA_INSTRUMENT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_COUTERPARTYMA_CTPY_LIMIT" Association="KKLMDBModel.MA_COUTERPARTYMA_CTPY_LIMIT">
+            <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+            <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_COUTERPARTYDA_TRN" Association="KKLMDBModel.MA_COUTERPARTYDA_TRN">
+            <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+          </AssociationSet>
+          <AssociationSet Name="MA_FREQ_TYPEMA_INSTRUMENT" Association="KKLMDBModel.MA_FREQ_TYPEMA_INSTRUMENT">
+            <End Role="MA_FREQ_TYPE" EntitySet="MA_FREQ_TYPE" />
+            <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+          </AssociationSet>
+          <EntitySet Name="MA_PROCESS_DATE" EntityType="KKLMDBModel.MA_PROCESS_DATE" />
+          <EntitySet Name="MA_CURRENCY" EntityType="KKLMDBModel.MA_CURRENCY" />
+          <EntitySet Name="MA_SPOT_RATE" EntityType="KKLMDBModel.MA_SPOT_RATE" />
+          <AssociationSet Name="MA_CURRENCYMA_SPOT_RATE" Association="KKLMDBModel.MA_CURRENCYMA_SPOT_RATE">
+            <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+            <End Role="MA_SPOT_RATE" EntitySet="MA_SPOT_RATE" />
+          </AssociationSet>
+          <EntitySet Name="MA_BOND_MARKET" EntityType="KKLMDBModel.MA_BOND_MARKET" />
+          <AssociationSet Name="MA_BOND_MARKETMA_INSTRUMENT" Association="KKLMDBModel.MA_BOND_MARKETMA_INSTRUMENT">
+            <End Role="MA_BOND_MARKET" EntitySet="MA_BOND_MARKET" />
+            <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+          </AssociationSet>
+          <EntitySet Name="MA_PCCF_CONFIG" EntityType="KKLMDBModel.MA_PCCF_CONFIG" />
+          <EntitySet Name="MA_CONFIG_ATTRIBUTE" EntityType="KKLMDBModel.MA_CONFIG_ATTRIBUTE" />
+          <AssociationSet Name="MA_PRODUCTMA_PCCF_CONFIG" Association="KKLMDBModel.MA_PRODUCTMA_PCCF_CONFIG">
+            <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+            <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="MA_PCCFMA_PCCF_CONFIG" Association="KKLMDBModel.MA_PCCFMA_PCCF_CONFIG">
+            <End Role="MA_PCCF" EntitySet="MA_PCCF" />
+            <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="MA_CURRENCYMA_INSTRUMENT" Association="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT">
+            <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+            <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_CURRENCYMA_INSTRUMENT1" Association="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT1">
+            <End Role="MA_CURRENCY" EntitySet="MA_CURRENCY" />
+            <End Role="MA_INSTRUMENT" EntitySet="MA_INSTRUMENT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE" Association="KKLMDBModel.MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE">
+            <End Role="MA_PCCF_CONFIG" EntitySet="MA_PCCF_CONFIG" />
+            <End Role="MA_CONFIG_ATTRIBUTE" EntitySet="MA_CONFIG_ATTRIBUTE" />
+          </AssociationSet>
+          <AssociationSet Name="MA_COUTERPARTYMA_COUTERPARTY" Association="KKLMDBModel.MA_COUTERPARTYMA_COUTERPARTY">
+            <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+            <End Role="MA_COUTERPARTY1" EntitySet="MA_COUTERPARTY" />
+          </AssociationSet>
+          <EntitySet Name="MA_TEMP_CTPY_LIMIT" EntityType="KKLMDBModel.MA_TEMP_CTPY_LIMIT" />
+          <AssociationSet Name="MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT" Association="KKLMDBModel.MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT">
+            <End Role="MA_TEMP_CTPY_LIMIT" EntitySet="MA_TEMP_CTPY_LIMIT" />
+            <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+          </AssociationSet>
+          <EntitySet Name="DA_TMBA_EXTENSION" EntityType="KKLMDBModel.DA_TMBA_EXTENSION" />
+          <AssociationSet Name="MA_CTPY_LIMITMA_LIMIT" Association="KKLMDBModel.MA_CTPY_LIMITMA_LIMIT">
+            <End Role="MA_CTPY_LIMIT" EntitySet="MA_CTPY_LIMIT" />
+            <End Role="MA_LIMIT" EntitySet="MA_LIMIT" />
+          </AssociationSet>
+          <EntitySet Name="MA_COUNTRY" EntityType="KKLMDBModel.MA_COUNTRY" />
+          <AssociationSet Name="MA_COUTERPARTYMA_COUNTRY" Association="KKLMDBModel.MA_COUTERPARTYMA_COUNTRY">
+            <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+            <End Role="MA_COUNTRY" EntitySet="MA_COUNTRY" />
+          </AssociationSet>
+          <EntitySet Name="MA_COUNTRY_LIMIT" EntityType="KKLMDBModel.MA_COUNTRY_LIMIT" />
+          <AssociationSet Name="MA_COUNTRY_LIMITMA_COUNTRY" Association="KKLMDBModel.MA_COUNTRY_LIMITMA_COUNTRY">
+            <End Role="MA_COUNTRY_LIMIT" EntitySet="MA_COUNTRY_LIMIT" />
+            <End Role="MA_COUNTRY" EntitySet="MA_COUNTRY" />
+          </AssociationSet>
+          <EntitySet Name="MA_CSA_TYPE" EntityType="KKLMDBModel.MA_CSA_TYPE" />
+          <EntitySet Name="MA_CSA_AGREEMENT" EntityType="KKLMDBModel.MA_CSA_AGREEMENT" />
+          <AssociationSet Name="MA_COUTERPARTYMA_CSA_AGREEMENT" Association="KKLMDBModel.MA_COUTERPARTYMA_CSA_AGREEMENT">
+            <End Role="MA_COUTERPARTY" EntitySet="MA_COUTERPARTY" />
+            <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_CSA_AGREEMENTMA_CSA_TYPE" Association="KKLMDBModel.MA_CSA_AGREEMENTMA_CSA_TYPE">
+            <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+            <End Role="MA_CSA_TYPE" EntitySet="MA_CSA_TYPE" />
+          </AssociationSet>
+          <EntitySet Name="MA_CSA_PRODUCT" EntityType="KKLMDBModel.MA_CSA_PRODUCT" />
+          <AssociationSet Name="MA_CSA_PRODUCTMA_CSA_AGREEMENT" Association="KKLMDBModel.MA_CSA_PRODUCTMA_CSA_AGREEMENT">
+            <End Role="MA_CSA_PRODUCT" EntitySet="MA_CSA_PRODUCT" />
+            <End Role="MA_CSA_AGREEMENT" EntitySet="MA_CSA_AGREEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="MA_CSA_PRODUCTMA_PRODUCT" Association="KKLMDBModel.MA_CSA_PRODUCTMA_PRODUCT">
+            <End Role="MA_CSA_PRODUCT" EntitySet="MA_CSA_PRODUCT" />
+            <End Role="MA_PRODUCT" EntitySet="MA_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="DA_TRNDA_TMBA_EXTENSION" Association="KKLMDBModel.DA_TRNDA_TMBA_EXTENSION">
+            <End Role="DA_TRN" EntitySet="DA_TRN" />
+            <End Role="DA_TMBA_EXTENSION" EntitySet="DA_TMBA_EXTENSION" />
+          </AssociationSet>
+          <EntitySet Name="MA_TBMA_CONFIG" EntityType="KKLMDBModel.MA_TBMA_CONFIG" />
+          </EntityContainer>
+        <EntityType Name="DA_LOGIN_AUDIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="LOGON_DATE" />
+          <Property Type="String" Name="TERMINAL" MaxLength="50" />
+          <Property Type="String" Name="RESULT" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LOGOUT_DATE" Nullable="true" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="Guid" Name="USER_ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DA_TRN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="ENGINE_DATE" Nullable="false" />
+          <Property Type="String" Name="INT_DEAL_NO" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EXT_DEAL_NO" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="VERSION" Nullable="false" />
+          <Property Type="String" Name="SOURCE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="PRODUCT_ID" />
+          <Property Type="Guid" Name="INSTRUMENT_ID" />
+          <Property Type="Guid" Name="PORTFOLIO_ID" />
+          <Property Type="String" Name="EXT_PORTFOLIO" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="TRADE_DATE" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="MATURITY_DATE" />
+          <Property Type="String" Name="FLAG_BUYSELL" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="KK_PCCF" Precision="18" Scale="6" />
+          <Property Type="Decimal" Name="KK_CONTRIBUTE" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="BOT_PCCF" Precision="18" Scale="6" />
+          <Property Type="Decimal" Name="BOT_CONTRIBUTE" Precision="18" Scale="4" />
+          <Property Type="String" Name="OVER_APPROVER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="OVER_AMOUNT" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="OVER_SETTL_AMOUNT" Precision="18" Scale="4" />
+          <Property Type="String" Name="OVER_COMMENT" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="STATUS_ID" Nullable="false" />
+          <NavigationProperty Name="DA_TRN_FLOW" Relationship="KKLMDBModel.FK_DA_TRN_FLOW_DA_TRN" FromRole="DA_TRN" ToRole="DA_TRN_FLOW" />
+          <NavigationProperty Name="MA_PORTFOLIO" Relationship="KKLMDBModel.FK_DA_TRN_MA_PORTFOLIO" FromRole="DA_TRN" ToRole="MA_PORTFOLIO" />
+          <NavigationProperty Name="MA_PRODUCT" Relationship="KKLMDBModel.FK_DA_TRN_MA_PRODUCT" FromRole="DA_TRN" ToRole="MA_PRODUCT" />
+          <NavigationProperty Name="MA_STATUS" Relationship="KKLMDBModel.FK_DA_TRN_MA_STATUS" FromRole="DA_TRN" ToRole="MA_STATUS" />
+          <NavigationProperty Name="MA_INSRUMENT" Relationship="KKLMDBModel.FK_DA_TRN_MA_INSRUMENT" FromRole="DA_TRN" ToRole="MA_INSRUMENT" />
+          <Property Name="FIRST" Type="KKLMDBModel.TRN_TYPE" Nullable="false" />
+          <Property Name="SECOND" Type="KKLMDBModel.TRN_TYPE" Nullable="false" />
+          <NavigationProperty Name="MA_COUTERPARTY" Relationship="KKLMDBModel.MA_COUTERPARTYDA_TRN" FromRole="DA_TRN" ToRole="MA_COUTERPARTY" />
+          <Property Type="Guid" Name="CTPY_ID" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="String" Name="INSERT_BY_EXT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FLAG_NEARFAR" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Decimal" Name="NOTIONAL_THB" Precision="18" Scale="6" />
+          <Property Type="DateTime" Name="SPOT_DATE" Nullable="true" />
+          <Property Type="Boolean" Name="FLAG_SETTLE" Nullable="true" />
+          <Property Type="String" Name="REMARK" Nullable="true" FixedLength="false" Unicode="false" MaxLength="250" />
+          <Property Type="Boolean" Name="FLAG_PCE" Nullable="true" />
+          <NavigationProperty Name="DA_TMBA_EXTENSION" Relationship="KKLMDBModel.DA_TRNDA_TMBA_EXTENSION" FromRole="DA_TRN" ToRole="DA_TMBA_EXTENSION" />
+          <Property Type="Decimal" Name="OVER_COUNTRY_AMOUNT" Nullable="true" Precision="18" Scale="4" />
+          </EntityType>
+        <EntityType Name="DA_TRN_CASHFLOW">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="DA_TRN_ID" Nullable="false" />
+          <Property Type="Int32" Name="SEQ" Nullable="false" />
+          <Property Type="Decimal" Name="RATE" Precision="20" Scale="8" />
+          <Property Type="DateTime" Name="FLOW_DATE" />
+          <Property Type="Decimal" Name="FLOW_AMOUNT" Precision="18" Scale="4" />
+          <NavigationProperty Name="DA_TRN" Relationship="KKLMDBModel.FK_DA_TRN_FLOW_DA_TRN" FromRole="DA_TRN_FLOW" ToRole="DA_TRN" />
+          <Property Type="Boolean" Name="FLAG_FIRST" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="Decimal" Name="FLOW_AMOUNT_THB" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="MA_PORTFOLIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Type="Boolean" Name="ISDEFAULT" />
+        </EntityType>
+        <EntityType Name="MA_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <NavigationProperty Name="MA_LIMIT_PRODUCT" Relationship="KKLMDBModel.MA_PRODUCTMA_LIMIT_PRODUCT" FromRole="MA_PRODUCT" ToRole="MA_LIMIT_PRODUCT" />
+          <NavigationProperty Name="MA_INSRUMENT" Relationship="KKLMDBModel.MA_PRODUCTMA_INSRUMENT" FromRole="MA_PRODUCT" ToRole="MA_INSRUMENT" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="MA_PCCF_CONFIG" Relationship="KKLMDBModel.MA_PRODUCTMA_PCCF_CONFIG" FromRole="MA_PRODUCT" ToRole="MA_PCCF_CONFIG" />
+        </EntityType>
+        <EntityType Name="MA_STATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+        </EntityType>
+        <EntityType Name="MA_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="USERCODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DEPARTMENT" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISLOCKED" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Name="USER_OPICS" Nullable="false" MaxLength="20" Type="String" />
+          <NavigationProperty Name="MA_USER_PROFILE" Relationship="KKLMDBModel.MA_USER_PROFILEMA_USER" FromRole="MA_USER" ToRole="MA_USER_PROFILE" />
+          <Property Type="Guid" Name="USER_PROFILE_ID" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DA_TRN_FLOW_DA_TRN">
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="1" />
+          <End Type="KKLMDBModel.DA_TRN_CASHFLOW" Role="DA_TRN_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DA_TRN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN_FLOW">
+              <PropertyRef Name="DA_TRN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DA_TRN_MA_PORTFOLIO">
+          <End Type="KKLMDBModel.MA_PORTFOLIO" Role="MA_PORTFOLIO" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PORTFOLIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN">
+              <PropertyRef Name="PORTFOLIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DA_TRN_MA_PRODUCT">
+          <End Type="KKLMDBModel.MA_PRODUCT" Role="MA_PRODUCT" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PRODUCT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DA_TRN_MA_STATUS">
+          <End Type="KKLMDBModel.MA_STATUS" Role="MA_STATUS" Multiplicity="1" />
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_STATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_COUTERPARTY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="USERCODE" Nullable="false" />
+          <Property Type="String" Name="SNAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FNAME" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BUSINESS" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RATE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OUTLOOK" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <NavigationProperty Name="MA_CTPY_LIMIT" Relationship="KKLMDBModel.MA_COUTERPARTYMA_CTPY_LIMIT" FromRole="MA_COUTERPARTY" ToRole="MA_CTPY_LIMIT" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="GROUP_CTPY" Relationship="KKLMDBModel.MA_COUTERPARTYMA_COUTERPARTY" FromRole="MA_COUTERPARTY1" ToRole="MA_COUTERPARTY" />
+          <Property Type="Guid" Name="GROUP_CTPY_ID" Nullable="true" />
+          <Property Type="String" Name="TBMA_NAME" Nullable="true" MaxLength="10" />
+          <NavigationProperty Name="MA_COUNTRY" Relationship="KKLMDBModel.MA_COUTERPARTYMA_COUNTRY" FromRole="MA_COUTERPARTY" ToRole="MA_COUNTRY" />
+          <Property Type="Guid" Name="COUNTRY_ID" Nullable="false" />
+          <NavigationProperty Name="MA_CSA_AGREEMENT" Relationship="KKLMDBModel.MA_COUTERPARTYMA_CSA_AGREEMENT" FromRole="MA_COUTERPARTY" ToRole="MA_CSA_AGREEMENT" />
+        </EntityType>
+        <EntityType Name="MA_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ISSUER" MaxLength="50" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Type="Int32" Name="LOT_SIZE" Nullable="true" />
+          <Property Type="Decimal" Name="COUPON" Nullable="true" Precision="18" Scale="6" />
+          <Property Type="DateTime" Name="MATURITY_DATE" Nullable="true" />
+          <Property Type="String" Name="CAL_METHOD" MaxLength="50" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          <NavigationProperty Name="DA_TRN" Relationship="KKLMDBModel.FK_DA_TRN_MA_INSRUMENT" FromRole="MA_INSRUMENT" ToRole="DA_TRN" />
+          <NavigationProperty Name="MA_PRODUCT" Relationship="KKLMDBModel.MA_PRODUCTMA_INSRUMENT" FromRole="MA_INSRUMENT" ToRole="MA_PRODUCT" />
+          <Property Type="Guid" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Boolean" Name="FLAG_FIXED" Nullable="true" />
+          <NavigationProperty Name="MA_FREQ_TYPE" Relationship="KKLMDBModel.MA_FREQ_TYPEMA_INSTRUMENT" FromRole="MA_INSTRUMENT" ToRole="MA_FREQ_TYPE" />
+          <Property Type="Guid" Name="COUPON_FREQ_TYPE_ID" Nullable="true" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="MA_BOND_MARKET" Relationship="KKLMDBModel.MA_BOND_MARKETMA_INSTRUMENT" FromRole="MA_INSTRUMENT" ToRole="MA_BOND_MARKET" />
+          <Property Type="Guid" Name="INS_MKT" Nullable="true" />
+          <Property Type="Boolean" Name="FLAG_MULTIPLY" Nullable="true" />
+          <NavigationProperty Name="MA_CURRENCY" Relationship="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT" FromRole="MA_INSTRUMENT" ToRole="MA_CURRENCY" />
+          <Property Type="Guid" Name="CURRENCY_ID1" Nullable="true" />
+          <NavigationProperty Name="MA_CURRENCY2" Relationship="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT1" FromRole="MA_INSTRUMENT" ToRole="MA_CURRENCY" />
+          <Property Type="Guid" Name="CURRENCY_ID2" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MA_PCCF">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="C1" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C2" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C3" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C4" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C5" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C6" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C7" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C8" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C9" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C10" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C11" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C12" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C13" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C14" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C15" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C16" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C17" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C18" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C19" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C20" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="more20" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="DEFAULT" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="Decimal" Name="C0D" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C1D" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C21" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C22" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C23" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="C24" Nullable="true" Precision="18" Scale="2" />
+          </EntityType>
+        <Association Name="FK_DA_TRN_MA_INSRUMENT">
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSRUMENT" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_INSRUMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN">
+              <PropertyRef Name="INSTRUMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_FUNCTIONAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="USERCODE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MA_PROFILE_FUNCTIONAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Boolean" Name="ISREADABLE" Nullable="false" />
+          <Property Type="Boolean" Name="ISWRITABLE" Nullable="false" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Boolean" Name="ISAPPROVABLE" Nullable="false" />
+          <NavigationProperty Name="MA_FUNCTIONAL" Relationship="KKLMDBModel.MA_FUNCTIONALMA_USER_FUNCTIONAL" FromRole="MA_USER_FUNCTIONAL" ToRole="MA_FUNCTIONAL" />
+          <Property Type="Guid" Name="FUNCTIONAL_ID" Nullable="false" />
+          <NavigationProperty Name="MA_USER_PROFILE" Relationship="KKLMDBModel.MA_USER_PROFILEMA_PROFILE_FUNCTIONAL" FromRole="MA_PROFILE_FUNCTIONAL" ToRole="MA_USER_PROFILE" />
+          <Property Type="Guid" Name="USER_PROFILE_ID" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="UPDATED" >
+          <Property Type="DateTime" Name="DATE" Nullable="true" />
+          <Property Type="Guid" Name="USERID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UPDATED_REQUIRE" >
+          <Property Type="DateTime" Name="DATE" Nullable="false" />
+          <Property Type="Guid" Name="USERID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="MA_USER_PROFILE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          </EntityType>
+        <Association Name="MA_USER_PROFILEMA_USER">
+          <End Type="KKLMDBModel.MA_USER_PROFILE" Role="MA_USER_PROFILE" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_USER" Role="MA_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_USER_PROFILE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_USER">
+              <PropertyRef Name="USER_PROFILE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_FUNCTIONALMA_USER_FUNCTIONAL">
+          <End Type="KKLMDBModel.MA_FUNCTIONAL" Role="MA_FUNCTIONAL" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_PROFILE_FUNCTIONAL" Role="MA_USER_FUNCTIONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_FUNCTIONAL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_USER_FUNCTIONAL">
+              <PropertyRef Name="FUNCTIONAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="TRN_TYPE" >
+          <Property Type="Decimal" Name="NOTIONAL" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Guid" Name="CCY_ID" Nullable="true" />
+          <Property Type="String" Name="FLAG_PAYREC" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="INDEX" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="FLAG_FIXED" Nullable="true" />
+          <Property Type="Decimal" Name="FIRSTFIXINGAMT" Nullable="true" Precision="20" Scale="8" />
+          <Property Type="Guid" Name="FREQTYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="20" Scale="8" />
+          <Property Type="Decimal" Name="SWAP_POINT" Precision="20" Scale="8" />
+        </ComplexType>
+        <EntityType Name="MA_FREQ_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Type="String" Name="USERCODE" Nullable="false" MaxLength="3" />
+          <Property Type="Int32" Name="INDEX" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DA_TRN_MATCH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Guid" Name="INT_TRN_ID" Nullable="false" />
+          <Property Type="String" Name="EXT_TRN_ID" Nullable="false" MaxLength="50" />
+          <Property Type="Guid" Name="STATUS_ID" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_USER_PROFILEMA_PROFILE_FUNCTIONAL">
+          <End Type="KKLMDBModel.MA_USER_PROFILE" Role="MA_USER_PROFILE" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_PROFILE_FUNCTIONAL" Role="MA_PROFILE_FUNCTIONAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_USER_PROFILE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_PROFILE_FUNCTIONAL">
+              <PropertyRef Name="USER_PROFILE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_LIMIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          <Property Type="String" Name="LIMIT_TYPE" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="MA_LIMIT_PRODUCT" Relationship="KKLMDBModel.MA_LIMITMA_LIMIT_PRODUCT" FromRole="MA_LIMIT" ToRole="MA_LIMIT_PRODUCT" />
+          <Property Type="Int32" Name="INDEX" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MA_CTPY_LIMIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Boolean" Name="FLAG_CONTROL" Nullable="false" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="false" Precision="18" Scale="6" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" Nullable="false" />
+          <Property Type="Guid" Name="CTPY_ID" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="MA_TEMP_CTPY_LIMIT" Relationship="KKLMDBModel.MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT" FromRole="MA_CTPY_LIMIT" ToRole="MA_TEMP_CTPY_LIMIT" />
+          <NavigationProperty Name="MA_LIMIT" Relationship="KKLMDBModel.MA_CTPY_LIMITMA_LIMIT" FromRole="MA_CTPY_LIMIT" ToRole="MA_LIMIT" />
+          <Property Type="Guid" Name="LIMIT_ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MA_LIMIT_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="MA_PRODUCT" Relationship="KKLMDBModel.MA_PRODUCTMA_LIMIT_PRODUCT" FromRole="MA_LIMIT_PRODUCT" ToRole="MA_PRODUCT" />
+          <Property Type="Guid" Name="PRODUCT_ID" Nullable="false" />
+          <NavigationProperty Name="MA_LIMIT" Relationship="KKLMDBModel.MA_LIMITMA_LIMIT_PRODUCT" FromRole="MA_LIMIT_PRODUCT" ToRole="MA_LIMIT" />
+          <Property Type="Guid" Name="LIMIT_ID" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_PRODUCTMA_LIMIT_PRODUCT">
+          <End Type="KKLMDBModel.MA_PRODUCT" Role="MA_PRODUCT" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_LIMIT_PRODUCT" Role="MA_LIMIT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PRODUCT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_LIMIT_PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_LIMITMA_LIMIT_PRODUCT">
+          <End Type="KKLMDBModel.MA_LIMIT" Role="MA_LIMIT" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_LIMIT_PRODUCT" Role="MA_LIMIT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_LIMIT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_LIMIT_PRODUCT">
+              <PropertyRef Name="LIMIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DA_LOGGING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="EVENT" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TABLE_NAME" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="LOG_DATE" Nullable="false" />
+          <Property Type="Guid" Name="RECORD_ID" Nullable="true" />
+          <Property Type="String" Name="LOG_DETAIL" Nullable="true" MaxLength="Max" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_PRODUCTMA_INSRUMENT">
+          <End Type="KKLMDBModel.MA_PRODUCT" Role="MA_PRODUCT" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSRUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PRODUCT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_INSRUMENT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_COUTERPARTYMA_CTPY_LIMIT">
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_CTPY_LIMIT" Role="MA_CTPY_LIMIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUTERPARTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CTPY_LIMIT">
+              <PropertyRef Name="CTPY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_COUTERPARTYDA_TRN">
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY" Multiplicity="1" />
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUTERPARTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TRN">
+              <PropertyRef Name="CTPY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_FREQ_TYPEMA_INSTRUMENT">
+          <End Type="KKLMDBModel.MA_FREQ_TYPE" Role="MA_FREQ_TYPE" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSTRUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_FREQ_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_INSTRUMENT">
+              <PropertyRef Name="COUPON_FREQ_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_PROCESS_DATE">
+          <Key>
+            <PropertyRef Name="PROC_DATE" />
+          </Key>
+          <Property Type="DateTime" Name="PROC_DATE" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="PREV_PROC_DATE" Nullable="false" />
+          <Property Type="DateTime" Name="NEXT_PROC_DATE" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="Boolean" Name="FLAG_RECONCILE" Nullable="true" />
+        </EntityType>
+        <ComplexType Name="LOG" >
+          <Property Type="Guid" Name="INSERTBYUSERID" Nullable="false" />
+          <Property Type="DateTime" Name="INSERTDATE" Nullable="false" />
+          <Property Type="Guid" Name="MODIFYBYUSERID" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFYDATE" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="MA_CURRENCY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" Unicode="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+        </EntityType>
+        <EntityType Name="MA_SPOT_RATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="MA_CURRENCY" Relationship="KKLMDBModel.MA_CURRENCYMA_SPOT_RATE" FromRole="MA_SPOT_RATE" ToRole="MA_CURRENCY" />
+          <Property Type="Guid" Name="CURRENCY_ID" Nullable="false" />
+          <Property Type="DateTime" Name="PROC_DATE" Nullable="false" />
+          <Property Type="Decimal" Name="RATE" Nullable="false" Precision="18" Scale="8" />
+        </EntityType>
+        <Association Name="MA_CURRENCYMA_SPOT_RATE">
+          <End Type="KKLMDBModel.MA_CURRENCY" Role="MA_CURRENCY" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_SPOT_RATE" Role="MA_SPOT_RATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CURRENCY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_SPOT_RATE">
+              <PropertyRef Name="CURRENCY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_BOND_MARKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="MA_BOND_MARKETMA_INSTRUMENT">
+          <End Type="KKLMDBModel.MA_BOND_MARKET" Role="MA_BOND_MARKET" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSTRUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_BOND_MARKET">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_INSTRUMENT">
+              <PropertyRef Name="INS_MKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_PCCF_CONFIG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Type="Guid" Name="PRODUCT_ID" Nullable="false" />
+          <NavigationProperty Name="MA_PCCF" Relationship="KKLMDBModel.MA_PCCFMA_PCCF_CONFIG" FromRole="MA_PCCF_CONFIG" ToRole="MA_PCCF" />
+          <Property Type="Guid" Name="PCCF_ID" Nullable="false" />
+          <Property Type="Boolean" Name="ISACTIVE" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="MA_CONFIG_ATTRIBUTE" Relationship="KKLMDBModel.MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE" FromRole="MA_PCCF_CONFIG" ToRole="MA_CONFIG_ATTRIBUTE" />
+          <Property Type="Int32" Name="PRIORITY" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MA_CONFIG_ATTRIBUTE" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="TABLE" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ATTRIBUTE" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VALUE" FixedLength="false" MaxLength="200" Unicode="false" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          <Property Type="Guid" Name="PCCF_CONFIG_ID" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_PRODUCTMA_PCCF_CONFIG">
+          <End Type="KKLMDBModel.MA_PRODUCT" Role="MA_PRODUCT" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_PCCF_CONFIG" Role="MA_PCCF_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PRODUCT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_PCCF_CONFIG">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_PCCFMA_PCCF_CONFIG">
+          <End Type="KKLMDBModel.MA_PCCF" Role="MA_PCCF" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_PCCF_CONFIG" Role="MA_PCCF_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PCCF">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_PCCF_CONFIG">
+              <PropertyRef Name="PCCF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_CURRENCYMA_INSTRUMENT">
+          <End Type="KKLMDBModel.MA_CURRENCY" Role="MA_CURRENCY" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSTRUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CURRENCY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_INSTRUMENT">
+              <PropertyRef Name="CURRENCY_ID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_CURRENCYMA_INSTRUMENT1">
+          <End Type="KKLMDBModel.MA_CURRENCY" Role="MA_CURRENCY" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.MA_INSTRUMENT" Role="MA_INSTRUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CURRENCY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_INSTRUMENT">
+              <PropertyRef Name="CURRENCY_ID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE">
+          <End Type="KKLMDBModel.MA_PCCF_CONFIG" Role="MA_PCCF_CONFIG" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_CONFIG_ATTRIBUTE" Role="MA_CONFIG_ATTRIBUTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PCCF_CONFIG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CONFIG_ATTRIBUTE">
+              <PropertyRef Name="PCCF_CONFIG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_COUTERPARTYMA_COUTERPARTY">
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY" Multiplicity="0..1" />
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUTERPARTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_COUTERPARTY1">
+              <PropertyRef Name="GROUP_CTPY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_TEMP_CTPY_LIMIT" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="CTPY_LIMIT_ID" Nullable="false" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="false" Precision="18" Scale="6" />
+          <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="false" />
+          <Property Type="DateTime" Name="EXPIRY_DATE" Nullable="false" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT">
+          <End Type="KKLMDBModel.MA_TEMP_CTPY_LIMIT" Role="MA_TEMP_CTPY_LIMIT" Multiplicity="*" >
+          </End>
+          <End Type="KKLMDBModel.MA_CTPY_LIMIT" Role="MA_CTPY_LIMIT" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CTPY_LIMIT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_TEMP_CTPY_LIMIT">
+              <PropertyRef Name="CTPY_LIMIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DA_TMBA_EXTENSION" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="PURPOSE" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="YIELD_TYPE" Nullable="false" MaxLength="3" />
+          <Property Type="Decimal" Name="CLEAN_PRICE" Precision="18" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="GROSS_PRICE" Nullable="false" Precision="18" Scale="6" />
+          <Property Type="Int32" Name="UNIT" Nullable="false" />
+          <Property Type="Int32" Name="TERM" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="18" Scale="6" />
+          <Property Type="String" Name="REMARK" Nullable="true" MaxLength="30" />
+          <Property Type="Guid" Name="SENDER_ID" Nullable="true" />
+          <Property Type="DateTime" Name="SEND_DATE" Nullable="true" />
+          <Property Type="Boolean" Name="IS_REPORT_CLEAN" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_CTPY_LIMITMA_LIMIT">
+          <End Type="KKLMDBModel.MA_CTPY_LIMIT" Role="MA_CTPY_LIMIT" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_LIMIT" Role="MA_LIMIT" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_LIMIT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CTPY_LIMIT">
+              <PropertyRef Name="LIMIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_COUNTRY" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <Association Name="MA_COUTERPARTYMA_COUNTRY">
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_COUNTRY" Role="MA_COUNTRY" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUNTRY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_COUTERPARTY">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_COUNTRY_LIMIT" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="COUNTRY_ID" Nullable="false" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="false" />
+          <Property Type="DateTime" Name="EXPIRY_DATE" Nullable="false" />
+          <Property Type="Boolean" Name="ISTEMP" Nullable="false" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="MA_COUNTRY" Relationship="KKLMDBModel.MA_COUNTRY_LIMITMA_COUNTRY" FromRole="MA_COUNTRY_LIMIT" ToRole="MA_COUNTRY" />
+          <Property Type="Boolean" Name="FLAG_CONTROL" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_COUNTRY_LIMITMA_COUNTRY">
+          <End Type="KKLMDBModel.MA_COUNTRY_LIMIT" Role="MA_COUNTRY_LIMIT" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_COUNTRY" Role="MA_COUNTRY" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUNTRY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_COUNTRY_LIMIT">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_CSA_TYPE" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LABEL" Nullable="false" MaxLength="50" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MA_CSA_AGREEMENT" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <NavigationProperty Name="MA_CSA_TYPE" Relationship="KKLMDBModel.MA_CSA_AGREEMENTMA_CSA_TYPE" FromRole="MA_CSA_AGREEMENT" ToRole="MA_CSA_TYPE" />
+          <Property Type="Guid" Name="CSA_TYPE_ID" Nullable="true" />
+          <Property Name="LOG" Type="KKLMDBModel.LOG" Nullable="false" />
+          <NavigationProperty Name="MA_CSA_PRODUCT" Relationship="KKLMDBModel.MA_CSA_PRODUCTMA_CSA_AGREEMENT" FromRole="MA_CSA_AGREEMENT" ToRole="MA_CSA_PRODUCT" />
+          <Property Type="Boolean" Name="ISACTIVE" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_COUTERPARTYMA_CSA_AGREEMENT">
+          <End Type="KKLMDBModel.MA_COUTERPARTY" Role="MA_COUTERPARTY" Multiplicity="1" />
+          <End Type="KKLMDBModel.MA_CSA_AGREEMENT" Role="MA_CSA_AGREEMENT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_COUTERPARTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CSA_AGREEMENT">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_CSA_AGREEMENTMA_CSA_TYPE">
+          <End Type="KKLMDBModel.MA_CSA_AGREEMENT" Role="MA_CSA_AGREEMENT" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_CSA_TYPE" Role="MA_CSA_TYPE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CSA_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CSA_AGREEMENT">
+              <PropertyRef Name="CSA_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_CSA_PRODUCT" >
+          <Key>
+            <PropertyRef Name="CSA_AGREEMENT_ID" />
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Type="Guid" Name="CSA_AGREEMENT_ID" Nullable="false" />
+          <NavigationProperty Name="MA_PRODUCT" Relationship="KKLMDBModel.MA_CSA_PRODUCTMA_PRODUCT" FromRole="MA_CSA_PRODUCT" ToRole="MA_PRODUCT" />
+          <Property Type="Guid" Name="PRODUCT_ID" Nullable="false" />
+        </EntityType>
+        <Association Name="MA_CSA_PRODUCTMA_CSA_AGREEMENT">
+          <End Type="KKLMDBModel.MA_CSA_PRODUCT" Role="MA_CSA_PRODUCT" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_CSA_AGREEMENT" Role="MA_CSA_AGREEMENT" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_CSA_AGREEMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CSA_PRODUCT">
+              <PropertyRef Name="CSA_AGREEMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MA_CSA_PRODUCTMA_PRODUCT">
+          <End Type="KKLMDBModel.MA_CSA_PRODUCT" Role="MA_CSA_PRODUCT" Multiplicity="*" />
+          <End Type="KKLMDBModel.MA_PRODUCT" Role="MA_PRODUCT" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MA_PRODUCT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MA_CSA_PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DA_TRNDA_TMBA_EXTENSION">
+          <End Type="KKLMDBModel.DA_TRN" Role="DA_TRN" Multiplicity="1" />
+          <End Type="KKLMDBModel.DA_TMBA_EXTENSION" Role="DA_TMBA_EXTENSION" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DA_TRN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DA_TMBA_EXTENSION">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MA_TBMA_CONFIG" >
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="TBMA_CAL_USERNAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TBMA_CAL_PASSWORD" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TBMA_CAL_IP" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TBMA_RPT_PATH" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TBMA_RPT_PREFIX" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TBMA_RPT_TRADERID" Nullable="false" MaxLength="50" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KKLMDBModelStoreContainer" CdmEntityContainer="KKLMDBEntities">
+    <EntitySetMapping Name="DA_LOGIN_AUDIT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_LOGIN_AUDIT)">
+        <MappingFragment StoreEntitySet="DA_LOGIN_AUDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LOGON_DATE" ColumnName="LOGON_DATE" />
+          <ScalarProperty Name="TERMINAL" ColumnName="TERMINAL" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+          <ScalarProperty Name="LOGOUT_DATE" ColumnName="LOGOUT_DATE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DA_TRN">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_TRN)">
+        <MappingFragment StoreEntitySet="DA_TRN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ENGINE_DATE" ColumnName="ENGINE_DATE" />
+          <ScalarProperty Name="INT_DEAL_NO" ColumnName="INT_DEAL_NO" />
+          <ScalarProperty Name="EXT_DEAL_NO" ColumnName="EXT_DEAL_NO" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="INSTRUMENT_ID" ColumnName="INSTRUMENT_ID" />
+          <ScalarProperty Name="PORTFOLIO_ID" ColumnName="PORTFOLIO_ID" />
+          <ScalarProperty Name="EXT_PORTFOLIO" ColumnName="EXT_PORTFOLIO" />
+          <ScalarProperty Name="TRADE_DATE" ColumnName="TRADE_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="MATURITY_DATE" ColumnName="MATURITY_DATE" />
+          <ScalarProperty Name="FLAG_BUYSELL" ColumnName="FLAG_BUYSELL" />
+          <ScalarProperty Name="KK_PCCF" ColumnName="KK_PCCF" />
+          <ScalarProperty Name="KK_CONTRIBUTE" ColumnName="KK_CONTRIBUTE" />
+          <ScalarProperty Name="BOT_PCCF" ColumnName="BOT_PCCF" />
+          <ScalarProperty Name="BOT_CONTRIBUTE" ColumnName="BOT_CONTRIBUTE" />
+          <ScalarProperty Name="OVER_APPROVER" ColumnName="OVER_APPROVER" />
+          <ScalarProperty Name="OVER_AMOUNT" ColumnName="OVER_AMOUNT" />
+          <ScalarProperty Name="OVER_SETTL_AMOUNT" ColumnName="OVER_SETTL_AMOUNT" />
+          <ScalarProperty Name="OVER_COMMENT" ColumnName="OVER_COMMENT" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ComplexProperty Name="FIRST" TypeName="KKLMDBModel.TRN_TYPE">
+            <ScalarProperty Name="NOTIONAL" ColumnName="FIRST_NOTIONAL" />
+            <ScalarProperty Name="CCY_ID" ColumnName="FIRST_CCY_ID" />
+            <ScalarProperty Name="FLAG_PAYREC" ColumnName="FIRST_FLAG_PAYREC" />
+            <ScalarProperty Name="INDEX" ColumnName="FIRST_INDEX" />
+            <ScalarProperty Name="FLAG_FIXED" ColumnName="FIRST_FLAG_FIXED" />
+            <ScalarProperty Name="FIRSTFIXINGAMT" ColumnName="FIRST_FIRSTFIXINGAMT" />
+            <ScalarProperty Name="FREQTYPE_ID" ColumnName="FIRST_FREQTYPE_ID" />
+            <ScalarProperty Name="RATE" ColumnName="FIRST_RATE" />
+            <ScalarProperty Name="SWAP_POINT" ColumnName="FIRST_SWAP_POINT" />
+          </ComplexProperty>
+          <ComplexProperty Name="SECOND" TypeName="KKLMDBModel.TRN_TYPE">
+            <ScalarProperty Name="NOTIONAL" ColumnName="SECOND_NOTIONAL" />
+            <ScalarProperty Name="CCY_ID" ColumnName="SECOND_CCY_ID" />
+            <ScalarProperty Name="FLAG_PAYREC" ColumnName="SECOND_FLAG_PAYREC" />
+            <ScalarProperty Name="INDEX" ColumnName="SECOND_INDEX" />
+            <ScalarProperty Name="FLAG_FIXED" ColumnName="SECOND_FLAG_FIXED" />
+            <ScalarProperty Name="FIRSTFIXINGAMT" ColumnName="SECOND_FIRSTFIXINGAMT" />
+            <ScalarProperty Name="FREQTYPE_ID" ColumnName="SECOND_FREQTYPE_ID" />
+            <ScalarProperty Name="RATE" ColumnName="SECOND_RATE" />
+            <ScalarProperty Name="SWAP_POINT" ColumnName="SECOND_SWAP_POINT" />
+          </ComplexProperty>
+          <ScalarProperty Name="CTPY_ID" ColumnName="CTPY_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="INSERT_BY_EXT" ColumnName="INSERT_BY_EXT" />
+          <ScalarProperty Name="FLAG_NEARFAR" ColumnName="FLAG_NEARFAR" />
+          <ScalarProperty Name="NOTIONAL_THB" ColumnName="NOTIONAL_THB" />
+          <ScalarProperty Name="SPOT_DATE" ColumnName="SPOT_DATE" />
+          <ScalarProperty Name="FLAG_SETTLE" ColumnName="FLAG_SETTLE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="FLAG_PCE" ColumnName="FLAG_PCE" />
+          <ScalarProperty Name="OVER_COUNTRY_AMOUNT" ColumnName="OVER_COUNTRY_AMOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DA_TRN_CASHFLOW">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_TRN_CASHFLOW)">
+        <MappingFragment StoreEntitySet="DA_TRN_CASHFLOW">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DA_TRN_ID" ColumnName="DA_TRN_ID" />
+          <ScalarProperty Name="SEQ" ColumnName="SEQ" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="FLOW_DATE" ColumnName="FLOW_DATE" />
+          <ScalarProperty Name="FLOW_AMOUNT" ColumnName="FLOW_AMOUNT" />
+          <ScalarProperty Name="FLAG_FIRST" ColumnName="FLAG_FIRST" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="FLOW_AMOUNT_THB" ColumnName="FLOW_AMOUNT_THB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PORTFOLIO">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PORTFOLIO)">
+        <MappingFragment StoreEntitySet="MA_PORTFOLIO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="ISDEFAULT" ColumnName="ISDEFAULT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PRODUCT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PRODUCT)">
+        <MappingFragment StoreEntitySet="MA_PRODUCT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_STATUS">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_STATUS)">
+        <MappingFragment StoreEntitySet="MA_STATUS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_USER">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_USER)">
+        <MappingFragment StoreEntitySet="MA_USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+          <ScalarProperty Name="ISLOCKED" ColumnName="ISLOCKED" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="USER_OPICS" ColumnName="USER_OPICS" />
+          <ScalarProperty Name="USER_PROFILE_ID" ColumnName="USER_PROFILE_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_COUTERPARTY">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_COUTERPARTY)">
+        <MappingFragment StoreEntitySet="MA_COUTERPARTY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+          <ScalarProperty Name="SNAME" ColumnName="SNAME" />
+          <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+          <ScalarProperty Name="BUSINESS" ColumnName="BUSINESS" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="OUTLOOK" ColumnName="OUTLOOK" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="GROUP_CTPY_ID" ColumnName="GROUP_CTPY_ID" />
+          <ScalarProperty Name="TBMA_NAME" ColumnName="TBMA_NAME" />
+          <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_INSTRUMENT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_INSTRUMENT)">
+        <MappingFragment StoreEntitySet="MA_INSTRUMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISSUER" ColumnName="ISSUER" />
+          <ScalarProperty Name="LOT_SIZE" ColumnName="LOT_SIZE" />
+          <ScalarProperty Name="COUPON" ColumnName="COUPON" />
+          <ScalarProperty Name="MATURITY_DATE" ColumnName="MATURITY_DATE" />
+          <ScalarProperty Name="CAL_METHOD" ColumnName="CAL_METHOD" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="FLAG_FIXED" ColumnName="FLAG_FIXED" />
+          <ScalarProperty Name="COUPON_FREQ_TYPE_ID" ColumnName="COUPON_FREQ_TYPE_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="INS_MKT" ColumnName="INS_MKT" />
+          <ScalarProperty Name="FLAG_MULTIPLY" ColumnName="FLAG_MULTIPLY" />
+          <ScalarProperty Name="CURRENCY_ID1" ColumnName="CURRENCY_ID1" />
+          <ScalarProperty Name="CURRENCY_ID2" ColumnName="CURRENCY_ID2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PCCF">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PCCF)">
+        <MappingFragment StoreEntitySet="MA_PCCF">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="C1" ColumnName="C1" />
+          <ScalarProperty Name="C2" ColumnName="C2" />
+          <ScalarProperty Name="C3" ColumnName="C3" />
+          <ScalarProperty Name="C4" ColumnName="C4" />
+          <ScalarProperty Name="C5" ColumnName="C5" />
+          <ScalarProperty Name="C6" ColumnName="C6" />
+          <ScalarProperty Name="C7" ColumnName="C7" />
+          <ScalarProperty Name="C8" ColumnName="C8" />
+          <ScalarProperty Name="C9" ColumnName="C9" />
+          <ScalarProperty Name="C10" ColumnName="C10" />
+          <ScalarProperty Name="C11" ColumnName="C11" />
+          <ScalarProperty Name="C12" ColumnName="C12" />
+          <ScalarProperty Name="C13" ColumnName="C13" />
+          <ScalarProperty Name="C14" ColumnName="C14" />
+          <ScalarProperty Name="C15" ColumnName="C15" />
+          <ScalarProperty Name="C16" ColumnName="C16" />
+          <ScalarProperty Name="C17" ColumnName="C17" />
+          <ScalarProperty Name="C18" ColumnName="C18" />
+          <ScalarProperty Name="C19" ColumnName="C19" />
+          <ScalarProperty Name="C20" ColumnName="C20" />
+          <ScalarProperty Name="more20" ColumnName="more20" />
+          <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="C0D" ColumnName="C0D" />
+          <ScalarProperty Name="C1D" ColumnName="C1D" />
+          <ScalarProperty Name="C21" ColumnName="C21" />
+          <ScalarProperty Name="C22" ColumnName="C22" />
+          <ScalarProperty Name="C23" ColumnName="C23" />
+          <ScalarProperty Name="C24" ColumnName="C24" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_FUNCTIONAL">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_FUNCTIONAL)">
+        <MappingFragment StoreEntitySet="MA_FUNCTIONAL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PROFILE_FUNCTIONAL">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PROFILE_FUNCTIONAL)">
+        <MappingFragment StoreEntitySet="MA_PROFILE_FUNCTIONAL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ISREADABLE" ColumnName="ISREADABLE" />
+          <ScalarProperty Name="ISWRITABLE" ColumnName="ISWRITABLE" />
+          <ScalarProperty Name="ISAPPROVABLE" ColumnName="ISAPPROVABLE" />
+          <ScalarProperty Name="FUNCTIONAL_ID" ColumnName="FUNCTIONAL_ID" />
+          <ScalarProperty Name="USER_PROFILE_ID" ColumnName="USER_PROFILE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_USER_PROFILE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_USER_PROFILE)">
+        <MappingFragment StoreEntitySet="MA_USER_PROFILE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_FREQ_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_FREQ_TYPE)">
+        <MappingFragment StoreEntitySet="MA_FREQ_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+          <ScalarProperty Name="INDEX" ColumnName="INDEX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DA_TRN_MATCH">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_TRN_MATCH)">
+        <MappingFragment StoreEntitySet="DA_TRN_MATCH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="INT_TRN_ID" ColumnName="INT_TRN_ID" />
+          <ScalarProperty Name="EXT_TRN_ID" ColumnName="EXT_TRN_ID" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_LIMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_LIMIT)">
+        <MappingFragment StoreEntitySet="MA_LIMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="LIMIT_TYPE" ColumnName="LIMIT_TYPE" />
+          <ScalarProperty Name="INDEX" ColumnName="INDEX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CTPY_LIMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CTPY_LIMIT)">
+        <MappingFragment StoreEntitySet="MA_CTPY_LIMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FLAG_CONTROL" ColumnName="FLAG_CONTROL" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CTPY_ID" ColumnName="CTPY_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="LIMIT_ID" ColumnName="LIMIT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_LIMIT_PRODUCT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_LIMIT_PRODUCT)">
+        <MappingFragment StoreEntitySet="MA_LIMIT_PRODUCT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="LIMIT_ID" ColumnName="LIMIT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DA_LOGGING">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_LOGGING)">
+        <MappingFragment StoreEntitySet="DA_LOGGING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EVENT" ColumnName="EVENT" />
+          <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+          <ScalarProperty Name="LOG_DATE" ColumnName="LOG_DATE" />
+          <ScalarProperty Name="RECORD_ID" ColumnName="RECORD_ID" />
+          <ScalarProperty Name="LOG_DETAIL" ColumnName="LOG_DETAIL" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PROCESS_DATE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PROCESS_DATE)">
+        <MappingFragment StoreEntitySet="MA_PROCESS_DATE">
+          <ScalarProperty Name="PROC_DATE" ColumnName="PROC_DATE" />
+          <ScalarProperty Name="PREV_PROC_DATE" ColumnName="PREV_PROC_DATE" />
+          <ScalarProperty Name="NEXT_PROC_DATE" ColumnName="NEXT_PROC_DATE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="FLAG_RECONCILE" ColumnName="FLAG_RECONCILE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CURRENCY">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CURRENCY)">
+        <MappingFragment StoreEntitySet="MA_CURRENCY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_SPOT_RATE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_SPOT_RATE)">
+        <MappingFragment StoreEntitySet="MA_SPOT_RATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="PROC_DATE" ColumnName="PROC_DATE" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_BOND_MARKET">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_BOND_MARKET)">
+        <MappingFragment StoreEntitySet="MA_BOND_MARKET">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_PCCF_CONFIG">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_PCCF_CONFIG)">
+        <MappingFragment StoreEntitySet="MA_PCCF_CONFIG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="PCCF_ID" ColumnName="PCCF_ID" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CONFIG_ATTRIBUTE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CONFIG_ATTRIBUTE)">
+        <MappingFragment StoreEntitySet="MA_CONFIG_ATTRIBUTE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TABLE" ColumnName="TABLE" />
+          <ScalarProperty Name="ATTRIBUTE" ColumnName="ATTRIBUTE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ScalarProperty Name="PCCF_CONFIG_ID" ColumnName="PCCF_CONFIG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_TEMP_CTPY_LIMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_TEMP_CTPY_LIMIT)">
+        <MappingFragment StoreEntitySet="MA_TEMP_CTPY_LIMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CTPY_LIMIT_ID" ColumnName="CTPY_LIMIT_ID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+          <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DA_TMBA_EXTENSION">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.DA_TMBA_EXTENSION)">
+        <MappingFragment StoreEntitySet="DA_TMBA_EXTENSION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PURPOSE" ColumnName="PURPOSE" />
+          <ScalarProperty Name="YIELD_TYPE" ColumnName="YIELD_TYPE" />
+          <ScalarProperty Name="CLEAN_PRICE" ColumnName="CLEAN_PRICE" />
+          <ScalarProperty Name="GROSS_PRICE" ColumnName="GROSS_PRICE" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="TERM" ColumnName="TERM" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="SENDER_ID" ColumnName="SENDER_ID" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+          <ScalarProperty Name="IS_REPORT_CLEAN" ColumnName="IS_REPORT_CLEAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_COUNTRY">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_COUNTRY)">
+        <MappingFragment StoreEntitySet="MA_COUNTRY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_COUNTRY_LIMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_COUNTRY_LIMIT)">
+        <MappingFragment StoreEntitySet="MA_COUNTRY_LIMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+          <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+          <ScalarProperty Name="ISTEMP" ColumnName="ISTEMP" />
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="FLAG_CONTROL" ColumnName="FLAG_CONTROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CSA_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CSA_TYPE)">
+        <MappingFragment StoreEntitySet="MA_CSA_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CSA_AGREEMENT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CSA_AGREEMENT)">
+        <MappingFragment StoreEntitySet="MA_CSA_AGREEMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CSA_TYPE_ID" ColumnName="CSA_TYPE_ID" />
+          <ComplexProperty Name="LOG" TypeName="KKLMDBModel.LOG">
+            <ScalarProperty Name="INSERTBYUSERID" ColumnName="LOG_INSERTBYUSERID" />
+            <ScalarProperty Name="INSERTDATE" ColumnName="LOG_INSERTDATE" />
+            <ScalarProperty Name="MODIFYBYUSERID" ColumnName="LOG_MODIFYBYUSERID" />
+            <ScalarProperty Name="MODIFYDATE" ColumnName="LOG_MODIFYDATE" />
+          </ComplexProperty>
+          <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_CSA_PRODUCT">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_CSA_PRODUCT)">
+        <MappingFragment StoreEntitySet="MA_CSA_PRODUCT">
+          <ScalarProperty Name="CSA_AGREEMENT_ID" ColumnName="CSA_AGREEMENT_ID" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MA_TBMA_CONFIG">
+      <EntityTypeMapping TypeName="IsTypeOf(KKLMDBModel.MA_TBMA_CONFIG)">
+        <MappingFragment StoreEntitySet="MA_TBMA_CONFIG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TBMA_CAL_USERNAME" ColumnName="TBMA_CAL_USERNAME" />
+          <ScalarProperty Name="TBMA_CAL_PASSWORD" ColumnName="TBMA_CAL_PASSWORD" />
+          <ScalarProperty Name="TBMA_CAL_IP" ColumnName="TBMA_CAL_IP" />
+          <ScalarProperty Name="TBMA_RPT_PATH" ColumnName="TBMA_RPT_PATH" />
+          <ScalarProperty Name="TBMA_RPT_PREFIX" ColumnName="TBMA_RPT_PREFIX" />
+          <ScalarProperty Name="TBMA_RPT_TRADERID" ColumnName="TBMA_RPT_TRADERID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="KKLMDBMD" ZoomLevel="74" >
+        <EntityTypeShape EntityType="KKLMDBModel.DA_LOGIN_AUDIT" Width="1.875" PointX="21.25" PointY="4.875" Height="2.0853483072916665" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.DA_TRN" Width="1.875" PointX="7.125" PointY="3.375" Height="7.8375048828125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.DA_TRN_CASHFLOW" Width="1.875" PointX="10.25" PointY="3.5" Height="2.5783902994791665" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PORTFOLIO" Width="1.5" PointX="10.5" PointY="6.5" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PRODUCT" Width="1.5" PointX="4" PointY="7" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_STATUS" Width="1.5" PointX="10.5" PointY="8.5" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_USER" Width="1.5" PointX="15.875" PointY="2.625" Height="2.5783902994791656" IsExpanded="true" />
+        <AssociationConnector Association="KKLMDBModel.FK_DA_TRN_FLOW_DA_TRN" >
+          <ConnectorPoint PointX="9" PointY="4.7891951497395837" />
+          <ConnectorPoint PointX="10.25" PointY="4.7891951497395837" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.FK_DA_TRN_MA_PORTFOLIO" >
+          <ConnectorPoint PointX="10.5" PointY="7.2961531575520837" />
+          <ConnectorPoint PointX="9" PointY="7.2961531575520837" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.FK_DA_TRN_MA_PRODUCT" >
+          <ConnectorPoint PointX="5.5" PointY="7.96050048828125" />
+          <ConnectorPoint PointX="7.125" PointY="7.96050048828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.FK_DA_TRN_MA_STATUS" >
+          <ConnectorPoint PointX="10.5" PointY="9.2139794921875" />
+          <ConnectorPoint PointX="9.3333333333333339" PointY="9.2139794921875" />
+          <ConnectorPoint PointX="9.1666666666666661" PointY="9.2139794921875" />
+          <ConnectorPoint PointX="9" PointY="9.2139794921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_COUTERPARTY" Width="1.625" PointX="3.875" PointY="0.5" Height="3.5644742838541665" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_INSTRUMENT" Width="1.875" PointX="7.125" PointY="12" Height="4.5505582682291656" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PCCF" Width="1.5" PointX="1.625" PointY="10.625" Height="6.1940315755208353" IsExpanded="true" />
+        <AssociationConnector Association="KKLMDBModel.FK_DA_TRN_MA_INSRUMENT" >
+          <ConnectorPoint PointX="8.0625" PointY="12" />
+          <ConnectorPoint PointX="8.0625" PointY="11.2125048828125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_FUNCTIONAL" Width="1.5" PointX="21.375" PointY="2.875" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PROFILE_FUNCTIONAL" Width="1.625" PointX="18.5" PointY="2.375" Height="2.2496956380208326" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_USER_PROFILE" Width="2" PointX="18.25" PointY="5.75" Height="1.4279589843749996" />
+        <AssociationConnector Association="KKLMDBModel.MA_USER_PROFILEMA_USER">
+          <ConnectorPoint PointX="18.25" PointY="6.4639794921875" />
+          <ConnectorPoint PointX="16.625" PointY="6.4639794921875" />
+          <ConnectorPoint PointX="16.625" PointY="5.2033902994791656" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_FUNCTIONALMA_USER_FUNCTIONAL">
+          <ConnectorPoint PointX="21.375" PointY="3.6711531575520833" />
+          <ConnectorPoint PointX="20.125" PointY="3.6711531575520833" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_FREQ_TYPE" Width="1.5" PointX="10.625" PointY="11.5" Height="1.7566536458333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="KKLMDBModel.DA_TRN_MATCH" Width="1.5" PointX="16.875" PointY="10.625" Height="1.7566536458333335" IsExpanded="true" />
+        <AssociationConnector Association="KKLMDBModel.MA_USER_PROFILEMA_PROFILE_FUNCTIONAL">
+          <ConnectorPoint PointX="19.3125" PointY="5.75" />
+          <ConnectorPoint PointX="19.3125" PointY="4.6246956380208326" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_LIMIT" Width="1.5" PointX="1.625" PointY="4.125" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CTPY_LIMIT" Width="1.5" PointX="1" PointY="0.5" Height="2.41404296875" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_LIMIT_PRODUCT" Width="1.5" PointX="4.25" PointY="4.5" Height="1.7566536458333335" IsExpanded="true" />
+        <AssociationConnector Association="KKLMDBModel.MA_PRODUCTMA_LIMIT_PRODUCT">
+          <ConnectorPoint PointX="4.875" PointY="7" />
+          <ConnectorPoint PointX="4.875" PointY="6.2566536458333335" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_LIMITMA_LIMIT_PRODUCT">
+          <ConnectorPoint PointX="3.125" PointY="5.27300048828125" />
+          <ConnectorPoint PointX="4.25" PointY="5.27300048828125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.DA_LOGGING" Width="1.5" PointX="18.875" PointY="7.875" Height="2.0853483072916656" />
+        <AssociationConnector Association="KKLMDBModel.MA_PRODUCTMA_INSRUMENT">
+          <ConnectorPoint PointX="5.5" PointY="8.9210009765625" />
+          <ConnectorPoint PointX="5.875" PointY="9.2960009765625" />
+          <ConnectorPoint PointX="6.041666666666667" PointY="9.2960009765625" />
+          <ConnectorPoint PointX="6.208333333333333" PointY="9.2960009765625" />
+          <ConnectorPoint PointX="6.75" PointY="9.2960009765625" />
+          <ConnectorPoint PointX="6.75" PointY="11.625" />
+          <ConnectorPoint PointX="7.125" PointY="12" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_COUTERPARTYMA_CTPY_LIMIT">
+          <ConnectorPoint PointX="3.875" PointY="1.7070214843749998" />
+          <ConnectorPoint PointX="2.5" PointY="1.7070214843749998" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_COUTERPARTYDA_TRN">
+          <ConnectorPoint PointX="5.5" PointY="3.7197371419270837" />
+          <ConnectorPoint PointX="7.125" PointY="3.7197371419270837" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_FREQ_TYPEMA_INSTRUMENT">
+          <ConnectorPoint PointX="10.625" PointY="12.628326822916666" />
+          <ConnectorPoint PointX="9" PointY="12.628326822916666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PROCESS_DATE" Width="1.5" PointX="16.75" PointY="7.75" Height="1.7566536458333335" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CURRENCY" Width="1.5" PointX="7.375" PointY="17.75" Height="1.4279589843750031" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_SPOT_RATE" Width="1.5" PointX="10.375" PointY="17.5" Height="1.7566536458333339" />
+        <AssociationConnector Association="KKLMDBModel.MA_CURRENCYMA_SPOT_RATE">
+          <ConnectorPoint PointX="8.875" PointY="18.4639794921875" />
+          <ConnectorPoint PointX="10.375" PointY="18.4639794921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_BOND_MARKET" Width="2" PointX="10.625" PointY="14" Height="1.4279589843749996" />
+        <AssociationConnector Association="KKLMDBModel.MA_BOND_MARKETMA_INSTRUMENT">
+          <ConnectorPoint PointX="10.625" PointY="14.7139794921875" />
+          <ConnectorPoint PointX="9" PointY="14.7139794921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_PCCF_CONFIG" Width="2" PointX="3.875" PointY="10" Height="2.5783902994791674" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CONFIG_ATTRIBUTE" PointX="3.875" PointY="14.25" Width="2" Height="2.0853483072916674" />
+        <AssociationConnector Association="KKLMDBModel.MA_PRODUCTMA_PCCF_CONFIG">
+          <ConnectorPoint PointX="4.7187475" PointY="8.9210009765625" />
+          <ConnectorPoint PointX="4.7187475" PointY="10" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_PCCFMA_PCCF_CONFIG">
+          <ConnectorPoint PointX="3.125" PointY="11.601695149739584" />
+          <ConnectorPoint PointX="3.875" PointY="11.601695149739584" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT">
+          <ConnectorPoint PointX="8.125" PointY="17.75" />
+          <ConnectorPoint PointX="8.125" PointY="16.550558268229167" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_CURRENCYMA_INSTRUMENT1">
+          <ConnectorPoint PointX="8.5625" PointY="17.75" />
+          <ConnectorPoint PointX="8.5625" PointY="16.550558268229167" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE">
+          <ConnectorPoint PointX="4.875" PointY="12.578390299479167" />
+          <ConnectorPoint PointX="4.875" PointY="14.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_COUTERPARTYMA_COUTERPARTY">
+          <ConnectorPoint PointX="4.45125" PointY="4.0644742838541665" />
+          <ConnectorPoint PointX="4.45125" PointY="4.3144742838541665" />
+          <ConnectorPoint PointX="4.9350000000000005" PointY="4.3144742838541665" />
+          <ConnectorPoint PointX="4.9350000000000005" PointY="4.0644742838541665" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_TEMP_CTPY_LIMIT" Width="1.5" PointX="1.625" PointY="6.75" Height="2.0853483072916656" />
+        <AssociationConnector Association="KKLMDBModel.MA_TEMP_CTPY_LIMITMA_CTPY_LIMIT">
+          <ConnectorPoint PointX="1.625" PointY="7.7926741536458328" />
+          <ConnectorPoint PointX="1.3124995" PointY="7.7926741536458328" />
+          <ConnectorPoint PointX="1.3124995" PointY="2.91404296875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.DA_TMBA_EXTENSION" Width="1.5" PointX="12.75" PointY="9.375" Height="2.9070849609374996" />
+        <AssociationConnector Association="KKLMDBModel.MA_CTPY_LIMITMA_LIMIT">
+          <ConnectorPoint PointX="2.0625" PointY="2.91404296875" />
+          <ConnectorPoint PointX="2.0625" PointY="4.125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_COUNTRY" Width="1.5" PointX="6.625" PointY="1.375" Height="1.427958984375" />
+        <AssociationConnector Association="KKLMDBModel.MA_COUTERPARTYMA_COUNTRY">
+          <ConnectorPoint PointX="5.5" PointY="2.0889794921875" />
+          <ConnectorPoint PointX="6.625" PointY="2.0889794921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_COUNTRY_LIMIT" Width="1.5" PointX="9.25" PointY="0.875" Height="2.578390299479167" />
+        <AssociationConnector Association="KKLMDBModel.MA_COUNTRY_LIMITMA_COUNTRY">
+          <ConnectorPoint PointX="9.25" PointY="2.0889794921875" />
+          <ConnectorPoint PointX="8.125" PointY="2.0889794921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CSA_TYPE" Width="1.5" PointX="12.5" PointY="3.125" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CSA_AGREEMENT" Width="1.5" PointX="11.875" PointY="0.625" Height="1.9210009765625" />
+        <AssociationConnector Association="KKLMDBModel.MA_COUTERPARTYMA_CSA_AGREEMENT">
+          <ConnectorPoint PointX="5.5" PointY="0.71874999999999911" />
+          <ConnectorPoint PointX="11.875" PointY="0.71874999999999911" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_CSA_AGREEMENTMA_CSA_TYPE">
+          <ConnectorPoint PointX="12.9375" PointY="2.5460009765625" />
+          <ConnectorPoint PointX="12.9375" PointY="3.125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_CSA_PRODUCT" Width="1.5" PointX="14.5" PointY="0.875" Height="1.427958984375" />
+        <AssociationConnector Association="KKLMDBModel.MA_CSA_PRODUCTMA_CSA_AGREEMENT">
+          <ConnectorPoint PointX="14.5" PointY="1.5889794921875" />
+          <ConnectorPoint PointX="13.375" PointY="1.5889794921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.MA_CSA_PRODUCTMA_PRODUCT">
+          <ConnectorPoint PointX="15.156250499999999" PointY="2.302958984375" />
+          <ConnectorPoint PointX="15.156250499999999" PointY="8.3423063151041674" />
+          <ConnectorPoint PointX="9.25" PointY="8.3423063151041674" />
+          <ConnectorPoint PointX="9.25" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="8.1458333333333339" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="7.979166666666667" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="6.125" PointY="11.4625048828125" />
+          <ConnectorPoint PointX="6.125" PointY="7.9292484882812495" />
+          <ConnectorPoint PointX="5.5" PointY="7.9292484882812495" />
+        </AssociationConnector>
+        <AssociationConnector Association="KKLMDBModel.DA_TRNDA_TMBA_EXTENSION">
+          <ConnectorPoint PointX="9" PointY="10.60148193359375" />
+          <ConnectorPoint PointX="9.1666666666666661" PointY="10.60148193359375" />
+          <ConnectorPoint PointX="9.3333333333333339" PointY="10.60148193359375" />
+          <ConnectorPoint PointX="12.75" PointY="10.60148193359375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="KKLMDBModel.MA_TBMA_CONFIG" Width="1.5" PointX="16.5" PointY="12.875" Height="2.0853483072916656" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

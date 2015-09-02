@@ -1,0 +1,235 @@
+﻿/* Dialog.Master and Content.Master
+----------------------------------------------------------*/
+/* ---------- TYPOGRAPHY ---------- */
+body, form {
+	font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+	line-height: 0.825em; /*1.125em; /* 18/16 */
+}
+
+form input
+{
+	font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+	line-height: 0.825em; /*1.125em; /* 18/16 */
+	/*font-size: 0.833em;*/
+}
+form p input[type="text"], form p input[type="password"], form p input[type="checkbox"], form p input[type="radio"] { font-size: 1.2em; /* 12/12. I did 12 because they're contained within a P tag, that has font size of 12px*/ }
+
+div#content {
+	background: #f8f9fa url('../images/artwork-pattern.png') repeat-x left bottom;
+	border: 1px solid #eeefef;
+	padding: 0.1em; /*1.875em 0;*/ /* 30/16 */
+	height:450px;
+}
+
+h2 {
+    font-size: 18px;font-weight: bold;
+    margin-top: 0px;
+}
+
+h3 {
+    font-size: 12px;font-weight: bold;
+}
+
+div.site-container
+{
+    /*width: 650px;*/
+    font-size: 0.75em;
+    margin: auto;
+}
+
+div.table-container
+{
+    /*width: 650px;*/
+    font-size: 0.75em;
+    margin: auto;
+}
+
+div.side-content { width: 83%; /* 100% - 15% for the side menu - 2% for the left margin */ }
+
+div.content-module {
+	background: white;
+	margin-bottom: 1em; /* 16/16 */
+	border: 1px solid #eeefef;
+}
+
+div.content-module-heading {
+	background: #3f4551;
+	cursor: pointer;
+}
+
+	div.content-module-heading h3 {
+		text-transform: uppercase;
+		color: white;
+		font-weight: bold;
+		margin: 1.25em; /* 15/12 */
+	}
+	
+	div.content-module-heading span { 
+		color: #969dac;
+		text-transform: uppercase;
+		margin: 1.5em; /* 15/10 */
+	}
+
+div.content-module-main { padding: 1em; /* 16/16 */ }
+
+div.content-module-heading span { font-size: 0.625em; /* 10/16 */ }
+
+
+div.filtering
+{
+    border: 1px solid #999;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #EEE;
+}
+
+/* Page Container Style */
+.page-full-width { padding: 0 1.875em; /* 30/16 */ }
+
+.ui-autocomplete-loading {
+    background: white url('../images/busy.gif') right center no-repeat;
+}
+
+/* ---------- CLEARFIX ---------- */
+/* For modern browsers */
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after { clear:both; }
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom: 1; }
+
+/* ---------- GENERAL ---------- */
+.round {
+	border-radius: 0.3125em; /* 5/16 */
+	-moz-border-radius: 0.3125em; /* 5/16 */
+	-webkit-border-radius: 0.3125em; /* 5/16 */
+}
+
+.fl { float: left; }
+.fr { float: right; }
+.cb { clear: both; }
+.ih { float:inherit; }
+
+
+.expandable-header
+{
+    color: #000066;
+    cursor: pointer;
+}
+.expandable-content
+{
+    display: none;
+}
+
+.blue {
+	background-color: #009BC4;
+	color: white;
+}
+	.blue:hover {
+		background-color: #3482A6;
+		color: white;
+	}
+	
+/*-----FORM INPUT------*/
+
+input[type="button"], button
+{
+	border: none;
+	cursor: pointer;
+	padding: 0.233em 1em 0.233em 0.533em; /* 10/12 */
+
+	background-position: right center;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	/*text-transform: uppercase;*/
+}
+.input-form-textbox
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 150px; 
+}
+
+.input-form-number
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 150px; 
+	text-align: right;
+}
+
+.input-from-dropdownlist
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 180px; 
+}
+
+.input-form-textbox-horizontal
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 100px; 
+}
+
+.input-form-number-horizontal
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 100px; 
+	text-align: right;
+}
+
+.input-from-dropdownlist-horizontal
+{
+	border: 1px solid #d9dbdd;
+	padding: 0.5em 0.225em; /* 16/16 10/16 */
+	outline: none;
+	width: 120px; 
+}
+
+.jtable-title-text
+{
+	font-weight: bold;
+	font-size: medium;	
+}
+
+.right {
+  text-align: right;
+  margin-right: 1em;
+}
+
+.left {
+  text-align: left;
+  margin-left: 1em;
+}
+a.export {
+  text-decoration: none; 
+  color:#ffffff;
+}
+
+/* ---------- TOOLTIP ---------- */
+.ui-tooltip {
+   border: 1px solid black; 
+   padding: 10px 10px;
+   z-index:9999;
+   box-shadow: 0 0 7px black;
+   position:absolute;
+   border-radius: 20px;
+ }
+ 
+ /*Dialog*/
+.noclose .ui-dialog-titlebar-close
+{
+    display:none;
+}

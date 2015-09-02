@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XmlObjectSerializer ObjectType="XmlSerializer.Factor">
+  <ListOfFactor>
+    <Factor>
+      <Property PropertyName="DA_TRN">DA_TRN</Property>
+      <Property PropertyName="Childs">
+        <Array>
+          <Item>
+            <Property PropertyName="INSTRUMENT_ID">INSTRUMENT</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_BUYSELL">B or S</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_PCE">FLAG_PCE</Property>
+          </Item>
+        </Array>
+      </Property>
+    </Factor>
+    <Factor>
+      <Property PropertyName="BOND_MARKET">BOND_MARKET</Property>
+      <Property PropertyName="Childs">
+        <Array>
+          <Item>
+            <Property PropertyName="LABEL">LABEL</Property>
+          </Item>
+        </Array>
+      </Property>
+    </Factor>
+    <Factor>
+      <Property PropertyName="FIRST">FIRST</Property>
+      <Property PropertyName="Childs">
+        <Array>
+          <Item>
+            <Property PropertyName="CCY_ID">Currency</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_PAYREC">P or R</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_FIXED">Fixed or Flat</Property>
+          </Item>
+        </Array>
+      </Property>
+    </Factor>
+    <Factor>
+      <Property PropertyName="SECOND">SECOND</Property>
+      <Property PropertyName="Childs">
+        <Array>
+          <Item>
+            <Property PropertyName="CCY_ID">Currency</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_PAYREC">P or R</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="FLAG_FIXED">Fixed or Flat</Property>
+          </Item>
+        </Array>
+      </Property>
+    </Factor>
+    <Factor>
+      <Property PropertyName="COUNTERPARTY">COUNTERPARTY</Property>
+      <Property PropertyName="Childs">
+        <Array>
+          <Item>
+            <Property PropertyName="SNAME">SNAME</Property>
+          </Item>
+          <Item>
+            <Property PropertyName="CSA_TYPE">CSA_TYPE</Property>
+          </Item>
+        </Array>
+      </Property>
+    </Factor>
+  </ListOfFactor>
+</XmlObjectSerializer>

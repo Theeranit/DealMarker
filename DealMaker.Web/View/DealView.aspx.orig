@@ -1,0 +1,268 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content.Master" AutoEventWireup="true" CodeBehind="DealView.aspx.cs" Inherits="KK.DealMaker.Web.View.DealView" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="contentholder" runat="server">
+    <!--- Create Filter ---->
+    <div class="content-module-main">
+        <div class="site-container">
+            <div class="filtering" id="dvFiltering">
+                <form id="Form1" runat="server">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>DMK NO:<input type="text" name="DMKNo" id="DMKNo" class="round input-form-textbox"/></label>
+                                <label>OPICS NO:<input type="text" name="OPICNo" id="OPICNo" class="round input-form-textbox"/></label>
+                                <label>Product:<select id="product" class="round input-from-dropdownlist"></select></label>
+                                <label>Counterparty:<select id="counterparty" class="round input-from-dropdownlist"></select></label>
+                                <label>Portfolio:<select id="portfolio" class="round input-from-dropdownlist"></select></label>
+                            </td>
+                            <td>
+                                <label>Trade Date:<input type="text" name="tradedate" id="tradedate" class="round input-form-textbox"/></label>
+                                <label>Effective Date:<input type="text" name="effdate" id="effdate" class="round input-form-textbox"/></label>
+                                <label>Maturity Date:<input type="text" name="matdate" id="matdate" class="round input-form-textbox"/></label>
+                                <label>Instrument:<select id="instrument" class="round input-from-dropdownlist"></select></label>
+                                <label>User:<select id="user" class="round input-from-dropdownlist"></select></label>
+                            </td>
+                        </tr>
+                    
+                    </table>
+                    
+                    <button type="submit" id="LoadRecordsButton" class="round blue button-submit">Load records</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <div id="TableContainer">
+        </div>
+    </div>        
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        
+            $('#tradedate').datepicker({ dateFormat: "dd/mm/yy"});
+            $('#effdate').datepicker({ dateFormat: "dd/mm/yy"});
+            $('#matdate').datepicker({ dateFormat: "dd/mm/yy"});
+
+            //Prepare jtable plugin
+            $('#TableContainer').jtable({
+                title: 'Trade Inquery List',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                defaultSorting: 'ID ASC',
+                actions: {
+                    listAction: '<%= Page.ResolveClientUrl("DealView.aspx/GetDealInquiryByFilter") %>',
+                    deleteAction: '<%= Page.ResolveClientUrl("DealView.aspx/CancelDeal") %>'
+                },
+                fields: {
+                    ID: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    EntryDate: {
+                        title: 'Entry Date'
+                        , width: '15%'
+                        , type: 'date'
+                        , displayFormat: 'dd-M-yy'
+                    },
+                    DMK_NO: {
+                        title: 'DMK NO'
+                        ,width: '15%'
+                    },
+                    OPICS_NO: {
+                        title: 'OPICS NO'
+                        ,width: '15%'
+                    },
+                    TradeDate: {
+                        title: 'Trade Date'
+                        , width: '15%'
+                        , type: 'date'
+                        ,displayFormat: 'dd-M-yy'
+                    },
+                    EffectiveDate: {
+                        title: 'Effective Date'
+                        , width: '15%'
+                        , type: 'date'
+                        , displayFormat: 'dd-M-yy'
+                    },
+                    MaturityDate: {
+                        title: 'Maturity Date'
+                        , width: '15%'
+                        , type: 'date'
+                        , displayFormat: 'dd-M-yy'
+                    },
+                    Status: {
+                        title: 'Status'
+                        , width: '15%'
+                    },
+                    BuySell: {
+                        title: 'B/S'
+                        //width: '11%'
+                    },
+                    Product: {
+                        title: 'Product'
+                        //width: '11%',
+                    },
+                    Portfolio: {
+                        title: 'Portfolio'
+                        //width: '11%',
+                    },
+<<<<<<< .mine
+                    CTPY_ID: {
+                        title: 'Counterparty',
+=======
+                    Counterparty: {
+                        title: 'Counterparty'
+>>>>>>> .r223
+                        //width: '11%',
+                    }
+                    
+                    /*,
+                    INSTRUMENT_ID: {
+                        title: 'Instrument',
+                        //width: '11%',
+                        options: '<%= Page.ResolveClientUrl("DealView.aspx/GetInstrumentOptions") %>'
+                    }*/
+                },
+                //Initialize validation logic when a form is created
+                formCreated: function (event, data) {
+                    data.form.validationEngine();
+                },
+                //Validate form when it is being submitted
+                formSubmitting: function (event, data) {
+                    return data.form.validationEngine('validate');
+                },
+                //Dispose validation logic when form is closed
+                formClosed: function (event, data) {
+                    data.form.validationEngine('hide');
+                    data.form.validationEngine('detach');
+                }
+            });
+
+            //Re-load records when user click 'load records' button.
+            $('#LoadRecordsButton').click(function (e) {
+                e.preventDefault();
+                $('#TableContainer').jtable('load', {
+                    strDMKNo: $('#DMKNo').val(),
+                    strOPICNo: $('#OPICNo').val(),
+                    strProduct: $('#product').val(),
+                    strCtpy: $('#counterparty').val(),
+                    strPortfolio: $('#portfolio').val(),
+                    strTradeDate: $('#tradedate').val(),
+                    strEffDate: $('#effdate').val(),
+                    strMatDate: $('#matdate').val(),
+                    strInstrument: $('#instrument').val(),
+                    strUser: $('#user').val()
+                });
+            });
+
+
+            //Load all records when page is first shown
+            //$('#LoadRecordsButton').click();
+            
+            $.ajax({
+                type: "POST",
+                url: '<%= Page.ResolveClientUrl("DealView.aspx/GetProductOptions") %>',
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#product").get(0).options.length = 0;
+                    $("#product").get(0).options[0] = new Option("ALL", "-1");
+
+                    $.each(msg.d.Options, function (index, obj) {
+                        $("#product").get(0).options[$("#product").get(0).options.length] = new Option(obj.DisplayText, obj.Value);
+                    });
+                },
+                error: function () {
+                    $("#product").get(0).options.length = 0;
+                    $("#product").get(0).options[0] = new Option("Please select", "-1");
+                }
+            });
+            
+            $.ajax({
+                type: "POST",
+                url: '<%= Page.ResolveClientUrl("DealView.aspx/GetInstrumentOptions") %>',
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#instrument").get(0).options.length = 0;
+                    $("#instrument").get(0).options[0] = new Option("ALL", "-1");
+
+                    $.each(msg.d.Options, function (index, obj) {
+                        $("#instrument").get(0).options[$("#instrument").get(0).options.length] = new Option(obj.DisplayText, obj.Value);
+                    });
+                },
+                error: function () {
+                    $("#instrument").get(0).options.length = 0;
+                    $("#instrument").get(0).options[0] = new Option("Please select", "-1");
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '<%= Page.ResolveClientUrl("DealView.aspx/GetPortfolioOptions") %>',
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#portfolio").get(0).options.length = 0;
+                    $("#portfolio").get(0).options[0] = new Option("ALL", "-1");
+
+                    $.each(msg.d.Options, function (index, obj) {
+                        $("#portfolio").get(0).options[$("#portfolio").get(0).options.length] = new Option(obj.DisplayText, obj.Value);
+                    });
+                },
+                error: function () {
+                    $("#portfolio").get(0).options.length = 0;
+                    $("#portfolio").get(0).options[0] = new Option("Please select", "-1");
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '<%= Page.ResolveClientUrl("DealView.aspx/GetCounterpartyOptions") %>',
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#counterparty").get(0).options.length = 0;
+                    $("#counterparty").get(0).options[0] = new Option("ALL", "-1");
+
+                    $.each(msg.d.Options, function (index, obj) {
+                        $("#counterparty").get(0).options[$("#counterparty").get(0).options.length] = new Option(obj.DisplayText, obj.Value);
+                    });
+                },
+                error: function () {
+                    $("#counterparty").get(0).options.length = 0;
+                    $("#counterparty").get(0).options[0] = new Option("Please select", "-1");
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '<%= Page.ResolveClientUrl("DealView.aspx/GetUserOptions") %>',
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#user").get(0).options.length = 0;
+                    $("#user").get(0).options[0] = new Option("ALL", "-1");
+
+                    $.each(msg.d.Options, function (index, obj) {
+                        $("#user").get(0).options[$("#user").get(0).options.length] = new Option(obj.DisplayText, obj.Value);
+                    });
+                },
+                error: function () {
+                    $("#user").get(0).options.length = 0;
+                    $("#user").get(0).options[0] = new Option("Please select", "-1");
+                }
+            });
+        });
+
+    </script>
+</asp:Content>

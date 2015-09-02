@@ -1,0 +1,391 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dialog.master.cs" Inherits="KK.DealMaker.Web.Dialog" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <title>Kiatnakin - Deal Maker System v1.1</title>
+    <link href="<%= Page.ResolveClientUrl("~/Styles/metroblue/jquery-ui.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Page.ResolveClientUrl("~/Styles/Site.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%= Page.ResolveClientUrl("~/Styles/base/jquery.ui.combobox.css")%>" rel="stylesheet" type="text/css" />
+    <!-- jTable style file -->
+    <link href="<%= Page.ResolveClientUrl("~/Scripts/jtable.2.3.0/themes/metro/blue/jtable.css") %>" rel="stylesheet" type="text/css" />
+   <!-- Import CSS file for validation engine (in Head section of HTML) -->
+    <link href="<%= Page.ResolveClientUrl("~/Scripts/validationEngine/validationEngine.jquery.css") %>" rel="stylesheet" type="text/css" />
+ 
+    <!-- Optimize for mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <!-- jQuery & JS files -->
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/modernizr-2.6.2.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.9.0.min.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jquery-ui-1.10.0.custom.min.js") %>" type="text/javascript"></script>
+
+    <!-- A helper library for JSON serialization -->
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jtable.2.3.0/external/json2.min.js") %>" type="text/javascript"></script>
+    <!-- Core jTable script file -->
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jtable.2.3.0/jquery.jtable.js") %>" type="text/javascript"></script>
+    <!-- ASP.NET Web Forms extension for jTable -->
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jtable.2.3.0/extensions/jquery.jtable.aspnetpagemethods.min.js") %>"
+        type="text/javascript"></script>
+ 
+    <!-- Import Javascript files for validation engine (in Head section of HTML) -->
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/validationEngine/jquery.validationEngine.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/validationEngine/jquery.validationEngine-en.js") %>"></script>
+    
+    <!-- Other scripts -->
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/json3.min.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/common.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jquery.number.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/autoNumeric.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/jquery.ui.combobox.min.js") %>" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(document).ajaxComplete(function (event, request, settings) {
+                if (parent != window) {
+                    parent.SetiFrameHeight();
+                }
+            });
+
+            //Prepare Preset table
+            $('#limit-preset').jtable({
+                title: 'Pre-Settlement',
+                actions: {
+                    listAction: window.location.pathname + "/GetPCERecords"
+                },
+                fields: {
+                    SNAME: {
+                        title: 'CTPY'
+                    },
+                    LIMIT_LABEL: {
+                        title: 'Limit'
+                    },
+                    FLAG_CONTROL: {
+                        title: 'Control',
+                        type: 'checkbox',
+                        values: { 'false': 'No-Restriction', 'true': 'Control' }
+                    },
+                    ORIGINAL_KK_CONTRIBUTE: {
+                        title: 'Before Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    DEAL_CONTRIBUTION: {
+                        title: 'Deal Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION: {
+                        title: 'After Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION_PERCENT: {
+                        title: '% Usage',
+                        type: 'number',
+                        displayFormat: '2',
+                        listClass: 'right'
+                    },
+                    AVAILABLE: {
+                        title: 'Available',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    STATUS: {
+                        title: 'Limit Status',
+                        display: function (data) {
+
+                            if (data.record.STATUS.toUpperCase() == 'EXCEED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'THRESHOLD') {
+                                return $('<span style="background-color:yellow">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'EXPIRED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else {
+                                return data.record.STATUS
+                            }
+                        }
+                    }
+                }
+            });
+            //Prepare Settle table
+            $('#limit-set').jtable({
+                title: 'Settlement',
+                paging: true,
+                pageSize: 7,
+                actions: {
+                    listAction: window.location.pathname + "/GetSCERecords"
+                },
+                fields: {
+                    SNAME: {
+                        title: 'CTPY'
+                    },
+                    LIMIT_LABEL: {
+                        title: 'Limit'
+                    },
+                    FLAG_CONTROL: {
+                        title: 'Control',
+                        type: 'checkbox',
+                        values: { 'false': 'No-Restriction', 'true': 'Control' }
+                    },
+                    FLOW_DATE: {
+                        title: 'Flow Date'
+                            , type: 'date'
+                            , displayFormat: 'dd-M-yy'
+                    },
+                    ORIGINAL_KK_CONTRIBUTE: {
+                        title: 'Before Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    DEAL_CONTRIBUTION: {
+                        title: 'Deal Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION: {
+                        title: 'After Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION_PERCENT: {
+                        title: '% Usage',
+                        type: 'number',
+                        displayFormat: '2',
+                        listClass: 'right'
+                    },
+                    AVAILABLE: {
+                        title: 'Available',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    STATUS: {
+                        title: 'Limit Status',
+                        display: function (data) {
+
+                            if (data.record.STATUS.toUpperCase() == 'EXCEED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'THRESHOLD') {
+                                return $('<span style="background-color:yellow">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'EXPIRED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else {
+                                return data.record.STATUS
+                            }
+                        }
+                    }
+                }
+            });
+
+            //Prepare Country Limit table
+            $('#limit-country').jtable({
+                title: 'Country',
+                paging: true,
+                pageSize: 7,
+                actions: {
+                    listAction: window.location.pathname + "/GetCountryRecords"
+                },
+                fields: {
+                    COUNTRY_LABEL: {
+                        title: 'Country'
+                    },
+                    FLAG_CONTROL: {
+                        title: 'Control',
+                        type: 'checkbox',
+                        values: { 'false': 'No-Restriction', 'true': 'Control' }
+                    },
+                    FLOW_DATE: {
+                        title: 'Date'
+                        , type: 'date'
+                        , displayFormat: 'dd-M-yy'
+                    },
+                    ORIGINAL_KK_CONTRIBUTE: {
+                        title: 'Before Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    DEAL_CONTRIBUTION: {
+                        title: 'Deal Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION: {
+                        title: 'After Utilization',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    UTILIZATION_PERCENT: {
+                        title: '% Usage',
+                        type: 'number',
+                        displayFormat: '2',
+                        listClass: 'right'
+                    },
+                    AVAILABLE: {
+                        title: 'Available',
+                        type: 'number',
+                        listClass: 'right'
+                    },
+                    STATUS: {
+                        title: 'Limit Status',
+                        display: function (data) {
+
+                            if (data.record.STATUS.toUpperCase() == 'EXCEED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'THRESHOLD') {
+                                return $('<span style="background-color:yellow">' + data.record.STATUS + '</span>')
+                            }
+                            else if (data.record.STATUS.toUpperCase() == 'EXPIRED') {
+                                return $('<span style="background-color:red">' + data.record.STATUS + '</span>')
+                            }
+                            else {
+                                return data.record.STATUS
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        function approver_check_onclick() {
+            if (ValidateOverwriteForm() == true) {
+                var pData = "{ strUsername : '" + $('#user').val() + "'"
+                        + ", strPassword : '" + $('#password').val() + "'"
+                        + ", strPageName : '" + window.location.pathname.replace(/^.*(\\|\/|\:)/, '').replace(".aspx", '') + "' }";
+
+                $.ajax({
+                    type: "POST",
+                    url: window.location.pathname + "/CheckApproveRight",
+                    data: pData,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#over-limit #submit").text('Loading');
+                        $("#over-limit #submit,#over-limit input").prop('disabled', true);
+                    },
+                    success: function (msg) {
+                        if (msg.d.Result == 'OK') {
+
+                            submit_deal($('#user').val(), $('#comment').val());
+                        }
+                        else if (msg.d.Result == "ERROR") {
+                            $("#message").text(msg.d.Message);
+
+                            $("#message-dialog").dialog({
+                                title: 'ERROR',
+                                height: 200,
+                                width: 350,
+                                modal: true
+                            });
+                        }
+                        $("#over-limit #submit").text('Submit');
+                        $("#over-limit #submit,#over-limit input").prop('disabled', false);
+                    },
+                    error: function () {
+                        $("#over-limit #submit").text('Submit');
+                        $("#over-limit #submit,#over-limit input").prop('disabled', false);
+                    }
+                });
+
+            }            
+
+        }
+
+        function ValidateOverwriteForm() {
+            var mess = '';
+            mess = $("#user").val() == '' ? 'Please input user name.' : mess;
+            mess = $("#password").val() == '' && mess == '' ? 'Please input password.' : mess;
+            mess = $("#comment").val() == '' && mess == '' ? 'Please input comment.' : mess;
+            if (mess != '') {
+                $("#message").text(mess);
+
+                $("#message-dialog").dialog({
+                    title: 'ERROR',
+                    height: 200,
+                    width: 350,
+                    modal: true
+                });
+
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+
+        $(function () {
+            $("#limit-dialog").tabs();
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <!-- Dialog -->
+    <div id="confimDialog" style="display:none;"></div>
+    <!-- MAIN CONTENT -->
+	<div id="content" style="height:auto">
+    	<div id="limit-dialog" style="display:none;">
+            <div id="over-limit" style="display:none;">
+                <table>
+                    <tr>
+                        <td align="right">
+                            <label>Username:<input type="text" name="user" id="user" class="round input-form-textbox"/></label>
+                        </td>
+                        <td align="right">
+                            <label>Comment:<input type="text" name="comment" id="comment" class="round input-form-textbox"/></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <label>Password:<input type="password" name="password" id="password" class="round input-form-textbox"/></label>
+                        </td>
+                        <td align="right">
+                            <button type="button" id="submit" class="round blue button-submit" onclick="return approver_check_onclick()">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <ul>
+                <li><a href="#tab-pce">Pre-Settlement Limit</a></li>
+                <li><a href="#tab-set">Settlement Limit</a></li>
+                <li><a href="#tab-country">Country Limit</a></li>
+            </ul>
+            <div id="tab-pce">
+                <div id="limit-preset" class="table-container" style="display:none;"></div>
+            </div>
+            <div id="tab-set">
+                <div id="limit-set" class="table-container" style="display:none; "></div>                
+            </div>
+            <div id="tab-country">
+                <div id="limit-country" class="table-container" style="display:none; "></div>                
+            </div>
+        </div>
+		<div class="page-full-width cf">
+
+			<div class="content-module">
+
+                <div class="content-module-heading cf">
+				
+		            <h3 id="title" class="fl">Please fill in your value.</h3>
+				
+                </div> <!-- end content-module-heading -->
+				
+                <asp:ContentPlaceHolder ID="contentholder" runat="server"></asp:ContentPlaceHolder>
+
+             </div> <!-- end content-module -->
+		
+		</div> <!-- end full-width -->
+			
+	</div> <!-- end content -->
+</body>
+</html>
+

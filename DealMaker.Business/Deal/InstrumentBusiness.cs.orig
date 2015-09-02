@@ -1,0 +1,139 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.EnterpriseServices;
+using KK.DealMaker.Core.Common;
+using KK.DealMaker.Core.Constraint;
+using KK.DealMaker.Core.Data;
+using KK.DealMaker.DataAccess.Repositories;
+using KK.DealMaker.Core.SystemFramework;
+using System.Configuration;
+using KK.DealMaker.Core.Helper;
+using System.Linq.Expressions;
+namespace KK.DealMaker.Business.Deal
+{
+    public class InstrumentBusiness : BaseBusiness 
+    {
+        public List<MA_INSTRUMENT> GetByFilter(SessionInfo sessioninfo, string label, int startIndex, int count, string sorting)
+        {
+            try
+            {
+                IEnumerable<MA_INSTRUMENT> sortedRecords;
+                using (EFUnitOfWork unitOfWork = new EFUnitOfWork())
+                {
+                    var query = unitOfWork.MA_INSTRUMENTRepository.GetAll().AsQueryable();
+                    //Filters
+                    if (!string.IsNullOrEmpty(label))
+                    {
+                        query = query.Where(p => p.LABEL.IndexOf(label, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                    IQueryable<MA_INSTRUMENT> orderedRecords = null;
+                    //Sorting
+                    if (string.IsNullOrEmpty(sorting) || sorting.Equals("LABEL ASC"))
+                    {
+                        orderedRecords = query.OrderBy(p => p.LABEL).AsQueryable();
+                    }
+                    else if (sorting.Equals("LABEL DESC"))
+                    {
+                        orderedRecords = query.OrderByDescending(p => p.LABEL).AsQueryable();
+                    }
+                    else
+                    {
+                        orderedRecords = query.OrderBy(p => p.LABEL).AsQueryable(); //Default!
+                    }
+                    sortedRecords = orderedRecords.ToList();
+                }
+                //Return result to jTable
+                return count > 0
+                       ? sortedRecords.Skip(startIndex).Take(count).ToList() //Paging
+                       : sortedRecords.ToList(); //No paging
+
+            }
+            catch (DataServicesException ex)
+            {
+                throw this.CreateException(ex, null);
+            }
+        }
+
+        public List<MA_INSTRUMENT> GetByProduct(SessionInfo sessioninfo, Guid productID)
+        {
+            try
+            {
+                List<MA_INSTRUMENT> instruments = null;
+                using (EFUnitOfWork unitOfWork = new EFUnitOfWork())
+                {
+                    instruments = unitOfWork.MA_INSTRUMENTRepository.Where(p => p.PRODUCT_ID == productID).ToList();                    
+                }
+                //Return result to jTable
+                return instruments;
+
+            }
+            catch (DataServicesException ex)
+            {
+                throw this.CreateException(ex, null);
+            }
+        }
+
+        public List<MA_INSTRUMENT> GetInstrumentAll()
+        {
+            List<MA_INSTRUMENT> instrumentList;
+            using (EFUnitOfWork unitOfWork = new EFUnitOfWork())
+            {
+                instrumentList = unitOfWork.MA_INSTRUMENTRepository.All().ToList();
+            }
+            return instrumentList;
+
+        }
+
+        public MA_INSTRUMENT Create(SessionInfo sessioninfo, MA_INSTRUMENT instrument)
+        {
+            using (EFUnitOfWork unitOfWork = new EFUnitOfWork())
+            {
+                unitOfWork.MA_INSTRUMENTRepository.Add(instrument);
+                unitOfWork.Commit();
+            }
+
+            return instrument;
+        }
+
+        public MA_INSTRUMENT Update(SessionInfo sessioninfo, MA_INSTRUMENT instrument)
+        {
+
+            using (EFUnitOfWork unitOfWork = new EFUnitOfWork())
+            {
+                var foundData = unitOfWork.MA_INSTRUMENTRepository.All().FirstOrDefault(p => p.ID == instrument.ID);
+                if (foundData == null)
+                    throw this.CreateException(new Exception(), "Data not found!");
+                else
+                {
+
+                    foundData.ID = instrument.ID;
+<<<<<<< .mine
+                    foundData.ISACTIVE = instrument.ISACTIVE;
+=======
+                    foundData.USERCODE = instrument.USERCODE;
+                    foundData.ISACTIVE = instrument.ISACTIVE;
+>>>>>>> .r118
+                    foundData.MODIFY.USERID = sessioninfo.CurrentUserId;
+                    foundData.MODIFY.DATE = DateTime.Now;
+                    foundData.CAL_METHOD = instrument.CAL_METHOD;
+                    foundData.COUPON = instrument.COUPON;
+                    foundData.COUPON_FREQ_TYPE_ID = instrument.COUPON_FREQ_TYPE_ID;
+                    foundData.FLAG_FIXED = instrument.FLAG_FIXED;
+                    foundData.INS_MKT = instrument.INS_MKT;
+                    foundData.ISSUER = instrument.ISSUER;
+                    foundData.LABEL = instrument.LABEL;
+                    foundData.LOT_SIZE = instrument.LOT_SIZE;
+                    foundData.MATURITY_DATE = instrument.MATURITY_DATE;
+                    foundData.PRODUCT_ID = instrument.PRODUCT_ID;
+                    
+                    unitOfWork.Commit();
+
+                }
+            }
+
+            return instrument;
+        }
+    }
+}

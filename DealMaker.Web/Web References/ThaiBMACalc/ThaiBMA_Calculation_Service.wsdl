@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ws1.thaibma.or.th/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.ws1.thaibma.or.th/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.ws1.thaibma.or.th/">
+      <s:element name="BondCalculation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bf" type="tns:BondFactor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BondFactor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Symbol" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="isReOpen_BOTFRN" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="isILB" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="isYield2Price" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SettlementDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TradeDateAndTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Yield" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="YieldType" nillable="true" type="tns:YieldType" />
+          <s:element minOccurs="1" maxOccurs="1" name="isCallPutOption" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptionDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Price" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceType" nillable="true" type="tns:PriceType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="YieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="YTM" />
+          <s:enumeration value="YS" />
+          <s:enumeration value="DM" />
+          <s:enumeration value="LastExe" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PriceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Clean" />
+          <s:enumeration value="Gross" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="BondCalculationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BondCalculationResult" type="tns:CalculationOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CalculationOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CalcResult" type="tns:CalcResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="CalcError" type="tns:CalcError" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceResult" type="tns:ServiceError" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CalcResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Symbol" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SettlementDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TradeDateAndTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Yield" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_YS" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_DM" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_GrossPrice" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_CleanPrice" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_AI" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_GrossValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_CleanValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_AIValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="DSC" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="DCS" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_I" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PVBP" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Yr_MacaulayDuration" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedDuration" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Convexity" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_CouponRate_K" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="CouponType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_CurrentPar" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="XIPeriod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FrequencyPayment" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Yr_TTM" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="CallPutDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_RealYield" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="IndexRatio" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_SettlementAmount" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Unadjusted_GrossPrice" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Unadjusted_CleanPrice" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Unadjusted_AI" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="THB_Unadjusted_Par" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Calc_Remark" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CalcError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Symbol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isReOpen_BOTFRN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isILB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SettlementDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TradeDateAndTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Yield" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="YieldType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isCallPutOption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Percent_Price" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PriceType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oth" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenHeader" type="tns:AuthenHeader" />
+      <s:complexType name="AuthenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BondCalculationSoapIn">
+    <wsdl:part name="parameters" element="tns:BondCalculation" />
+  </wsdl:message>
+  <wsdl:message name="BondCalculationSoapOut">
+    <wsdl:part name="parameters" element="tns:BondCalculationResponse" />
+  </wsdl:message>
+  <wsdl:message name="BondCalculationAuthenHeader">
+    <wsdl:part name="AuthenHeader" element="tns:AuthenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ThaiBMA_Claculation_ServiceSoap">
+    <wsdl:operation name="BondCalculation">
+      <wsdl:input message="tns:BondCalculationSoapIn" />
+      <wsdl:output message="tns:BondCalculationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ThaiBMA_Claculation_ServiceSoap" type="tns:ThaiBMA_Claculation_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BondCalculation">
+      <soap:operation soapAction="http://www.ws1.thaibma.or.th/BondCalculation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:BondCalculationAuthenHeader" part="AuthenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ThaiBMA_Claculation_ServiceSoap12" type="tns:ThaiBMA_Claculation_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BondCalculation">
+      <soap12:operation soapAction="http://www.ws1.thaibma.or.th/BondCalculation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:BondCalculationAuthenHeader" part="AuthenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ThaiBMA_Claculation_Service">
+    <wsdl:port name="ThaiBMA_Claculation_ServiceSoap" binding="tns:ThaiBMA_Claculation_ServiceSoap">
+      <soap:address location="http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ThaiBMA_Claculation_ServiceSoap12" binding="tns:ThaiBMA_Claculation_ServiceSoap12">
+      <soap12:address location="http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,797 @@
+﻿SET QUOTED_IDENTIFIER ON;
+GO
+SET ANSI_NULLS ON;
+GO
+USE [KKLMDB];
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
+/*
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[FK_MA_PCCF_MA_PRODUCT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PCCF] DROP CONSTRAINT [FK_MA_PCCF_MA_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_CURRENCYMA_PCCF1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PCCF] DROP CONSTRAINT [FK_MA_CURRENCYMA_PCCF1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_CURRENCYMA_PCCF2]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PCCF] DROP CONSTRAINT [FK_MA_CURRENCYMA_PCCF2];
+GO
+*/
+
+-- --------------------------------------------------
+-- Create tables
+-- --------------------------------------------------
+
+-- Creating table 'MA_BOND_MARKET'
+CREATE TABLE [dbo].[MA_BOND_MARKET] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [DESCRIPTION] varchar(255)  NOT NULL
+);
+GO
+
+-- Creating table 'MA_PCCF_CONFIG'
+CREATE TABLE [dbo].[MA_PCCF_CONFIG] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [DESCRIPTION] varchar(255)  NULL,
+    [PRODUCT_ID] uniqueidentifier  NOT NULL,
+    [PCCF_ID] uniqueidentifier  NOT NULL,
+    [ISACTIVE] bit  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_CONFIG_ATTRIBUTE'
+CREATE TABLE [dbo].[MA_CONFIG_ATTRIBUTE] (
+    [TABLE] varchar(100)  NOT NULL,
+    [ATTRIBUTE] varchar(100)  NULL,
+    [VALUE] varchar(200)  NULL,
+    [ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [ISACTIVE] bit  NOT NULL,
+    [PCCF_CONFIG_ID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating primary key on [ID] in table 'MA_BOND_MARKET'
+ALTER TABLE [dbo].[MA_BOND_MARKET]
+ADD CONSTRAINT [PK_MA_BOND_MARKET]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [PK_MA_PCCF_CONFIG]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_CONFIG_ATTRIBUTE'
+ALTER TABLE [dbo].[MA_CONFIG_ATTRIBUTE]
+ADD CONSTRAINT [PK_MA_CONFIG_ATTRIBUTE]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+--Initial some data
+INSERT INTO [MA_BOND_MARKET](ID, LABEL, DESCRIPTION)
+VALUES ('4dc87c5b-cec0-4ee7-a54a-36b2ae046381', 'TH_GOV', 'THB Government Bond'),
+		('76323599-db3f-4210-983d-9b041d70e2e2', 'TH_CORP', 'THB Corporate Bond'),
+		('8555da21-7645-4bac-99f0-21ec99779d7d', 'TH_SOE', 'THB State-Owned Enterprise'),
+		('61ebf800-71fc-43f1-8982-6881a39bce69', 'US_GOV', 'USD Government Bond'),
+		('686315c2-cfc5-4c2f-854e-5bf2ab3c89db', 'US_CORP', 'USD Corporate Bond'),
+		('14005c6d-9ee3-4494-aa79-274b4dd2167b', 'EU_GOV', 'EUR Government Bond'),
+		('c6a74e50-7da0-44c9-8594-1f4d804896f3', 'EU_CORP', 'EUR Corporate Bond');
+
+UPDATE MA_INSTRUMENT
+SET INS_MKT = '4dc87c5b-cec0-4ee7-a54a-36b2ae046381'
+WHERE INS_MKT = 'FI_TH_GOV';
+
+UPDATE MA_INSTRUMENT
+SET INS_MKT = '76323599-db3f-4210-983d-9b041d70e2e2'
+WHERE INS_MKT = 'FI_TH_CORP';
+
+-- --------------------------------------------------
+-- Alter existing tables
+-- --------------------------------------------------
+ALTER TABLE [dbo].[MA_PROCESS_DATE] ADD [FLAG_RECONCILE] bit NULL;
+
+ALTER TABLE [dbo].[DA_TRN] 
+	ADD [FLAG_SETTLE] bit NULL,
+		[REMARK] VARCHAR(250) NULL
+GO
+
+ALTER TABLE MA_PORTFOLIO
+	ADD	[ISDEFAULT] bit  NULL
+GO
+
+UPDATE MA_PORTFOLIO
+SET ISDEFAULT = 1
+WHERE LABEL = 'TRADING';
+
+UPDATE MA_PORTFOLIO
+SET ISDEFAULT = 0
+WHERE LABEL <> 'TRADING';
+
+-- MA_INSTRUMENT
+ALTER TABLE [dbo].[DA_TRN]
+DROP CONSTRAINT [FK_DA_TRN_MA_INSRUMENT]
+GO
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+DROP CONSTRAINT [FK_MA_PRODUCTMA_INSRUMENT]
+GO
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+DROP CONSTRAINT [FK_MA_FREQ_TYPEMA_INSTRUMENT]
+GO
+EXECUTE [sp_rename]
+	@objname  = N'[dbo].[PK_MA_INSTRUMENT]',
+	@newname  = N'tmp_a4002f14d5e64321848705e418dcda3d',
+	@objtype  = 'OBJECT'
+GO
+EXECUTE [sp_rename]
+	@objname  = N'[dbo].[MA_INSTRUMENT]',
+	@newname  = N'tmp_1d0a015782c34d3a974c3d5b3cae2ba8',
+	@objtype  = 'OBJECT'
+GO
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MA_INSTRUMENT] (
+	[ID] uniqueidentifier NOT NULL,
+	[LABEL] varchar(50) COLLATE Thai_CI_AS NOT NULL,
+	[INS_MKT] uniqueidentifier NULL,
+	[ISSUER] varchar(50) COLLATE Thai_CI_AS NULL,
+	[LOT_SIZE] int NULL,
+	[COUPON] decimal(18, 6) NULL,
+	[MATURITY_DATE] datetime NULL,
+	[CAL_METHOD] varchar(50) COLLATE Thai_CI_AS NULL,
+	[ISACTIVE] bit NOT NULL,
+	[PRODUCT_ID] uniqueidentifier NOT NULL,
+	[FLAG_FIXED] bit NULL,
+	[COUPON_FREQ_TYPE_ID] uniqueidentifier NULL,
+	[LOG_INSERTBYUSERID] uniqueidentifier NOT NULL,
+	[LOG_INSERTDATE] datetime NOT NULL,
+	[LOG_MODIFYBYUSERID] uniqueidentifier NULL,
+	[LOG_MODIFYDATE] datetime NULL,
+	[FLAG_MULTIPLY] bit NULL,
+	[CURRENCY_ID1] uniqueidentifier NULL,
+	[CURRENCY_ID2] uniqueidentifier NULL,
+	CONSTRAINT [PK_MA_INSTRUMENT] PRIMARY KEY([ID]) WITH (FILLFACTOR=100,
+		DATA_COMPRESSION = NONE) ON [PRIMARY]
+)
+GO
+CREATE INDEX [IX_FK_MA_FREQ_TYPEMA_INSTRUMENT]
+ ON [dbo].[MA_INSTRUMENT] ([COUPON_FREQ_TYPE_ID])
+WITH (FILLFACTOR=100,
+	DATA_COMPRESSION = NONE)
+ON [PRIMARY]
+GO
+CREATE INDEX [IX_FK_MA_PRODUCTMA_INSRUMENT]
+ ON [dbo].[MA_INSTRUMENT] ([PRODUCT_ID])
+WITH (FILLFACTOR=100,
+	DATA_COMPRESSION = NONE)
+ON [PRIMARY]
+GO
+ALTER INDEX [IX_FK_MA_FREQ_TYPEMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+DISABLE
+GO
+ALTER INDEX [IX_FK_MA_PRODUCTMA_INSRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+DISABLE
+GO
+INSERT INTO [dbo].[MA_INSTRUMENT] (
+	[ID],
+	[LABEL],
+	[INS_MKT],
+	[ISSUER],
+	[LOT_SIZE],
+	[COUPON],
+	[MATURITY_DATE],
+	[CAL_METHOD],
+	[ISACTIVE],
+	[PRODUCT_ID],
+	[FLAG_FIXED],
+	[COUPON_FREQ_TYPE_ID],
+	[LOG_INSERTBYUSERID],
+	[LOG_INSERTDATE],
+	[LOG_MODIFYBYUSERID],
+	[LOG_MODIFYDATE],
+	[FLAG_MULTIPLY],
+	[CURRENCY_ID1],
+	[CURRENCY_ID2])
+SELECT
+	[ID],
+	[LABEL],
+	[INS_MKT],
+	[ISSUER],
+	[LOT_SIZE],
+	[COUPON],
+	[MATURITY_DATE],
+	[CAL_METHOD],
+	[ISACTIVE],
+	[PRODUCT_ID],
+	[FLAG_FIXED],
+	[COUPON_FREQ_TYPE_ID],
+	[LOG_INSERTBYUSERID],
+	[LOG_INSERTDATE],
+	[LOG_MODIFYBYUSERID],
+	[LOG_MODIFYDATE],
+	NULL,
+	NULL,
+	NULL
+FROM [dbo].[tmp_1d0a015782c34d3a974c3d5b3cae2ba8]
+GO
+ALTER INDEX ALL
+ON [dbo].[MA_INSTRUMENT]
+REBUILD
+GO
+DROP TABLE [dbo].[tmp_1d0a015782c34d3a974c3d5b3cae2ba8]
+GO
+ALTER TABLE [dbo].[DA_TRN]
+ ADD CONSTRAINT [FK_DA_TRN_MA_INSRUMENT] FOREIGN KEY ([INSTRUMENT_ID])
+		REFERENCES [dbo].[MA_INSTRUMENT] ([ID])
+	
+GO
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ ADD CONSTRAINT [FK_MA_PRODUCTMA_INSRUMENT] FOREIGN KEY ([PRODUCT_ID])
+		REFERENCES [dbo].[MA_PRODUCT] ([ID])
+	
+GO
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ ADD CONSTRAINT [FK_MA_FREQ_TYPEMA_INSTRUMENT] FOREIGN KEY ([COUPON_FREQ_TYPE_ID])
+		REFERENCES [dbo].[MA_FREQ_TYPE] ([ID])
+	
+GO
+
+--Transfer data from MA_PCCF to MA_INSTRUMENT
+UPDATE MA_INSTRUMENT
+SET FLAG_MULTIPLY = pccf.FLAG_MULTIPLY
+	, CURRENCY_ID1 = pccf.CURRENCY_ID1
+	, CURRENCY_ID2 = pccf.CURRENCY_ID2
+FROM MA_INSTRUMENT ins
+	INNER JOIN MA_PCCF pccf
+	ON ins.LABEL = pccf.LABEL
+		AND ins.PRODUCT_ID = pccf.PRODUCT_ID
+GO
+
+--MA_PCCF
+ALTER TABLE [dbo].[MA_PCCF]
+DROP CONSTRAINT [FK_MA_CURRENCYMA_PCCF1]
+GO
+ALTER TABLE [dbo].[MA_PCCF]
+DROP CONSTRAINT [FK_MA_CURRENCYMA_PCCF2]
+GO
+ALTER TABLE [dbo].[MA_PCCF]
+DROP CONSTRAINT [FK_MA_PCCF_MA_PRODUCT]
+GO
+EXECUTE [sp_rename]
+	@objname  = N'[dbo].[PK_MA_PCCF]',
+	@newname  = N'tmp_76e86565b0a2499f804eff6e199ed5c0',
+	@objtype  = 'OBJECT'
+GO
+EXECUTE [sp_rename]
+	@objname  = N'[dbo].[MA_PCCF]',
+	@newname  = N'tmp_ac9dc468d308463b89966f9dee2de751',
+	@objtype  = 'OBJECT'
+GO
+
+CREATE TABLE [dbo].[MA_PCCF] (
+	[ID] uniqueidentifier NOT NULL,
+	[LABEL] varchar(50) COLLATE Thai_CI_AS NOT NULL,
+	[C1] decimal(18, 2) NULL,
+	[C2] decimal(18, 2) NULL,
+	[C3] decimal(18, 2) NULL,
+	[C4] decimal(18, 2) NULL,
+	[C5] decimal(18, 2) NULL,
+	[C6] decimal(18, 2) NULL,
+	[C7] decimal(18, 2) NULL,
+	[C8] decimal(18, 2) NULL,
+	[C9] decimal(18, 2) NULL,
+	[C10] decimal(18, 2) NULL,
+	[C11] decimal(18, 2) NULL,
+	[C12] decimal(18, 2) NULL,
+	[C13] decimal(18, 2) NULL,
+	[C14] decimal(18, 2) NULL,
+	[C15] decimal(18, 2) NULL,
+	[C16] decimal(18, 2) NULL,
+	[C17] decimal(18, 2) NULL,
+	[C18] decimal(18, 2) NULL,
+	[C19] decimal(18, 2) NULL,
+	[C20] decimal(18, 2) NULL,
+	[more20] decimal(18, 2) NULL,
+	[DEFAULT] decimal(18, 2) NULL,
+	[ISACTIVE] bit NULL,
+	[LOG_INSERTBYUSERID] uniqueidentifier NOT NULL,
+	[LOG_INSERTDATE] datetime NOT NULL,
+	[LOG_MODIFYBYUSERID] uniqueidentifier NULL,
+	[LOG_MODIFYDATE] datetime NULL,
+	[C0D] decimal(18, 2) NULL,
+	[C1D] decimal(18, 2) NULL,
+	CONSTRAINT [PK_MA_PCCF] PRIMARY KEY([ID]) WITH (FILLFACTOR=100,
+		DATA_COMPRESSION = NONE) ON [PRIMARY]
+)
+GO
+INSERT INTO [dbo].[MA_PCCF] (
+	[ID],
+	[LABEL],
+	[C1],
+	[C2],
+	[C3],
+	[C4],
+	[C5],
+	[C6],
+	[C7],
+	[C8],
+	[C9],
+	[C10],
+	[C11],
+	[C12],
+	[C13],
+	[C14],
+	[C15],
+	[C16],
+	[C17],
+	[C18],
+	[C19],
+	[C20],
+	[more20],
+	[DEFAULT],
+	[ISACTIVE],
+	[LOG_INSERTBYUSERID],
+	[LOG_INSERTDATE],
+	[LOG_MODIFYBYUSERID],
+	[LOG_MODIFYDATE],
+	[C0D],
+	[C1D])
+SELECT
+	[ID],
+	[LABEL],
+	[C1],
+	[C2],
+	[C3],
+	[C4],
+	[C5],
+	[C6],
+	[C7],
+	[C8],
+	[C9],
+	[C10],
+	[C11],
+	[C12],
+	[C13],
+	[C14],
+	[C15],
+	[C16],
+	[C17],
+	[C18],
+	[C19],
+	[C20],
+	[more20],
+	[DEFAULT],
+	[ISACTIVE],
+	[LOG_INSERTBYUSERID],
+	[LOG_INSERTDATE],
+	[LOG_MODIFYBYUSERID],
+	[LOG_MODIFYDATE],
+	[C0D],
+	[C1D]
+FROM [dbo].[tmp_ac9dc468d308463b89966f9dee2de751]
+GO
+DROP TABLE [dbo].[tmp_ac9dc468d308463b89966f9dee2de751]
+GO
+
+-- --------------------------------------------------
+-- Create constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [INS_MKT] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_BOND_MARKETMA_INSTRUMENT]
+    FOREIGN KEY ([INS_MKT])
+    REFERENCES [dbo].[MA_BOND_MARKET]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+	
+-- Creating foreign key on [CURRENCY_ID1] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT]
+    FOREIGN KEY ([CURRENCY_ID1])
+    REFERENCES [dbo].[MA_CURRENCY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating foreign key on [CURRENCY_ID2] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT1]
+    FOREIGN KEY ([CURRENCY_ID2])
+    REFERENCES [dbo].[MA_CURRENCY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_BOND_MARKETMA_INSTRUMENT'
+CREATE INDEX [IX_FK_MA_BOND_MARKETMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([INS_MKT]);
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_CURRENCYMA_INSTRUMENT'
+CREATE INDEX [IX_FK_MA_CURRENCYMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([CURRENCY_ID1]);
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_CURRENCYMA_INSTRUMENT1'
+CREATE INDEX [IX_FK_MA_CURRENCYMA_INSTRUMENT1]
+ON [dbo].[MA_INSTRUMENT]
+    ([CURRENCY_ID2]);
+GO
+
+-- Creating foreign key on [PRODUCT_ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [FK_MA_PRODUCTMA_PCCF_CONFIG]
+    FOREIGN KEY ([PRODUCT_ID])
+    REFERENCES [dbo].[MA_PRODUCT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PRODUCTMA_PCCF_CONFIG'
+CREATE INDEX [IX_FK_MA_PRODUCTMA_PCCF_CONFIG]
+ON [dbo].[MA_PCCF_CONFIG]
+    ([PRODUCT_ID]);
+GO
+
+-- Creating foreign key on [PCCF_ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [FK_MA_PCCFMA_PCCF_CONFIG]
+    FOREIGN KEY ([PCCF_ID])
+    REFERENCES [dbo].[MA_PCCF]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PCCFMA_PCCF_CONFIG'
+CREATE INDEX [IX_FK_MA_PCCFMA_PCCF_CONFIG]
+ON [dbo].[MA_PCCF_CONFIG]
+    ([PCCF_ID]);
+GO
+
+-- Creating foreign key on [PCCF_CONFIG_ID] in table 'MA_CONFIG_ATTRIBUTE'
+ALTER TABLE [dbo].[MA_CONFIG_ATTRIBUTE]
+ADD CONSTRAINT [FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE]
+    FOREIGN KEY ([PCCF_CONFIG_ID])
+    REFERENCES [dbo].[MA_PCCF_CONFIG]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE'
+CREATE INDEX [IX_FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE]
+ON [dbo].[MA_CONFIG_ATTRIBUTE]
+    ([PCCF_CONFIG_ID]);
+GO
+
+
+-- --------------------------------------------------
+-- Initial / Transform Data
+-- --------------------------------------------------
+--MA_PROCESS_DATE
+UPDATE MA_PROCESS_DATE
+SET		FLAG_RECONCILE = 0;
+
+--MA_FUNCTIONAL
+INSERT INTO MA_FUNCTIONAL (ID, USERCODE, LABEL, ISACTIVE) VALUES
+('7ac3cc54-be26-400a-a1f7-793fa1805ea7', N'BondMarketMaster', N'Bond Market Management', '1'), 
+('7bf8f20b-d611-4386-8362-b63a8661bece', N'FactorConfigMaster', N'PCCF Configuration', '1'), 
+('83f27397-6f17-4532-b123-2541573188b2', N'LimitAuditReport', N'Limit Audit Report', '1'), 
+('f7b563d6-456c-464a-b5a2-42374b308f05', N'LimitOverwriteReport', N'Limit Overwrite Report', '1'), 
+('1d09a1f6-dc71-4bbb-8218-9cad40a3f3b5', N'RepoEntryInfo', N'Deal Repo Entry', '1'), 
+('0d2494d2-e108-494c-a34c-7316944c2a0c', N'RepoReport', N'Repo Report', '1');
+
+--MA_PROFILE_FUNCTIONAL
+INSERT INTO MA_PROFILE_FUNCTIONAL (ID, USER_PROFILE_ID, FUNCTIONAL_ID, ISREADABLE, ISWRITABLE, ISAPPROVABLE) VALUES
+---BO Group
+(NEWID(), '78400bd2-39d5-4088-8db7-c418b344aa48', '83f27397-6f17-4532-b123-2541573188b2', 1, 0, 0), --Limit Audit
+(NEWID(), '78400bd2-39d5-4088-8db7-c418b344aa48', 'f7b563d6-456c-464a-b5a2-42374b308f05', 1, 0, 0), --Limit Overwrite
+(NEWID(), '78400bd2-39d5-4088-8db7-c418b344aa48', '0d2494d2-e108-494c-a34c-7316944c2a0c', 1, 0, 0), --Repo Report
+---FO Group
+(NEWID(), '87ac4a18-4363-413b-8998-8f33d904f258', '83f27397-6f17-4532-b123-2541573188b2', 1, 0, 0), --Limit Audit
+(NEWID(), '87ac4a18-4363-413b-8998-8f33d904f258', 'f7b563d6-456c-464a-b5a2-42374b308f05', 1, 0, 0), --Limit Overwrite
+(NEWID(), '87ac4a18-4363-413b-8998-8f33d904f258', '1d09a1f6-dc71-4bbb-8218-9cad40a3f3b5', 1, 1, 0), --Repo Entry
+(NEWID(), '87ac4a18-4363-413b-8998-8f33d904f258', '0d2494d2-e108-494c-a34c-7316944c2a0c', 1, 0, 0), --Repo Report
+---FOS Group
+(NEWID(), '245f94ac-3cbe-4d59-9204-c44a76fedefe', '83f27397-6f17-4532-b123-2541573188b2', 1, 0, 0), --Limit Audit
+(NEWID(), '245f94ac-3cbe-4d59-9204-c44a76fedefe', 'f7b563d6-456c-464a-b5a2-42374b308f05', 1, 0, 0), --Limit Overwrite
+(NEWID(), '245f94ac-3cbe-4d59-9204-c44a76fedefe', '1d09a1f6-dc71-4bbb-8218-9cad40a3f3b5', 1, 1, 1), --Repo Entry
+(NEWID(), '245f94ac-3cbe-4d59-9204-c44a76fedefe', '0d2494d2-e108-494c-a34c-7316944c2a0c', 1, 0, 0), --Repo Report
+---MO Group
+(NEWID(), 'e0e5d39b-c449-4d77-b1ba-c44fc03950c0', '83f27397-6f17-4532-b123-2541573188b2', 1, 0, 0), --Limit Audit
+(NEWID(), 'e0e5d39b-c449-4d77-b1ba-c44fc03950c0', 'f7b563d6-456c-464a-b5a2-42374b308f05', 1, 0, 0), --Limit Overwrite
+(NEWID(), 'e0e5d39b-c449-4d77-b1ba-c44fc03950c0', '0d2494d2-e108-494c-a34c-7316944c2a0c', 1, 0, 0), --Repo Report
+---IT Group
+(NEWID(), '47403724-2ae4-4334-b244-35439cd28442', '7ac3cc54-be26-400a-a1f7-793fa1805ea7', 1, 1, 0), --Bond Market
+(NEWID(), '47403724-2ae4-4334-b244-35439cd28442', '7bf8f20b-d611-4386-8362-b63a8661bece', 1, 1, 0), --PCCF Config
+(NEWID(), '47403724-2ae4-4334-b244-35439cd28442', '83f27397-6f17-4532-b123-2541573188b2', 1, 0, 0), --Limit Audit
+(NEWID(), '47403724-2ae4-4334-b244-35439cd28442', 'f7b563d6-456c-464a-b5a2-42374b308f05', 1, 0, 0), --Limit Overwrite
+(NEWID(), '47403724-2ae4-4334-b244-35439cd28442', '0d2494d2-e108-494c-a34c-7316944c2a0c', 1, 0, 0); --Repo Report
+
+INSERT INTO [MA_LIMIT](ID, LABEL, ISACTIVE, LIMIT_TYPE) VALUES
+('c975bd77-0ba7-4e5c-a267-bf0dae550ec7', N'PCE-REPO', '1', N'P');
+
+INSERT INTO [MA_PRODUCT](ID, LABEL, ISACTIVE) VALUES
+('1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', 'REPO', 1);
+
+INSERT INTO [MA_LIMIT_PRODUCT](ID, PRODUCT_ID, LIMIT_ID) VALUES
+('73764330-2a93-45f4-8ec1-518ff163594b', '1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', 'c975bd77-0ba7-4e5c-a267-bf0dae550ec7'),
+('5f4ae7b2-4492-403b-8795-f9b5a1df7b56', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', '998449b6-e3c4-457c-90a8-46ea2efe23b6');
+
+INSERT INTO MA_CTPY_LIMIT (ID, CTPY_ID, LIMIT_ID, AMOUNT, FLAG_CONTROL, EXPIRE_DATE, LOG_INSERTBYUSERID, LOG_INSERTDATE)
+SELECT
+  NEWID()
+  , cp.ID
+  , lim.ID
+  , 0
+  , 1
+  , CONVERT(DATE, GETDATE())
+  , 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0'
+  , GETDATE()
+FROM MA_COUTERPARTY cp
+  LEFT JOIN MA_LIMIT lim
+    ON  lim.LABEL = 'PCE-REPO';
+
+INSERT INTO [MA_INSTRUMENT](ID, LABEL, PRODUCT_ID, ISACTIVE, LOG_INSERTDATE, LOG_INSERTBYUSERID) VALUES
+('e7475729-a07c-4f0a-ad4f-62f36d26e698', 'CCS', '7526c942-d034-4186-8063-c9ecdb220a10', 1, GETDATE(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0');
+
+UPDATE MA_INSTRUMENT
+SET CURRENCY_ID1 = '825f343b-caea-409b-ae92-cca2dab3765e'
+WHERE PRODUCT_ID = 'f85252d1-bc58-4ac6-8b56-2e228fb0a367';
+
+INSERT INTO MA_PCCF (ID, LABEL, C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, more20, [DEFAULT], ISACTIVE, LOG_INSERTBYUSERID, LOG_INSERTDATE) VALUES
+('c044ca4e-9a9a-4e52-b98a-668344dbe51b', 'FI_EU_CORP', 1.75, 1.75, 1.75, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 5.25, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('f7b6263b-1aed-4cea-b853-56c92cf84634', 'FI_EU_GOV', 1.50, 1.50, 1.50, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.75, 2.75, 2.75, 2.75, 2.75, 2.75, 2.75, 2.75, 2.75, 2.75, 3.75, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('fe96af8d-8835-46ee-8d7c-b874fe08e512', 'FI_US_CORP', 1.00, 1.00, 1.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 5.75, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('5e951167-9b4b-4c44-b384-268c08c41029', 'FI_US_GOV', 1.00, 1.00, 1.00, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 4.75, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('28b24b19-e81d-4f82-a2f0-7c834ee3f91c', 'Repo THB GOV Bond', 1.50, 1.50, 1.50, 1.50, 1.50, 2.25, 2.25, 2.25, 2.25, 2.25, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 4.25, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('7014b05e-198f-4f62-94b0-1d54322efbca', 'Repo THB SOE Bond', 2.00, 2.00, 2.00, 2.00, 2.00, 4.00, 4.00, 4.00, 4.00, 4.00, 6.50, 6.50, 6.50, 6.50, 6.50, 6.50, 6.50, 6.50, 6.50, 6.50, 7.75, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('84f608c9-8b58-48eb-a6dd-a5407548784a', 'Reverse Repo THB', 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.00, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('c8a810ef-ff94-43fb-984c-5c471d7103df', 'IRS EURIBOR', 2.50, 3.75, 4.50, 6.50, 8.50, 11.50, 11.50, 16.75, 16.75, 16.75, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0',  GETDATE()),
+('dac0faba-a80e-46a3-8206-48322b462eeb', 'IRS USD LIBOR', 3.75, 4.75, 7.25, 9.25, 11.25, 15.25, 15.25, 21.50, 21.50, 21.50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('196da3b9-17d4-4566-8968-9d8e59a1d3b5', 'CCS EUR/THB', 12.00, 19.50, 21.00, 22.25, 24.50, 28.00, 28.00, 34.50, 34.50, 34.50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('1f648d6c-f7b6-49ac-8e4a-cdf58c664448', 'CCS JPY/THB', 15.50, 22.00, 22.75, 30.25, 33.50, 36.75, 36.75, 42.75, 42.75, 42.75, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('2e507844-eb4c-412e-a50f-4f3cf97a1c43', 'CCS USD/THB', 10.50, 16.75, 18.25, 20.50, 25.00, 31.75, 31.75, 37.75, 37.75, 37.75, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('a28c9687-9863-45a3-8cbb-95c225c0c29d', 'CCS EUR/USD', 17.25, 25.25, 27.75, 28.00, 35.75, 49.25, 49.25, 57.00, 57.00, 57.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE());
+
+INSERT INTO MA_PCCF_CONFIG (ID, LABEL, [DESCRIPTION], PRODUCT_ID, PCCF_ID, ISACTIVE, LOG_INSERTBYUSERID, LOG_INSERTDATE) VALUES
+('2ada869f-1cce-4e70-bc86-1a4cc1f90ca4', 'FI EUR CORP', 'FI EUR CORP', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', 'c044ca4e-9a9a-4e52-b98a-668344dbe51b', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('fbab8e46-04af-4952-9cdd-754fea400ee9', 'FI EUR GOV', 'FI EUR GOV', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', 'f7b6263b-1aed-4cea-b853-56c92cf84634', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('a3bb698d-2a94-4f5a-80cc-cc470f43bf88', 'FI THB CORP', 'FI THB CORP', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', 'b93ba033-6a30-4f8d-bddc-e47a565760c9', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('0977a831-ff7f-4dbd-b985-6dc862e53346', 'FI THB GOV', 'FI THB GOV', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', '37161cd5-e3ee-4981-9d88-04e3294d7348', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('d6164d2d-be40-496d-90c1-6846cd0ba4af', 'FI THB SOE', 'FI THB SOE', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', 'b93ba033-6a30-4f8d-bddc-e47a565760c9', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('76ea482e-1739-4425-84db-05f2aacadb05', 'FI USD CORP', 'FI USD CORP', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', 'fe96af8d-8835-46ee-8d7c-b874fe08e512', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('9f274fc2-f7c5-44e2-a097-d3505624163d', 'FI USD GOV', 'FI USD GOV', 'f85252d1-bc58-4ac6-8b56-2e228fb0a367', '5e951167-9b4b-4c44-b384-268c08c41029', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+--Repo
+('e9fa3efb-aad7-4c05-9cfb-afb62cf9ec18', 'Repo THB Gov Bond', 'Repo THB Gov Bond', '1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', '28b24b19-e81d-4f82-a2f0-7c834ee3f91c', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('e24f1552-fd62-4b37-8284-7428ea141f4a', 'Repo THB SOE Bond', 'Repo THB SOE Bond', '1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', '7014b05e-198f-4f62-94b0-1d54322efbca', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('3228f511-20f2-4013-914e-f24325ba79a0', 'Reverse Repo THB GOV Bond', 'Reverse Repo THB GOV Bond', '1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', '84f608c9-8b58-48eb-a6dd-a5407548784a', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('3ac43189-0ce7-484a-b238-bc5ba3db980b', 'Reverse Repo THB SOE Bond', 'Reverse Repo THB SOE Bond', '1ef63d89-c4b0-4e92-bdf1-accf2ae7cd27', '84f608c9-8b58-48eb-a6dd-a5407548784a', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+--Swap
+('1be1d995-33c8-4b23-bb8f-943831a69719', 'IRS EUR', 'IRS EUR', '7526c942-d034-4186-8063-c9ecdb220a10', 'c8a810ef-ff94-43fb-984c-5c471d7103df', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('fd50c095-9569-49c9-b076-4bfeda7020be', 'IRS THB Receive Fixed 1', 'IRS THB Receive Fixed 1', '7526c942-d034-4186-8063-c9ecdb220a10', '0263f7b7-2481-48c5-a021-8d3ecf466ba9', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('278eba37-42f5-4eba-8914-75733332b876', 'IRS THB Receive Fixed 2', 'IRS THB Receive Fixed 2', '7526c942-d034-4186-8063-c9ecdb220a10', '0263f7b7-2481-48c5-a021-8d3ecf466ba9', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('bd846709-eca7-436d-9e1d-b1c588fdb362', 'IRS THB Receive Float 1', 'IRS THB Receive Float 1', '7526c942-d034-4186-8063-c9ecdb220a10', '3106c68e-a124-4873-b5fa-2a8d98a6c082', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('25e849e8-bc33-4f17-a7a3-4934362c4433', 'IRS THB Receive Float 2', 'IRS THB Receive Float 2', '7526c942-d034-4186-8063-c9ecdb220a10', '3106c68e-a124-4873-b5fa-2a8d98a6c082', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('ae730a09-f805-46cc-a71b-e84a9c895381', 'IRS USD', 'IRS USD', '7526c942-d034-4186-8063-c9ecdb220a10', 'dac0faba-a80e-46a3-8206-48322b462eeb', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('24677ddd-37c6-486e-ae87-d80ed971a855', 'CCS EUR/THB 1', 'CCS EUR/THB 1', '7526c942-d034-4186-8063-c9ecdb220a10', '196da3b9-17d4-4566-8968-9d8e59a1d3b5', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('58784edf-92c4-48cf-8576-0d0dc0f24a18', 'CCS EUR/THB 2', 'CCS EUR/THB 2', '7526c942-d034-4186-8063-c9ecdb220a10', '196da3b9-17d4-4566-8968-9d8e59a1d3b5', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('ad64667b-eb32-493c-8716-b8988546cab7', 'CCS JPY/THB 1', 'CCS JPY/THB 1', '7526c942-d034-4186-8063-c9ecdb220a10', '1f648d6c-f7b6-49ac-8e4a-cdf58c664448', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('b7f6e300-ba28-4fbb-81b1-27e8a69592a9', 'CCS JPY/THB 2', 'CCS JPY/THB 2', '7526c942-d034-4186-8063-c9ecdb220a10', '1f648d6c-f7b6-49ac-8e4a-cdf58c664448', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('149bb43b-9220-491b-a6d7-3a9c5641d9fa', 'CCS USD/THB 1', 'CCS USD/THB 1', '7526c942-d034-4186-8063-c9ecdb220a10', '2e507844-eb4c-412e-a50f-4f3cf97a1c43', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('e491115b-a98a-418a-befa-fefa37092df0', 'CCS USD/THB 2', 'CCS USD/THB 2', '7526c942-d034-4186-8063-c9ecdb220a10', '2e507844-eb4c-412e-a50f-4f3cf97a1c43', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('7aa1e787-6189-4f5a-9a75-5c2be56dc433', 'CCS EUR/USD 1', 'CCS EUR/USD 1', '7526c942-d034-4186-8063-c9ecdb220a10', 'a28c9687-9863-45a3-8cbb-95c225c0c29d', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()), 
+('dee2e2e0-cc5a-4f85-a8a5-07e0b4b7c228', 'CCS EUR/USD 2', 'CCS EUR/USD 2', '7526c942-d034-4186-8063-c9ecdb220a10', 'a28c9687-9863-45a3-8cbb-95c225c0c29d', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+--FX SPOT
+('6e8873a8-012f-4ebc-b28e-eb89a15b8f8c', 'FX SPOT EUR/JPY', 'FX SPOT EUR/JPY', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '663062b3-0531-47c5-a9a9-3ab315f831ee', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('d4297ba8-9dc5-4d67-8323-f7d45c895814', 'FX SPOT EUR/THB', 'FX SPOT EUR/THB', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '2fd900a2-5fb4-4b87-90aa-7c0728b40c40', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('f57cef71-6d00-4822-b891-b85fc6bab890', 'FX SPOT USD/CNH', 'FX SPOT USD/CNH', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', 'e307b7b5-25f0-497b-80cf-86e35bc12dc3', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('bf244171-20e4-4bd8-a4cf-f82e169383e6', 'FX SPOT JPY/THB', 'FX SPOT JPY/THB', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '57167150-7b51-4a81-9b0c-8f83b9397320', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('449f45f5-d7a9-488f-a1d7-3658c8871691', 'FX SPOT EUR/USD', 'FX SPOT EUR/USD', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '3fbef638-8169-4788-aac2-acfcf4be49af', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('9f6d0467-ef01-49c8-9760-6e7921fecd01', 'FX SPOT USD/JPY', 'FX SPOT USD/JPY', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '87638f74-d857-4b1f-8bcf-be5d9c460e97', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('9adcdc8f-4f29-4a55-9832-760c984957c3', 'FX SPOT CNH/THB', 'FX SPOT CNH/THB', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '2346c5d6-9d04-4ebb-988b-d1a065f44c4a', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('fec214f5-ff17-43e3-b15c-4b43879c6a29', 'FX SPOT USD/THB', 'FX SPOT USD/THB', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', 'f8389313-8ad0-4f13-9bf8-e9c352888f15', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('4bbe85ae-924f-46ba-8095-c2f21b70d775', 'FX SPOT SGD/THB', 'FX SPOT SGD/THB', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', 'd25a5d95-1d27-47e4-b606-f5bcc82b720c', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('82623eca-8481-4a24-b041-11b6f448c574', 'FX SPOT AUD/USD', 'FX SPOT AUD/USD', 'd0c4e0c0-aae6-4a39-83f7-13a786d69087', '910bc12a-473c-4e12-8019-7d5b23149e4d', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+--FX FWD
+('271d5c5c-8932-4796-bb6a-8376e705c3cc', 'FX FWD EUR/JPY', 'FX FWD EUR/JPY', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '663062b3-0531-47c5-a9a9-3ab315f831ee', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('d70d5348-657f-4476-845b-9cd426bd23f9', 'FX FWD EUR/THB', 'FX FWD EUR/THB', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '2fd900a2-5fb4-4b87-90aa-7c0728b40c40', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('d18922d7-179c-45a7-95c0-e789abb8ca1a', 'FX FWD USD/CNH', 'FX FWD USD/CNH', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', 'e307b7b5-25f0-497b-80cf-86e35bc12dc3', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('0349c7b7-ce8c-4071-a6a0-0a4aa2fa9668', 'FX FWD JPY/THB', 'FX FWD JPY/THB', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '57167150-7b51-4a81-9b0c-8f83b9397320', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('0b1e261c-8257-42e9-a4f2-07e294a08286', 'FX FWD EUR/USD', 'FX FWD EUR/USD', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '3fbef638-8169-4788-aac2-acfcf4be49af', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('adbae3dc-35aa-4ad5-9b34-729f3063b520', 'FX FWD USD/JPY', 'FX FWD USD/JPY', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '87638f74-d857-4b1f-8bcf-be5d9c460e97', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('8ab5e532-21a5-4063-b472-7d3819d881e1', 'FX FWD CNH/THB', 'FX FWD CNH/THB', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '2346c5d6-9d04-4ebb-988b-d1a065f44c4a', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('89bd5883-25a3-44ad-ac36-3e3844453155', 'FX FWD USD/THB', 'FX FWD USD/THB', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', 'f8389313-8ad0-4f13-9bf8-e9c352888f15', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('918b8686-087f-42b1-87da-14176412aac6', 'FX FWD SGD/THB', 'FX FWD SGD/THB', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', 'd25a5d95-1d27-47e4-b606-f5bcc82b720c', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('50032890-2135-4583-9de9-19bb43d559ef', 'FX FWD AUD/USD', 'FX FWD AUD/USD', 'f83b38ee-817d-49bf-ae5e-13efc3f622a0', '910bc12a-473c-4e12-8019-7d5b23149e4d', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+--FX SWAP
+('44671e03-cfae-45f6-a7d2-846c81c9bb66', 'FX SWAP EUR/JPY', 'FX SWAP EUR/JPY', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '663062b3-0531-47c5-a9a9-3ab315f831ee', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('27ba3717-417d-42de-a0dc-c2a514ddcaf2', 'FX SWAP EUR/THB', 'FX SWAP EUR/THB', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '2fd900a2-5fb4-4b87-90aa-7c0728b40c40', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('578c4d2a-0cd7-4b2f-bd6c-9538f72c0787', 'FX SWAP USD/CNH', 'FX SWAP USD/CNH', 'e70c3d05-827d-47d9-87b3-dea6924c860f', 'e307b7b5-25f0-497b-80cf-86e35bc12dc3', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('45557307-5ac3-4f2e-96b8-0348c1c8a52a', 'FX SWAP JPY/THB', 'FX SWAP JPY/THB', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '57167150-7b51-4a81-9b0c-8f83b9397320', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('62f8cecc-57a9-42b7-a49f-f1b3aeeecdc0', 'FX SWAP EUR/USD', 'FX SWAP EUR/USD', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '3fbef638-8169-4788-aac2-acfcf4be49af', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('2b6401ab-6bef-4db1-bc15-45a616e90a60', 'FX SWAP USD/JPY', 'FX SWAP USD/JPY', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '87638f74-d857-4b1f-8bcf-be5d9c460e97', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('1b85b435-fed9-4022-b5e4-b48a4346ad17', 'FX SWAP CNH/THB', 'FX SWAP CNH/THB', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '2346c5d6-9d04-4ebb-988b-d1a065f44c4a', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('1e01ae9d-e58d-4de1-bb6d-8ac592dce51f', 'FX SWAP USD/THB', 'FX SWAP USD/THB', 'e70c3d05-827d-47d9-87b3-dea6924c860f', 'f8389313-8ad0-4f13-9bf8-e9c352888f15', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('264e7d2f-4e66-46aa-9546-e7923b690796', 'FX SWAP SGD/THB', 'FX SWAP SGD/THB', 'e70c3d05-827d-47d9-87b3-dea6924c860f', 'd25a5d95-1d27-47e4-b606-f5bcc82b720c', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE()),
+('2c870347-5912-4c42-a258-3e85bcbb3bd4', 'FX SWAP AUD/USD', 'FX SWAP AUD/USD', 'e70c3d05-827d-47d9-87b3-dea6924c860f', '910bc12a-473c-4e12-8019-7d5b23149e4d', '1', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE());
+
+INSERT INTO MA_CONFIG_ATTRIBUTE ([TABLE], ATTRIBUTE, VALUE, ID, LOG_INSERTBYUSERID, LOG_INSERTDATE, PCCF_CONFIG_ID, ISACTIVE) VALUES
+('BOND_MARKET', 'LABEL', 'US_GOV', '9386ae63-15d8-49ec-bb43-14b31a8a459c', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '9f274fc2-f7c5-44e2-a097-d3505624163d', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_SOE', '73521cb8-6b2c-49a2-9218-1a28e468b19a', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'd6164d2d-be40-496d-90c1-6846cd0ba4af', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_CORP', '772d2e67-d00a-44c8-982e-1f1d017b9e32', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'a3bb698d-2a94-4f5a-80cc-cc470f43bf88', '1'), 
+('BOND_MARKET', 'LABEL', 'EU_GOV', '66e06fa4-bb6c-4d71-8b3f-25a9211bbc4d', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fbab8e46-04af-4952-9cdd-754fea400ee9', '1'), 
+('BOND_MARKET', 'LABEL', 'US_CORP', '09b6a4da-d619-4466-921d-2c1ab2b9f800', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '76ea482e-1739-4425-84db-05f2aacadb05', '1'), 
+('BOND_MARKET', 'LABEL', 'EU_CORP', '9932f320-4ba1-4ec3-b123-5f736558d2c8', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '2ada869f-1cce-4e70-bc86-1a4cc1f90ca4', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_GOV', 'a90b158e-a5f9-43fc-b04f-a9f2364bff4f', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '0977a831-ff7f-4dbd-b985-6dc862e53346', '1'),
+--Repo
+('BOND_MARKET', 'LABEL', 'TH_SOE', 'fdd4e673-2b96-40f3-9ad9-5447017b4a35', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e24f1552-fd62-4b37-8284-7428ea141f4a', '1'), 
+('DA_TRN', 'FLAG_BUYSELL', 'S', '37c3217d-940b-4e98-8ab9-a96cdb76886e', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e24f1552-fd62-4b37-8284-7428ea141f4a', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_GOV', 'c762367f-6179-4cb9-98af-ee546c96cb18', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e9fa3efb-aad7-4c05-9cfb-afb62cf9ec18', '1'), 
+('DA_TRN', 'FLAG_BUYSELL', 'S', 'a981e258-6a01-495a-9090-f4744dbd3092', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e9fa3efb-aad7-4c05-9cfb-afb62cf9ec18', '1'), 
+('DA_TRN', 'FLAG_BUYSELL', 'B', 'dd7e086e-5e0a-4d6b-a3f8-68f41e13c336', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '3ac43189-0ce7-484a-b238-bc5ba3db980b', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_SOE', '552e6a99-91f7-4613-ba34-dc2bbe5eb6e3', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '3ac43189-0ce7-484a-b238-bc5ba3db980b', '1'), 
+('DA_TRN', 'FLAG_BUYSELL', 'B', '724cb3b9-dccc-4e25-8812-33e25db03342', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '3228f511-20f2-4013-914e-f24325ba79a0', '1'), 
+('BOND_MARKET', 'LABEL', 'TH_GOV', '0851f6a2-f3a7-4395-b041-56853f02a43b', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '3228f511-20f2-4013-914e-f24325ba79a0', '1'),
+--SWAP
+('SECOND', 'CCY_ID', 'EUR', '54c95c75-677f-45e2-a40d-2530b8b04b0a', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '58784edf-92c4-48cf-8576-0d0dc0f24a18', '1'), 
+('FIRST', 'CCY_ID', 'THB', 'a4682b5a-ee0f-4028-aeda-463c0fbc04aa', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '58784edf-92c4-48cf-8576-0d0dc0f24a18', '1'), 
+('FIRST', 'CCY_ID', 'THB', '856009d7-e759-42d2-a4b2-a5b7d6f3636e', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'b7f6e300-ba28-4fbb-81b1-27e8a69592a9', '1'), 
+('SECOND', 'CCY_ID', 'JPY', '7720c8f9-69c6-473c-86a6-c860c00b1680', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'b7f6e300-ba28-4fbb-81b1-27e8a69592a9', '1'), 
+('SECOND', 'CCY_ID', 'THB', '2252a2c4-fcce-4649-bc39-7f3dc0731d3d', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '149bb43b-9220-491b-a6d7-3a9c5641d9fa', '1'), 
+('FIRST', 'CCY_ID', 'USD', '90742088-3936-4b8f-8bd5-cc2b2da309ef', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '149bb43b-9220-491b-a6d7-3a9c5641d9fa', '1'), 
+('SECOND', 'FLAG_FIXED', '0', 'bdb1ac18-eaa9-4e5f-8570-020230acfb02', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '25e849e8-bc33-4f17-a7a3-4934362c4433', '1'), 
+('FIRST', 'CCY_ID', 'THB', '1d1c49d2-46cd-47c1-b98f-39751d89f47a', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '25e849e8-bc33-4f17-a7a3-4934362c4433', '1'), 
+('SECOND', 'FLAG_PAYREC', 'R', '93311ff9-efe8-41eb-87b4-84ebdbbc0e85', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '25e849e8-bc33-4f17-a7a3-4934362c4433', '1'), 
+('SECOND', 'CCY_ID', 'THB', '947fd861-94ed-4787-b26e-c818223c9001', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '25e849e8-bc33-4f17-a7a3-4934362c4433', '1'), 
+('DA_TRN', 'INSTRUMENT_ID', 'IRS', 'bd6d4260-2933-4a28-826d-e0ff9e101bbb', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '25e849e8-bc33-4f17-a7a3-4934362c4433', '1'), 
+('FIRST', 'CCY_ID', 'THB', '993f2d79-a9ca-42ca-b00f-1def6ed78229', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fd50c095-9569-49c9-b076-4bfeda7020be', '1'), 
+('SECOND', 'CCY_ID', 'THB', '238c0942-97d7-4e60-8ea6-2cf970cd2001', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fd50c095-9569-49c9-b076-4bfeda7020be', '1'), 
+('FIRST', 'FLAG_PAYREC', 'R', '745fc039-672b-4d20-a2d3-61110c492a21', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fd50c095-9569-49c9-b076-4bfeda7020be', '1'), 
+('FIRST', 'FLAG_FIXED', '1', '07ca5787-4036-4bff-833c-c6a2654d27d6', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fd50c095-9569-49c9-b076-4bfeda7020be', '1'), 
+('DA_TRN', 'INSTRUMENT_ID', 'IRS', '8dd046f7-7fd2-4257-8498-dafd32a3a3c3', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fd50c095-9569-49c9-b076-4bfeda7020be', '1'), 
+('SECOND', 'CCY_ID', 'THB', '1fe3b023-9c4e-4738-a1a3-4ac2a0be2006', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '278eba37-42f5-4eba-8914-75733332b876', '1'), 
+('SECOND', 'FLAG_PAYREC', 'R', '09fd0b0d-3880-40b8-928e-65fff037bcea', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '278eba37-42f5-4eba-8914-75733332b876', '1'), 
+('DA_TRN', 'INSTRUMENT_ID', 'IRS', '12d97dad-3a0b-4811-ad6c-aa0bce17ff60', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '278eba37-42f5-4eba-8914-75733332b876', '1'), 
+('SECOND', 'FLAG_FIXED', '1', 'd5047b42-38dc-480a-99aa-b0e7fb62584b', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '278eba37-42f5-4eba-8914-75733332b876', '1'), 
+('FIRST', 'CCY_ID', 'THB', '883ded7e-1bd5-4488-a5ef-e9efda9e7ee3', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '278eba37-42f5-4eba-8914-75733332b876', '1'), 
+('FIRST', 'CCY_ID', 'EUR', 'de44dc0e-d8de-44df-807b-0ab1cd2b00ec', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '1be1d995-33c8-4b23-bb8f-943831a69719', '1'), 
+('SECOND', 'CCY_ID', 'EUR', '2379a588-f653-4945-9ff5-5ad966b64f3f', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '1be1d995-33c8-4b23-bb8f-943831a69719', '1'), 
+('SECOND', 'CCY_ID', 'THB', '300ed19f-f3ad-496b-a830-a59bf237b9ba', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bd846709-eca7-436d-9e1d-b1c588fdb362', '1'), 
+('DA_TRN', 'INSTRUMENT_ID', 'IRS', 'd125b9ff-dc86-47b5-9d50-a99dc8783b65', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bd846709-eca7-436d-9e1d-b1c588fdb362', '1'), 
+('FIRST', 'FLAG_PAYREC', 'R', '4cb75842-67f8-4f02-a3df-dc22ddd4d1b0', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bd846709-eca7-436d-9e1d-b1c588fdb362', '1'), 
+('FIRST', 'FLAG_FIXED', '0', '6368ec14-ad60-43db-98e4-e82c092df904', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bd846709-eca7-436d-9e1d-b1c588fdb362', '1'), 
+('FIRST', 'CCY_ID', 'THB', 'a5fa97a6-d116-4073-8d83-f2999cd2e38e', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bd846709-eca7-436d-9e1d-b1c588fdb362', '1'), 
+('FIRST', 'CCY_ID', 'JPY', '5a633c50-7971-449b-ac99-5d87dc5da178', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'ad64667b-eb32-493c-8716-b8988546cab7', '1'), 
+('SECOND', 'CCY_ID', 'THB', '05300cee-a7a7-49a6-a3c5-a978b7a2ef48', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'ad64667b-eb32-493c-8716-b8988546cab7', '1'), 
+('SECOND', 'CCY_ID', 'THB', 'ae5b50c2-b6e9-40fd-b7e2-14fffb77e4ec', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '24677ddd-37c6-486e-ae87-d80ed971a855', '1'), 
+('FIRST', 'CCY_ID', 'EUR', 'c67fdf8c-9ea9-4225-8643-a5304a77debf', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '24677ddd-37c6-486e-ae87-d80ed971a855', '1'), 
+('SECOND', 'CCY_ID', 'USD', '50ad536f-fc42-4982-a9d0-2eeeff1cf2ec', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'ae730a09-f805-46cc-a71b-e84a9c895381', '1'), 
+('FIRST', 'CCY_ID', 'USD', 'dcce700c-9bc2-488c-b6c9-436e13709665', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'ae730a09-f805-46cc-a71b-e84a9c895381', '1'), 
+('FIRST', 'CCY_ID', 'THB', '1eb1f23e-6663-4119-a216-3ab6306b10ff', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e491115b-a98a-418a-befa-fefa37092df0', '1'), 
+('SECOND', 'CCY_ID', 'USD', '28388932-4927-4d70-8a3a-82c74823b703', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'e491115b-a98a-418a-befa-fefa37092df0', '1'),
+('SECOND', 'CCY_ID', 'EUR', '1c23718c-b574-4e2a-a70f-07ebc5bb34ac', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'dee2e2e0-cc5a-4f85-a8a5-07e0b4b7c228', '1'), 
+('FIRST', 'CCY_ID', 'USD', '4b3e35db-1c63-4142-b6b1-3ec8df007163', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'dee2e2e0-cc5a-4f85-a8a5-07e0b4b7c228', '1'), 
+('FIRST', 'CCY_ID', 'EUR', '254e7f43-648b-46e7-90f0-941c7cc27450', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '7aa1e787-6189-4f5a-9a75-5c2be56dc433', '1'), 
+('SECOND', 'CCY_ID', 'USD', '159b2a2f-ffba-4a81-8dde-98c378a94ca8', 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '7aa1e787-6189-4f5a-9a75-5c2be56dc433', '1'),
+--FX SPOT
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '6e8873a8-012f-4ebc-b28e-eb89a15b8f8c', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'd4297ba8-9dc5-4d67-8323-f7d45c895814', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/CNH', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'f57cef71-6d00-4822-b891-b85fc6bab890', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'JPY/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'bf244171-20e4-4bd8-a4cf-f82e169383e6', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '449f45f5-d7a9-488f-a1d7-3658c8871691', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '9f6d0467-ef01-49c8-9760-6e7921fecd01', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'CNH/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '9adcdc8f-4f29-4a55-9832-760c984957c3', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'fec214f5-ff17-43e3-b15c-4b43879c6a29', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'SGD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '4bbe85ae-924f-46ba-8095-c2f21b70d775', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'AUD/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '82623eca-8481-4a24-b041-11b6f448c574', '1'),
+--FX FWD
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '271d5c5c-8932-4796-bb6a-8376e705c3cc', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'd70d5348-657f-4476-845b-9cd426bd23f9', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/CNH', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'd18922d7-179c-45a7-95c0-e789abb8ca1a', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'JPY/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '0349c7b7-ce8c-4071-a6a0-0a4aa2fa9668', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '0b1e261c-8257-42e9-a4f2-07e294a08286', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), 'adbae3dc-35aa-4ad5-9b34-729f3063b520', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'CNH/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '8ab5e532-21a5-4063-b472-7d3819d881e1', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '89bd5883-25a3-44ad-ac36-3e3844453155', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'SGD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '918b8686-087f-42b1-87da-14176412aac6', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'AUD/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '50032890-2135-4583-9de9-19bb43d559ef', '1'),
+--FX SWAP
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '44671e03-cfae-45f6-a7d2-846c81c9bb66', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '27ba3717-417d-42de-a0dc-c2a514ddcaf2', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/CNH', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '578c4d2a-0cd7-4b2f-bd6c-9538f72c0787', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'JPY/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '45557307-5ac3-4f2e-96b8-0348c1c8a52a', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'EUR/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '62f8cecc-57a9-42b7-a49f-f1b3aeeecdc0', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/JPY', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '2b6401ab-6bef-4db1-bc15-45a616e90a60', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'CNH/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '1b85b435-fed9-4022-b5e4-b48a4346ad17', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'USD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '1e01ae9d-e58d-4de1-bb6d-8ac592dce51f', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'SGD/THB', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '264e7d2f-4e66-46aa-9546-e7923b690796', '1'),
+('DA_TRN', 'INSTRUMENT_ID', 'AUD/USD', NEWID(), 'a0b03fb8-d529-4baa-b04a-bed3f81c8ae0', GETDATE(), '2c870347-5912-4c42-a258-3e85bcbb3bd4', '1');
+
+--THB SPOT RATE
+INSERT INTO MA_SPOT_RATE (ID, CURRENCY_ID, PROC_DATE, RATE) VALUES
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20081125', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20090201', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20090525', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20090622', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20090801', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20100525', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20101105', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20101209', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20110525', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20120525', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20120719', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130809', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130814', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130819', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130912', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130913', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130923', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130924', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130927', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20130929', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20131010', 1.00000000), 
+(NEWID(), '825f343b-caea-409b-ae92-cca2dab3765e', '20131022', 1.00000000),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20081125', 35.243),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20090201', 34.8843),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20090525', 34.286),
+(NEWID(), '385553c1-adca-45c5-8c9c-e3610b7fa2a5', '20090622', 0.352566),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20090801', 33.9905),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20100525', 32.3462),
+(NEWID(), 'a8882750-4983-4160-aa8a-2b0d1d1a8d4b', '20101105', 41.9548),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20101209', 30.1044),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20110525', 30.3931),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20120525', 31.5706),
+(NEWID(), '13dfb76d-a0a2-47ac-821c-3ba30d52cb11', '20120719', 31.6289),
+(NEWID(), '59fb2de4-49da-4e1c-b4ca-2d75ea80027d', '20131022', 5.097701);
+
+UPDATE DA_TRN
+SET FLAG_SETTLE = 1
+WHERE	PRODUCT_ID <> 'f85252d1-bc58-4ac6-8b56-2e228fb0a367';
+
+UPDATE DA_TRN
+SET FLAG_SETTLE = 0
+WHERE	PRODUCT_ID = 'f85252d1-bc58-4ac6-8b56-2e228fb0a367';
+
+UPDATE MA_INSTRUMENT
+SET ISACTIVE = 0
+WHERE PRODUCT_ID = 'F85252D1-BC58-4AC6-8B56-2E228FB0A367'
+      AND MATURITY_DATE < CONVERT(DATE, GETDATE());
+
+--Delete unuse data
+DELETE FROM MA_PCCF
+WHERE ID IN ('fc3aea1d-d35d-4c66-b91e-06fa91242663'
+			, '9dcb005c-b1c0-45d7-9b2a-11023d05ad6c'
+			, 'cf29bffe-a81a-4b09-88ba-19d8dfb8d7ff'
+			, '225f6437-c0c8-4f62-8ef2-26b3ca1e9271'
+			, '53f661ae-9332-466b-af5d-2ca6ba18b5d1'
+			, '11b83cde-eca9-49df-aaa3-42f861d4314f'
+			, '4d067513-fe19-4b68-bde1-a7d4a8238dff'
+			, '56d10052-af5f-45c6-bfcb-cf5f408776da'
+			, '84ed6ebf-9cf2-4d4d-8fb5-e2b3d7f55b29'
+			, 'f3454f9d-5907-41fc-8111-2b3995dfdafc'
+			, '859040de-d114-4812-a035-8e5a454b49e0'
+			, '89d31f6d-583f-4a94-bb37-92e7e3daf663'
+			, '066ae10e-d7f4-46b9-a113-b29d75cdc705'
+			, '326cd44f-de70-4c13-899f-b806a1ff61f8'
+			, '0facb391-fdba-4d26-8821-c3dee9fc6e41'
+			, 'e508b53f-477a-4b80-9918-cae5a72cce5e'
+			, '462b84a8-c90f-4aec-af4f-ddfb160df5b7'
+			, '695ef5bb-38d0-48f8-897f-ecc296785332'
+			, 'a5bd145c-b130-4245-a636-09b16e7284a0'
+			, '109d4585-98ad-49a7-b638-d16a80683add')

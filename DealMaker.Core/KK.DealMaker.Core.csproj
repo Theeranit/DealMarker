@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6452AB8-C578-4A0D-A9E5-E4420EAD76E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KK.DealMaker.Core</RootNamespace>
+    <AssemblyName>KK.DealMaker.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\DealMaker.Web\ShareDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DealMaker.Web\ShareDll\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CptyLimitModel.cs" />
+    <Compile Include="Common\CSAAgreementModel.cs" />
+    <Compile Include="Common\DealTranModel.cs" />
+    <Compile Include="Common\DealViewModel.cs" />
+    <Compile Include="Common\FIDealModel.cs" />
+    <Compile Include="Common\LimitCheckModel.cs" />
+    <Compile Include="Common\LimitModel.cs" />
+    <Compile Include="Common\LogModel.cs" />
+    <Compile Include="Common\PermisionModel.cs" />
+    <Compile Include="Common\RepoReportModel.cs" />
+    <Compile Include="Common\SessionInfo.cs" />
+    <Compile Include="Common\TempLimitModel.cs" />
+    <Compile Include="Constraint\AppSettingName.cs" />
+    <Compile Include="Constraint\DataPermission.cs" />
+    <Compile Include="Constraint\EnumName.cs" />
+    <Compile Include="Constraint\FormatTemplate.cs" />
+    <Compile Include="Constraint\Messages.cs" />
+    <Compile Include="Constraint\ProcedureName.cs" />
+    <Compile Include="Constraint\StringFormat.cs" />
+    <Compile Include="Data\DA_LOGGING.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_LOGGING.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_LOGIN_AUDIT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_LOGIN_AUDIT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TMBA_EXTENSION.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TMBA_EXTENSION.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN_CASHFLOW.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN_CASHFLOW.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN_MATCH.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DA_TRN_MATCH.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KKLMDBMD.POCO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KKLMDBMD.POCO.Metadata.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\LOG.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\LOG.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_BOND_MARKET.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_BOND_MARKET.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CONFIG_ATTRIBUTE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CONFIG_ATTRIBUTE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUNTRY.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUNTRY.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUNTRY_LIMIT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUNTRY_LIMIT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUTERPARTY.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_COUTERPARTY.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_AGREEMENT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_AGREEMENT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_PRODUCT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_PRODUCT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_TYPE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CSA_TYPE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CTPY_LIMIT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CTPY_LIMIT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CURRENCY.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_CURRENCY.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_FREQ_TYPE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_FREQ_TYPE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_FUNCTIONAL.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_FUNCTIONAL.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_INSTRUMENT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_INSTRUMENT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_LIMIT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_LIMIT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_LIMIT_PRODUCT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_LIMIT_PRODUCT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PCCF.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PCCF.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PCCF_CONFIG.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PCCF_CONFIG.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PORTFOLIO.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PORTFOLIO.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PROCESS_DATE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PROCESS_DATE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PRODUCT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PRODUCT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PROFILE_FUNCTIONAL.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_PROFILE_FUNCTIONAL.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_SPOT_RATE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_SPOT_RATE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_STATUS.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_STATUS.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_TBMA_CONFIG.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_TBMA_CONFIG.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_TEMP_CTPY_LIMIT.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_TEMP_CTPY_LIMIT.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_USER.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_USER.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_USER_PROFILE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MA_USER_PROFILE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\TRN_TYPE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\TRN_TYPE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\UPDATED.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\UPDATED.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\UPDATED_REQUIRE.cs">
+      <DependentUpon>KKLMDBMD.POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\UPDATED_REQUIRE.Metadata.cs">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ActionOperation.cs" />
+    <Compile Include="Helper\CollectionHelper.cs" />
+    <Compile Include="Helper\CompareHelper.cs" />
+    <Compile Include="Helper\Dynamic.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\JsonHelper.cs" />
+    <Compile Include="Helper\LDAPHelper.cs" />
+    <Compile Include="Helper\LimitHelper.cs" />
+    <Compile Include="Helper\LinqExtensions.cs" />
+    <Compile Include="Helper\LoggingHelper.cs" />
+    <Compile Include="Helper\OracleHelper.cs" />
+    <Compile Include="Helper\StringEnum.cs" />
+    <Compile Include="Helper\StringExtensions.cs" />
+    <Compile Include="Helper\WhereOperation.cs" />
+    <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="OpicsData\CASHFLOWModel.cs" />
+    <Compile Include="OpicsData\COUNModel.cs" />
+    <Compile Include="OpicsData\CUSTModel.cs" />
+    <Compile Include="OpicsData\DEALModel.cs" />
+    <Compile Include="OpicsData\PROCDateModel.cs" />
+    <Compile Include="OpicsData\SECMModel.cs" />
+    <Compile Include="Oracle\DatabaseFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemFramework\CryptoString.cs" />
+    <Compile Include="SystemFramework\ExceptionWrapper.cs" />
+    <Compile Include="SystemFramework\ResultData.cs" />
+    <Compile Include="SystemFramework\SessionInfoSerializer.cs" />
+    <Compile Include="SystemFramework\Tracking.cs" />
+    <Compile Include="SystemFramework\TripleDES.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\KKLMDBMD.POCO.Metadata.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KKLMDBMD.POCO.Metadata.cs</LastGenOutput>
+    </None>
+    <None Include="Data\KKLMDBMD.POCO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KKLMDBMD.POCO.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\__Log.KKLMDBMD.POCO.Metadata.txt">
+      <DependentUpon>KKLMDBMD.POCO.Metadata.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,41 @@
+- Edmx File: ..\..\DealMaker.DataAccess\KKLMDBMD.edmx
+- Processed Code File: DA_LOGGING.Metadata.cs
+- Processed Code File: DA_LOGIN_AUDIT.Metadata.cs
+- Processed Code File: DA_TMBA_EXTENSION.Metadata.cs
+- Processed Code File: DA_TRN.Metadata.cs
+- Processed Code File: DA_TRN_CASHFLOW.Metadata.cs
+- Processed Code File: DA_TRN_MATCH.Metadata.cs
+- Processed Code File: MA_BOND_MARKET.Metadata.cs
+- Processed Code File: MA_CONFIG_ATTRIBUTE.Metadata.cs
+- Processed Code File: MA_COUNTRY.Metadata.cs
+- Processed Code File: MA_COUNTRY_LIMIT.Metadata.cs
+- Processed Code File: MA_COUTERPARTY.Metadata.cs
+- Processed Code File: MA_CSA_AGREEMENT.Metadata.cs
+- Processed Code File: MA_CSA_PRODUCT.Metadata.cs
+- Processed Code File: MA_CSA_TYPE.Metadata.cs
+- Processed Code File: MA_CTPY_LIMIT.Metadata.cs
+- Processed Code File: MA_CURRENCY.Metadata.cs
+- Processed Code File: MA_FREQ_TYPE.Metadata.cs
+- Processed Code File: MA_FUNCTIONAL.Metadata.cs
+- Processed Code File: MA_INSTRUMENT.Metadata.cs
+- Processed Code File: MA_LIMIT.Metadata.cs
+- Processed Code File: MA_LIMIT_PRODUCT.Metadata.cs
+- Processed Code File: MA_PCCF.Metadata.cs
+- Processed Code File: MA_PCCF_CONFIG.Metadata.cs
+- Processed Code File: MA_PORTFOLIO.Metadata.cs
+- Processed Code File: MA_PROCESS_DATE.Metadata.cs
+- Processed Code File: MA_PRODUCT.Metadata.cs
+- Processed Code File: MA_PROFILE_FUNCTIONAL.Metadata.cs
+- Processed Code File: MA_SPOT_RATE.Metadata.cs
+- Processed Code File: MA_STATUS.Metadata.cs
+- Processed Code File: MA_TBMA_CONFIG.Metadata.cs
+- Processed Code File: MA_TEMP_CTPY_LIMIT.Metadata.cs
+- Processed Code File: MA_USER.Metadata.cs
+- Processed Code File: MA_USER_PROFILE.Metadata.cs
+- Processed Code File: LOG.Metadata.cs
+- Processed Code File: TRN_TYPE.Metadata.cs
+- Processed Code File: UPDATED.Metadata.cs
+- Processed Code File: UPDATED_REQUIRE.Metadata.cs
+- 
+
+

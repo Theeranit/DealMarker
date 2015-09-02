@@ -1,0 +1,1018 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
+-- --------------------------------------------------
+<<<<<<< .mine
+-- Date Created: 11/18/2013 17:01:13
+-- Generated from EDMX file: D:\Work\KK\DealMaker.Solution\DealMaker.DataAccess\KKLMDBMD.edmx
+=======
+-- Date Created: 11/20/2013 19:22:58
+-- Generated from EDMX file: D:\Works\Project Repository\Dealmaker\KK.DealMaker.Solution\DealMaker.DataAccess\KKLMDBMD.edmx
+>>>>>>> .r432
+-- --------------------------------------------------
+
+SET QUOTED_IDENTIFIER OFF;
+GO
+USE [KKLMDB];
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[FK_DA_TRN_FLOW_DA_TRN]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN_CASHFLOW] DROP CONSTRAINT [FK_DA_TRN_FLOW_DA_TRN];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DA_TRN_MA_PORTFOLIO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN] DROP CONSTRAINT [FK_DA_TRN_MA_PORTFOLIO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DA_TRN_MA_PRODUCT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN] DROP CONSTRAINT [FK_DA_TRN_MA_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DA_TRN_MA_STATUS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN] DROP CONSTRAINT [FK_DA_TRN_MA_STATUS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DA_TRN_MA_INSRUMENT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN] DROP CONSTRAINT [FK_DA_TRN_MA_INSRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_USER_PROFILEMA_USER]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_USER] DROP CONSTRAINT [FK_MA_USER_PROFILEMA_USER];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_FUNCTIONALMA_USER_FUNCTIONAL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PROFILE_FUNCTIONAL] DROP CONSTRAINT [FK_MA_FUNCTIONALMA_USER_FUNCTIONAL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_USER_PROFILEMA_PROFILE_FUNCTIONAL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PROFILE_FUNCTIONAL] DROP CONSTRAINT [FK_MA_USER_PROFILEMA_PROFILE_FUNCTIONAL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_LIMITMA_CTPY_LIMIT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_CTPY_LIMIT] DROP CONSTRAINT [FK_MA_LIMITMA_CTPY_LIMIT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_PRODUCTMA_LIMIT_PRODUCT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_LIMIT_PRODUCT] DROP CONSTRAINT [FK_MA_PRODUCTMA_LIMIT_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_LIMITMA_LIMIT_PRODUCT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_LIMIT_PRODUCT] DROP CONSTRAINT [FK_MA_LIMITMA_LIMIT_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_PRODUCTMA_INSRUMENT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_INSTRUMENT] DROP CONSTRAINT [FK_MA_PRODUCTMA_INSRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_COUTERPARTYMA_CTPY_LIMIT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_CTPY_LIMIT] DROP CONSTRAINT [FK_MA_COUTERPARTYMA_CTPY_LIMIT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_COUTERPARTYDA_TRN]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DA_TRN] DROP CONSTRAINT [FK_MA_COUTERPARTYDA_TRN];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_FREQ_TYPEMA_INSTRUMENT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_INSTRUMENT] DROP CONSTRAINT [FK_MA_FREQ_TYPEMA_INSTRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_CURRENCYMA_SPOT_RATE]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_SPOT_RATE] DROP CONSTRAINT [FK_MA_CURRENCYMA_SPOT_RATE];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_BOND_MARKETMA_INSTRUMENT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_INSTRUMENT] DROP CONSTRAINT [FK_MA_BOND_MARKETMA_INSTRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_PRODUCTMA_PCCF_CONFIG]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PCCF_CONFIG] DROP CONSTRAINT [FK_MA_PRODUCTMA_PCCF_CONFIG];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_PCCFMA_PCCF_CONFIG]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_PCCF_CONFIG] DROP CONSTRAINT [FK_MA_PCCFMA_PCCF_CONFIG];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_CURRENCYMA_INSTRUMENT]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_INSTRUMENT] DROP CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_CURRENCYMA_INSTRUMENT1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_INSTRUMENT] DROP CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MA_CONFIG_ATTRIBUTE] DROP CONSTRAINT [FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[DA_LOGIN_AUDIT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DA_LOGIN_AUDIT];
+GO
+IF OBJECT_ID(N'[dbo].[DA_TRN]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DA_TRN];
+GO
+IF OBJECT_ID(N'[dbo].[DA_TRN_CASHFLOW]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DA_TRN_CASHFLOW];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PORTFOLIO]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PORTFOLIO];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PRODUCT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[MA_STATUS]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_STATUS];
+GO
+IF OBJECT_ID(N'[dbo].[MA_USER]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_USER];
+GO
+IF OBJECT_ID(N'[dbo].[MA_COUTERPARTY]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_COUTERPARTY];
+GO
+IF OBJECT_ID(N'[dbo].[MA_INSTRUMENT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_INSTRUMENT];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PCCF]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PCCF];
+GO
+IF OBJECT_ID(N'[dbo].[MA_FUNCTIONAL]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_FUNCTIONAL];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PROFILE_FUNCTIONAL]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PROFILE_FUNCTIONAL];
+GO
+IF OBJECT_ID(N'[dbo].[MA_USER_PROFILE]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_USER_PROFILE];
+GO
+IF OBJECT_ID(N'[dbo].[MA_FREQ_TYPE]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_FREQ_TYPE];
+GO
+IF OBJECT_ID(N'[dbo].[DA_TRN_MATCH]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DA_TRN_MATCH];
+GO
+IF OBJECT_ID(N'[dbo].[MA_LIMIT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_LIMIT];
+GO
+IF OBJECT_ID(N'[dbo].[MA_CTPY_LIMIT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_CTPY_LIMIT];
+GO
+IF OBJECT_ID(N'[dbo].[MA_LIMIT_PRODUCT]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_LIMIT_PRODUCT];
+GO
+IF OBJECT_ID(N'[dbo].[DA_LOGGING]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DA_LOGGING];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PROCESS_DATE]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PROCESS_DATE];
+GO
+IF OBJECT_ID(N'[dbo].[MA_CURRENCY]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_CURRENCY];
+GO
+IF OBJECT_ID(N'[dbo].[MA_SPOT_RATE]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_SPOT_RATE];
+GO
+IF OBJECT_ID(N'[dbo].[MA_BOND_MARKET]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_BOND_MARKET];
+GO
+IF OBJECT_ID(N'[dbo].[MA_PCCF_CONFIG]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_PCCF_CONFIG];
+GO
+IF OBJECT_ID(N'[dbo].[MA_CONFIG_ATTRIBUTE]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MA_CONFIG_ATTRIBUTE];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'DA_LOGIN_AUDIT'
+CREATE TABLE [dbo].[DA_LOGIN_AUDIT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LOGON_DATE] datetime  NULL,
+    [TERMINAL] nvarchar(50)  NULL,
+    [RESULT] varchar(200)  NULL,
+    [LOGOUT_DATE] datetime  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [USER_ID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'DA_TRN'
+CREATE TABLE [dbo].[DA_TRN] (
+    [ID] uniqueidentifier  NOT NULL,
+    [ENGINE_DATE] datetime  NOT NULL,
+    [INT_DEAL_NO] varchar(11)  NULL,
+    [EXT_DEAL_NO] varchar(50)  NULL,
+    [VERSION] int  NOT NULL,
+    [SOURCE] varchar(50)  NULL,
+    [PRODUCT_ID] uniqueidentifier  NULL,
+    [INSTRUMENT_ID] uniqueidentifier  NULL,
+    [PORTFOLIO_ID] uniqueidentifier  NULL,
+    [EXT_PORTFOLIO] varchar(10)  NULL,
+    [TRADE_DATE] datetime  NULL,
+    [START_DATE] datetime  NULL,
+    [MATURITY_DATE] datetime  NULL,
+    [FLAG_BUYSELL] varchar(1)  NULL,
+    [KK_PCCF] decimal(18,6)  NULL,
+    [KK_CONTRIBUTE] decimal(18,4)  NULL,
+    [BOT_PCCF] decimal(18,6)  NULL,
+    [BOT_CONTRIBUTE] decimal(18,4)  NULL,
+    [OVER_APPROVER] varchar(50)  NULL,
+    [OVER_AMOUNT] decimal(18,4)  NULL,
+    [OVER_SETTL_AMOUNT] decimal(18,4)  NULL,
+    [OVER_COMMENT] varchar(200)  NULL,
+    [STATUS_ID] uniqueidentifier  NOT NULL,
+    [FIRST_NOTIONAL] decimal(18,4)  NULL,
+    [FIRST_CCY_ID] uniqueidentifier  NULL,
+    [FIRST_FLAG_PAYREC] nvarchar(1)  NULL,
+    [FIRST_INDEX] nvarchar(50)  NULL,
+    [FIRST_FLAG_FIXED] bit  NULL,
+    [FIRST_FIRSTFIXINGAMT] decimal(18,6)  NULL,
+    [FIRST_FREQTYPE_ID] uniqueidentifier  NULL,
+    [FIRST_RATE] decimal(18,6)  NULL,
+    [FIRST_SWAP_POINT] decimal(18,6)  NULL,
+    [SECOND_NOTIONAL] decimal(18,4)  NULL,
+    [SECOND_CCY_ID] uniqueidentifier  NULL,
+    [SECOND_FLAG_PAYREC] nvarchar(1)  NULL,
+    [SECOND_INDEX] nvarchar(50)  NULL,
+    [SECOND_FLAG_FIXED] bit  NULL,
+    [SECOND_FIRSTFIXINGAMT] decimal(18,6)  NULL,
+    [SECOND_FREQTYPE_ID] uniqueidentifier  NULL,
+    [SECOND_RATE] decimal(18,6)  NULL,
+    [SECOND_SWAP_POINT] decimal(18,6)  NULL,
+    [CTPY_ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [INSERT_BY_EXT] nvarchar(100)  NULL,
+    [FLAG_NEARFAR] char(1)  NULL,
+    [NOTIONAL_THB] decimal(18,6)  NULL,
+    [SPOT_DATE] datetime  NULL,
+    [FLAG_SETTLE] bit  NULL,
+    [REMARK] varchar(250)  NULL
+);
+GO
+
+-- Creating table 'DA_TRN_CASHFLOW'
+CREATE TABLE [dbo].[DA_TRN_CASHFLOW] (
+    [ID] uniqueidentifier  NOT NULL,
+    [DA_TRN_ID] uniqueidentifier  NOT NULL,
+    [SEQ] int  NOT NULL,
+    [RATE] decimal(18,6)  NULL,
+    [FLOW_DATE] datetime  NULL,
+    [FLOW_AMOUNT] decimal(18,4)  NULL,
+    [FLAG_FIRST] bit  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [FLOW_AMOUNT_THB] decimal(18,6)  NULL
+);
+GO
+
+-- Creating table 'MA_PORTFOLIO'
+CREATE TABLE [dbo].[MA_PORTFOLIO] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NULL,
+    [ISACTIVE] bit  NULL,
+    [ISDEFAULT] bit  NULL
+);
+GO
+
+-- Creating table 'MA_PRODUCT'
+CREATE TABLE [dbo].[MA_PRODUCT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NULL,
+    [ISACTIVE] bit  NULL
+);
+GO
+
+-- Creating table 'MA_STATUS'
+CREATE TABLE [dbo].[MA_STATUS] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NULL,
+    [ISACTIVE] bit  NULL
+);
+GO
+
+-- Creating table 'MA_USER'
+CREATE TABLE [dbo].[MA_USER] (
+    [ID] uniqueidentifier  NOT NULL,
+    [USERCODE] varchar(50)  NOT NULL,
+    [NAME] varchar(200)  NULL,
+    [DEPARTMENT] varchar(200)  NULL,
+    [ISLOCKED] bit  NULL,
+    [ISACTIVE] bit  NULL,
+    [USER_OPICS] nvarchar(20)  NOT NULL,
+    [USER_PROFILE_ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_COUTERPARTY'
+CREATE TABLE [dbo].[MA_COUTERPARTY] (
+    [USERCODE] int  NOT NULL,
+    [SNAME] varchar(50)  NOT NULL,
+    [FNAME] varchar(500)  NOT NULL,
+    [BUSINESS] varchar(100)  NULL,
+    [RATE] varchar(10)  NULL,
+    [OUTLOOK] varchar(50)  NULL,
+    [ISACTIVE] bit  NULL,
+    [ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_INSTRUMENT'
+CREATE TABLE [dbo].[MA_INSTRUMENT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [ISSUER] varchar(50)  NULL,
+    [LOT_SIZE] int  NULL,
+    [COUPON] decimal(18,6)  NULL,
+    [MATURITY_DATE] datetime  NULL,
+    [CAL_METHOD] varchar(50)  NULL,
+    [ISACTIVE] bit  NOT NULL,
+    [PRODUCT_ID] uniqueidentifier  NOT NULL,
+    [FLAG_FIXED] bit  NULL,
+    [COUPON_FREQ_TYPE_ID] uniqueidentifier  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [INS_MKT] uniqueidentifier  NULL,
+    [FLAG_MULTIPLY] bit  NULL,
+    [CURRENCY_ID1] uniqueidentifier  NULL,
+    [CURRENCY_ID2] uniqueidentifier  NULL
+);
+GO
+
+-- Creating table 'MA_PCCF'
+CREATE TABLE [dbo].[MA_PCCF] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [C1] decimal(18,2)  NULL,
+    [C2] decimal(18,2)  NULL,
+    [C3] decimal(18,2)  NULL,
+    [C4] decimal(18,2)  NULL,
+    [C5] decimal(18,2)  NULL,
+    [C6] decimal(18,2)  NULL,
+    [C7] decimal(18,2)  NULL,
+    [C8] decimal(18,2)  NULL,
+    [C9] decimal(18,2)  NULL,
+    [C10] decimal(18,2)  NULL,
+    [C11] decimal(18,2)  NULL,
+    [C12] decimal(18,2)  NULL,
+    [C13] decimal(18,2)  NULL,
+    [C14] decimal(18,2)  NULL,
+    [C15] decimal(18,2)  NULL,
+    [C16] decimal(18,2)  NULL,
+    [C17] decimal(18,2)  NULL,
+    [C18] decimal(18,2)  NULL,
+    [C19] decimal(18,2)  NULL,
+    [C20] decimal(18,2)  NULL,
+    [more20] decimal(18,2)  NULL,
+    [DEFAULT] decimal(18,2)  NULL,
+    [ISACTIVE] bit  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [C0D] decimal(18,2)  NULL,
+    [C1D] decimal(18,2)  NULL
+);
+GO
+
+-- Creating table 'MA_FUNCTIONAL'
+CREATE TABLE [dbo].[MA_FUNCTIONAL] (
+    [ID] uniqueidentifier  NOT NULL,
+    [USERCODE] nvarchar(50)  NOT NULL,
+    [LABEL] nvarchar(100)  NOT NULL,
+    [ISACTIVE] bit  NOT NULL
+);
+GO
+
+-- Creating table 'MA_PROFILE_FUNCTIONAL'
+CREATE TABLE [dbo].[MA_PROFILE_FUNCTIONAL] (
+    [ISREADABLE] bit  NOT NULL,
+    [ISWRITABLE] bit  NOT NULL,
+    [ID] uniqueidentifier  NOT NULL,
+    [ISAPPROVABLE] bit  NOT NULL,
+    [FUNCTIONAL_ID] uniqueidentifier  NOT NULL,
+    [USER_PROFILE_ID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'MA_USER_PROFILE'
+CREATE TABLE [dbo].[MA_USER_PROFILE] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] nvarchar(100)  NOT NULL,
+    [ISACTIVE] bit  NOT NULL
+);
+GO
+
+-- Creating table 'MA_FREQ_TYPE'
+CREATE TABLE [dbo].[MA_FREQ_TYPE] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [ISACTIVE] bit  NULL,
+    [USERCODE] nvarchar(1)  NOT NULL,
+    [INDEX] int  NOT NULL
+);
+GO
+
+-- Creating table 'DA_TRN_MATCH'
+CREATE TABLE [dbo].[DA_TRN_MATCH] (
+    [ID] uniqueidentifier  NOT NULL,
+    [INT_TRN_ID] uniqueidentifier  NOT NULL,
+    [EXT_TRN_ID] uniqueidentifier  NOT NULL,
+    [STATUS_ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_LIMIT'
+CREATE TABLE [dbo].[MA_LIMIT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] nvarchar(50)  NOT NULL,
+    [ISACTIVE] bit  NOT NULL,
+    [LIMIT_TYPE] nvarchar(50)  NOT NULL
+);
+GO
+
+-- Creating table 'MA_CTPY_LIMIT'
+CREATE TABLE [dbo].[MA_CTPY_LIMIT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LIMIT_ID] uniqueidentifier  NOT NULL,
+    [FLAG_CONTROL] bit  NOT NULL,
+    [AMOUNT] decimal(18,6)  NOT NULL,
+    [EXPIRE_DATE] datetime  NOT NULL,
+    [CTPY_ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_LIMIT_PRODUCT'
+CREATE TABLE [dbo].[MA_LIMIT_PRODUCT] (
+    [ID] uniqueidentifier  NOT NULL,
+    [PRODUCT_ID] uniqueidentifier  NOT NULL,
+    [LIMIT_ID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'DA_LOGGING'
+CREATE TABLE [dbo].[DA_LOGGING] (
+    [ID] uniqueidentifier  NOT NULL,
+    [EVENT] nvarchar(100)  NOT NULL,
+    [TABLE_NAME] nvarchar(100)  NULL,
+    [LOG_DATE] datetime  NOT NULL,
+    [RECORD_ID] uniqueidentifier  NULL,
+    [LOG_DETAIL] nvarchar(max)  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_PROCESS_DATE'
+CREATE TABLE [dbo].[MA_PROCESS_DATE] (
+    [PROC_DATE] datetime  NOT NULL,
+    [PREV_PROC_DATE] datetime  NOT NULL,
+    [NEXT_PROC_DATE] datetime  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [MONTH_END_DATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_CURRENCY'
+CREATE TABLE [dbo].[MA_CURRENCY] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [ISACTIVE] bit  NULL
+);
+GO
+
+-- Creating table 'MA_SPOT_RATE'
+CREATE TABLE [dbo].[MA_SPOT_RATE] (
+    [ID] uniqueidentifier  NOT NULL,
+    [CURRENCY_ID] uniqueidentifier  NOT NULL,
+    [PROC_DATE] datetime  NOT NULL,
+    [RATE] decimal(18,8)  NOT NULL
+);
+GO
+
+-- Creating table 'MA_BOND_MARKET'
+CREATE TABLE [dbo].[MA_BOND_MARKET] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [DESCRIPTION] varchar(255)  NOT NULL
+);
+GO
+
+-- Creating table 'MA_PCCF_CONFIG'
+CREATE TABLE [dbo].[MA_PCCF_CONFIG] (
+    [ID] uniqueidentifier  NOT NULL,
+    [LABEL] varchar(50)  NOT NULL,
+    [DESCRIPTION] varchar(255)  NULL,
+    [PRODUCT_ID] uniqueidentifier  NOT NULL,
+    [PCCF_ID] uniqueidentifier  NOT NULL,
+    [ISACTIVE] bit  NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL
+);
+GO
+
+-- Creating table 'MA_CONFIG_ATTRIBUTE'
+CREATE TABLE [dbo].[MA_CONFIG_ATTRIBUTE] (
+    [TABLE] varchar(100)  NOT NULL,
+    [ATTRIBUTE] varchar(100)  NULL,
+    [VALUE] varchar(200)  NULL,
+    [ID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTBYUSERID] uniqueidentifier  NOT NULL,
+    [LOG_INSERTDATE] datetime  NOT NULL,
+    [LOG_MODIFYBYUSERID] uniqueidentifier  NULL,
+    [LOG_MODIFYDATE] datetime  NULL,
+    [ISACTIVE] bit  NOT NULL,
+    [PCCF_CONFIG_ID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [ID] in table 'DA_LOGIN_AUDIT'
+ALTER TABLE [dbo].[DA_LOGIN_AUDIT]
+ADD CONSTRAINT [PK_DA_LOGIN_AUDIT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [PK_DA_TRN]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'DA_TRN_CASHFLOW'
+ALTER TABLE [dbo].[DA_TRN_CASHFLOW]
+ADD CONSTRAINT [PK_DA_TRN_CASHFLOW]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PORTFOLIO'
+ALTER TABLE [dbo].[MA_PORTFOLIO]
+ADD CONSTRAINT [PK_MA_PORTFOLIO]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PRODUCT'
+ALTER TABLE [dbo].[MA_PRODUCT]
+ADD CONSTRAINT [PK_MA_PRODUCT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_STATUS'
+ALTER TABLE [dbo].[MA_STATUS]
+ADD CONSTRAINT [PK_MA_STATUS]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_USER'
+ALTER TABLE [dbo].[MA_USER]
+ADD CONSTRAINT [PK_MA_USER]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_COUTERPARTY'
+ALTER TABLE [dbo].[MA_COUTERPARTY]
+ADD CONSTRAINT [PK_MA_COUTERPARTY]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [PK_MA_INSTRUMENT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PCCF'
+ALTER TABLE [dbo].[MA_PCCF]
+ADD CONSTRAINT [PK_MA_PCCF]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_FUNCTIONAL'
+ALTER TABLE [dbo].[MA_FUNCTIONAL]
+ADD CONSTRAINT [PK_MA_FUNCTIONAL]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PROFILE_FUNCTIONAL'
+ALTER TABLE [dbo].[MA_PROFILE_FUNCTIONAL]
+ADD CONSTRAINT [PK_MA_PROFILE_FUNCTIONAL]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_USER_PROFILE'
+ALTER TABLE [dbo].[MA_USER_PROFILE]
+ADD CONSTRAINT [PK_MA_USER_PROFILE]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_FREQ_TYPE'
+ALTER TABLE [dbo].[MA_FREQ_TYPE]
+ADD CONSTRAINT [PK_MA_FREQ_TYPE]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'DA_TRN_MATCH'
+ALTER TABLE [dbo].[DA_TRN_MATCH]
+ADD CONSTRAINT [PK_DA_TRN_MATCH]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_LIMIT'
+ALTER TABLE [dbo].[MA_LIMIT]
+ADD CONSTRAINT [PK_MA_LIMIT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_CTPY_LIMIT'
+ALTER TABLE [dbo].[MA_CTPY_LIMIT]
+ADD CONSTRAINT [PK_MA_CTPY_LIMIT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_LIMIT_PRODUCT'
+ALTER TABLE [dbo].[MA_LIMIT_PRODUCT]
+ADD CONSTRAINT [PK_MA_LIMIT_PRODUCT]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'DA_LOGGING'
+ALTER TABLE [dbo].[DA_LOGGING]
+ADD CONSTRAINT [PK_DA_LOGGING]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [PROC_DATE] in table 'MA_PROCESS_DATE'
+ALTER TABLE [dbo].[MA_PROCESS_DATE]
+ADD CONSTRAINT [PK_MA_PROCESS_DATE]
+    PRIMARY KEY CLUSTERED ([PROC_DATE] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_CURRENCY'
+ALTER TABLE [dbo].[MA_CURRENCY]
+ADD CONSTRAINT [PK_MA_CURRENCY]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_SPOT_RATE'
+ALTER TABLE [dbo].[MA_SPOT_RATE]
+ADD CONSTRAINT [PK_MA_SPOT_RATE]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_BOND_MARKET'
+ALTER TABLE [dbo].[MA_BOND_MARKET]
+ADD CONSTRAINT [PK_MA_BOND_MARKET]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [PK_MA_PCCF_CONFIG]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'MA_CONFIG_ATTRIBUTE'
+ALTER TABLE [dbo].[MA_CONFIG_ATTRIBUTE]
+ADD CONSTRAINT [PK_MA_CONFIG_ATTRIBUTE]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [DA_TRN_ID] in table 'DA_TRN_CASHFLOW'
+ALTER TABLE [dbo].[DA_TRN_CASHFLOW]
+ADD CONSTRAINT [FK_DA_TRN_FLOW_DA_TRN]
+    FOREIGN KEY ([DA_TRN_ID])
+    REFERENCES [dbo].[DA_TRN]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DA_TRN_FLOW_DA_TRN'
+CREATE INDEX [IX_FK_DA_TRN_FLOW_DA_TRN]
+ON [dbo].[DA_TRN_CASHFLOW]
+    ([DA_TRN_ID]);
+GO
+
+-- Creating foreign key on [PORTFOLIO_ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [FK_DA_TRN_MA_PORTFOLIO]
+    FOREIGN KEY ([PORTFOLIO_ID])
+    REFERENCES [dbo].[MA_PORTFOLIO]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DA_TRN_MA_PORTFOLIO'
+CREATE INDEX [IX_FK_DA_TRN_MA_PORTFOLIO]
+ON [dbo].[DA_TRN]
+    ([PORTFOLIO_ID]);
+GO
+
+-- Creating foreign key on [PRODUCT_ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [FK_DA_TRN_MA_PRODUCT]
+    FOREIGN KEY ([PRODUCT_ID])
+    REFERENCES [dbo].[MA_PRODUCT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DA_TRN_MA_PRODUCT'
+CREATE INDEX [IX_FK_DA_TRN_MA_PRODUCT]
+ON [dbo].[DA_TRN]
+    ([PRODUCT_ID]);
+GO
+
+-- Creating foreign key on [STATUS_ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [FK_DA_TRN_MA_STATUS]
+    FOREIGN KEY ([STATUS_ID])
+    REFERENCES [dbo].[MA_STATUS]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DA_TRN_MA_STATUS'
+CREATE INDEX [IX_FK_DA_TRN_MA_STATUS]
+ON [dbo].[DA_TRN]
+    ([STATUS_ID]);
+GO
+
+-- Creating foreign key on [INSTRUMENT_ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [FK_DA_TRN_MA_INSRUMENT]
+    FOREIGN KEY ([INSTRUMENT_ID])
+    REFERENCES [dbo].[MA_INSTRUMENT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DA_TRN_MA_INSRUMENT'
+CREATE INDEX [IX_FK_DA_TRN_MA_INSRUMENT]
+ON [dbo].[DA_TRN]
+    ([INSTRUMENT_ID]);
+GO
+
+-- Creating foreign key on [USER_PROFILE_ID] in table 'MA_USER'
+ALTER TABLE [dbo].[MA_USER]
+ADD CONSTRAINT [FK_MA_USER_PROFILEMA_USER]
+    FOREIGN KEY ([USER_PROFILE_ID])
+    REFERENCES [dbo].[MA_USER_PROFILE]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_USER_PROFILEMA_USER'
+CREATE INDEX [IX_FK_MA_USER_PROFILEMA_USER]
+ON [dbo].[MA_USER]
+    ([USER_PROFILE_ID]);
+GO
+
+-- Creating foreign key on [FUNCTIONAL_ID] in table 'MA_PROFILE_FUNCTIONAL'
+ALTER TABLE [dbo].[MA_PROFILE_FUNCTIONAL]
+ADD CONSTRAINT [FK_MA_FUNCTIONALMA_USER_FUNCTIONAL]
+    FOREIGN KEY ([FUNCTIONAL_ID])
+    REFERENCES [dbo].[MA_FUNCTIONAL]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_FUNCTIONALMA_USER_FUNCTIONAL'
+CREATE INDEX [IX_FK_MA_FUNCTIONALMA_USER_FUNCTIONAL]
+ON [dbo].[MA_PROFILE_FUNCTIONAL]
+    ([FUNCTIONAL_ID]);
+GO
+
+-- Creating foreign key on [USER_PROFILE_ID] in table 'MA_PROFILE_FUNCTIONAL'
+ALTER TABLE [dbo].[MA_PROFILE_FUNCTIONAL]
+ADD CONSTRAINT [FK_MA_USER_PROFILEMA_PROFILE_FUNCTIONAL]
+    FOREIGN KEY ([USER_PROFILE_ID])
+    REFERENCES [dbo].[MA_USER_PROFILE]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_USER_PROFILEMA_PROFILE_FUNCTIONAL'
+CREATE INDEX [IX_FK_MA_USER_PROFILEMA_PROFILE_FUNCTIONAL]
+ON [dbo].[MA_PROFILE_FUNCTIONAL]
+    ([USER_PROFILE_ID]);
+GO
+
+-- Creating foreign key on [LIMIT_ID] in table 'MA_CTPY_LIMIT'
+ALTER TABLE [dbo].[MA_CTPY_LIMIT]
+ADD CONSTRAINT [FK_MA_LIMITMA_CTPY_LIMIT]
+    FOREIGN KEY ([LIMIT_ID])
+    REFERENCES [dbo].[MA_LIMIT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_LIMITMA_CTPY_LIMIT'
+CREATE INDEX [IX_FK_MA_LIMITMA_CTPY_LIMIT]
+ON [dbo].[MA_CTPY_LIMIT]
+    ([LIMIT_ID]);
+GO
+
+-- Creating foreign key on [PRODUCT_ID] in table 'MA_LIMIT_PRODUCT'
+ALTER TABLE [dbo].[MA_LIMIT_PRODUCT]
+ADD CONSTRAINT [FK_MA_PRODUCTMA_LIMIT_PRODUCT]
+    FOREIGN KEY ([PRODUCT_ID])
+    REFERENCES [dbo].[MA_PRODUCT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PRODUCTMA_LIMIT_PRODUCT'
+CREATE INDEX [IX_FK_MA_PRODUCTMA_LIMIT_PRODUCT]
+ON [dbo].[MA_LIMIT_PRODUCT]
+    ([PRODUCT_ID]);
+GO
+
+-- Creating foreign key on [LIMIT_ID] in table 'MA_LIMIT_PRODUCT'
+ALTER TABLE [dbo].[MA_LIMIT_PRODUCT]
+ADD CONSTRAINT [FK_MA_LIMITMA_LIMIT_PRODUCT]
+    FOREIGN KEY ([LIMIT_ID])
+    REFERENCES [dbo].[MA_LIMIT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_LIMITMA_LIMIT_PRODUCT'
+CREATE INDEX [IX_FK_MA_LIMITMA_LIMIT_PRODUCT]
+ON [dbo].[MA_LIMIT_PRODUCT]
+    ([LIMIT_ID]);
+GO
+
+-- Creating foreign key on [PRODUCT_ID] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_PRODUCTMA_INSRUMENT]
+    FOREIGN KEY ([PRODUCT_ID])
+    REFERENCES [dbo].[MA_PRODUCT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PRODUCTMA_INSRUMENT'
+CREATE INDEX [IX_FK_MA_PRODUCTMA_INSRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([PRODUCT_ID]);
+GO
+
+-- Creating foreign key on [CTPY_ID] in table 'MA_CTPY_LIMIT'
+ALTER TABLE [dbo].[MA_CTPY_LIMIT]
+ADD CONSTRAINT [FK_MA_COUTERPARTYMA_CTPY_LIMIT]
+    FOREIGN KEY ([CTPY_ID])
+    REFERENCES [dbo].[MA_COUTERPARTY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_COUTERPARTYMA_CTPY_LIMIT'
+CREATE INDEX [IX_FK_MA_COUTERPARTYMA_CTPY_LIMIT]
+ON [dbo].[MA_CTPY_LIMIT]
+    ([CTPY_ID]);
+GO
+
+-- Creating foreign key on [CTPY_ID] in table 'DA_TRN'
+ALTER TABLE [dbo].[DA_TRN]
+ADD CONSTRAINT [FK_MA_COUTERPARTYDA_TRN]
+    FOREIGN KEY ([CTPY_ID])
+    REFERENCES [dbo].[MA_COUTERPARTY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_COUTERPARTYDA_TRN'
+CREATE INDEX [IX_FK_MA_COUTERPARTYDA_TRN]
+ON [dbo].[DA_TRN]
+    ([CTPY_ID]);
+GO
+
+-- Creating foreign key on [COUPON_FREQ_TYPE_ID] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_FREQ_TYPEMA_INSTRUMENT]
+    FOREIGN KEY ([COUPON_FREQ_TYPE_ID])
+    REFERENCES [dbo].[MA_FREQ_TYPE]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_FREQ_TYPEMA_INSTRUMENT'
+CREATE INDEX [IX_FK_MA_FREQ_TYPEMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([COUPON_FREQ_TYPE_ID]);
+GO
+
+-- Creating foreign key on [CURRENCY_ID] in table 'MA_SPOT_RATE'
+ALTER TABLE [dbo].[MA_SPOT_RATE]
+ADD CONSTRAINT [FK_MA_CURRENCYMA_SPOT_RATE]
+    FOREIGN KEY ([CURRENCY_ID])
+    REFERENCES [dbo].[MA_CURRENCY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_CURRENCYMA_SPOT_RATE'
+CREATE INDEX [IX_FK_MA_CURRENCYMA_SPOT_RATE]
+ON [dbo].[MA_SPOT_RATE]
+    ([CURRENCY_ID]);
+GO
+
+-- Creating foreign key on [INS_MKT] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_BOND_MARKETMA_INSTRUMENT]
+    FOREIGN KEY ([INS_MKT])
+    REFERENCES [dbo].[MA_BOND_MARKET]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_BOND_MARKETMA_INSTRUMENT'
+CREATE INDEX [IX_FK_MA_BOND_MARKETMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([INS_MKT]);
+GO
+
+-- Creating foreign key on [PRODUCT_ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [FK_MA_PRODUCTMA_PCCF_CONFIG]
+    FOREIGN KEY ([PRODUCT_ID])
+    REFERENCES [dbo].[MA_PRODUCT]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PRODUCTMA_PCCF_CONFIG'
+CREATE INDEX [IX_FK_MA_PRODUCTMA_PCCF_CONFIG]
+ON [dbo].[MA_PCCF_CONFIG]
+    ([PRODUCT_ID]);
+GO
+
+-- Creating foreign key on [PCCF_ID] in table 'MA_PCCF_CONFIG'
+ALTER TABLE [dbo].[MA_PCCF_CONFIG]
+ADD CONSTRAINT [FK_MA_PCCFMA_PCCF_CONFIG]
+    FOREIGN KEY ([PCCF_ID])
+    REFERENCES [dbo].[MA_PCCF]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PCCFMA_PCCF_CONFIG'
+CREATE INDEX [IX_FK_MA_PCCFMA_PCCF_CONFIG]
+ON [dbo].[MA_PCCF_CONFIG]
+    ([PCCF_ID]);
+GO
+
+-- Creating foreign key on [CURRENCY_ID1] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT]
+    FOREIGN KEY ([CURRENCY_ID1])
+    REFERENCES [dbo].[MA_CURRENCY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_CURRENCYMA_INSTRUMENT'
+CREATE INDEX [IX_FK_MA_CURRENCYMA_INSTRUMENT]
+ON [dbo].[MA_INSTRUMENT]
+    ([CURRENCY_ID1]);
+GO
+
+-- Creating foreign key on [CURRENCY_ID2] in table 'MA_INSTRUMENT'
+ALTER TABLE [dbo].[MA_INSTRUMENT]
+ADD CONSTRAINT [FK_MA_CURRENCYMA_INSTRUMENT1]
+    FOREIGN KEY ([CURRENCY_ID2])
+    REFERENCES [dbo].[MA_CURRENCY]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_CURRENCYMA_INSTRUMENT1'
+CREATE INDEX [IX_FK_MA_CURRENCYMA_INSTRUMENT1]
+ON [dbo].[MA_INSTRUMENT]
+    ([CURRENCY_ID2]);
+GO
+
+-- Creating foreign key on [PCCF_CONFIG_ID] in table 'MA_CONFIG_ATTRIBUTE'
+ALTER TABLE [dbo].[MA_CONFIG_ATTRIBUTE]
+ADD CONSTRAINT [FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE]
+    FOREIGN KEY ([PCCF_CONFIG_ID])
+    REFERENCES [dbo].[MA_PCCF_CONFIG]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE'
+CREATE INDEX [IX_FK_MA_PCCF_CONFIGMA_CONFIG_ATTRIBUTE]
+ON [dbo].[MA_CONFIG_ATTRIBUTE]
+    ([PCCF_CONFIG_ID]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

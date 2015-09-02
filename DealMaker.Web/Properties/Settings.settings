@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="KK.DealMaker.Web.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="KK_DealMaker_Web_Authen_ThaiBMA_Calculation_Auth" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Auth.asmx</Value>
+    </Setting>
+    <Setting Name="KK_DealMaker_Web_ThaiBMACalc_ThaiBMA_Claculation_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.ws1.thaibma.or.th/iDataService_Test/ThaiBMA_Calculation_Service.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

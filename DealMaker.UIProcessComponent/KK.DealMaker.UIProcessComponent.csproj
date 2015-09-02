@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{131D0A7B-45B4-46FC-9E96-D70183F63A9B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KK.DealMaker.UIProcessComponent</RootNamespace>
+    <AssemblyName>KK.DealMaker.UIProcessComponent</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Deal\CountryUIP.cs" />
+    <Compile Include="Admin\DealUIP.cs" />
+    <Compile Include="Admin\FunctionUIP.cs" />
+    <Compile Include="Admin\LookupUIP.cs" />
+    <Compile Include="Admin\PCCFConfigUIP.cs" />
+    <Compile Include="Admin\ProfileUIP.cs" />
+    <Compile Include="Admin\UserProfileFunctionalUIP.cs" />
+    <Compile Include="Admin\UserUIP.cs" />
+    <Compile Include="BaseUIP.cs" />
+    <Compile Include="Common\ILookupValuesRepository.cs" />
+    <Compile Include="Common\LookupValues.cs" />
+    <Compile Include="Common\LookupValuesRepository.cs" />
+    <Compile Include="Common\MemoryLookupValues.cs" />
+    <Compile Include="Common\MemoryRepositoryContainer.cs" />
+    <Compile Include="Deal\CounterpartyUIP.cs" />
+    <Compile Include="Deal\InstrumentUIP.cs" />
+    <Compile Include="Deal\PCCFUIP.cs" />
+    <Compile Include="Deal\ReconcileUIP.cs" />
+    <Compile Include="External\OpicsUIP.cs" />
+    <Compile Include="Admin\LimitProductUIP.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\ReportUIP.cs" />
+    <Compile Include="View\DealViewUIP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DealMaker.Business\KK.DealMaker.Business.csproj">
+      <Project>{2438FAF6-E69C-4F63-874E-3605C4724D1D}</Project>
+      <Name>KK.DealMaker.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DealMaker.Core\KK.DealMaker.Core.csproj">
+      <Project>{B6452AB8-C578-4A0D-A9E5-E4420EAD76E5}</Project>
+      <Name>KK.DealMaker.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

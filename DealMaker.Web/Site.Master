@@ -1,0 +1,223 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="DealMaker.Web.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <meta charset="utf-8">
+    <title>Kiatnakin - Dealmaker v1.3</title>
+    <link href="Styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/metroblue/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <!-- Optimize for mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <!-- jQuery & JS files -->
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
+    <script src="Scripts/script.js" type="text/javascript"></script>
+    <script src="Scripts/menu.js" type="text/javascript"></script>
+    <script src="Scripts/date.format.js" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/Scripts/common.js") %>" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //put some code
+            var today = new Date();
+            $('.time').text('System on: ' + today.ddmmyyyy_hhmmss());
+            //$('.opics-time').text('OPICS: ' + today.ddmmyyyy());
+
+            $("#dialogLogout").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Confirm": function () {
+                        window.location.replace("logout.aspx");
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+        });
+
+        function confirmationLogout() {
+            $("#dialogLogout").dialog("open");
+        }
+
+        function SetiFrameHeight() {
+            var the_height = 0;
+            var min_height = 500;
+            var currentPosition=$(document).scrollTop();
+
+            var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+
+            if (is_chrome) {
+                var myframe = jQuery('Iframe');
+                var innerDoc = (myframe.get(0).contentDocument) ? myframe.get(0).contentDocument : myframe.get(0).contentWindow.document;
+
+                if (innerDoc) {
+                    jQuery('#Iframe', top.document).css({ height: 0 });
+
+                    if (innerDoc.body.scrollHeight)
+                        the_height = innerDoc.body.scrollHeight + 35;
+                    else
+                        the_height = innerDoc.documentElement.scrollHeight;
+
+                    if (the_height < min_height)
+                        the_height = min_height;
+
+                    jQuery('#Iframe', top.document).css({ height: the_height });
+                    $(document).scrollTop(currentPosition);
+                }
+            }
+            else {
+                var iframe = document.getElementById('Iframe');
+
+                if (iframe) {
+                    var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+
+                    if (iframeWin.document.body) {
+                        jQuery('#Iframe', top.document).css({ height: 0 });
+
+                        the_height = 20 + iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+
+                        if (the_height < min_height)
+                            the_height = min_height;
+
+                        jQuery('#Iframe', top.document).css({ height: the_height });
+                        $(document).scrollTop(currentPosition);
+                    }
+                }
+            }
+
+        }
+        
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="headerMiscellaneous">
+		<div class="logo"></div>
+		<div class="time"></div>
+		<div class="line">|</div>
+        <div class="opics-time"><%=CurrentProcessDate %></div>
+        <div class="line">|</div>
+		<div class="userTopic">User: </div> 
+		<div class="user"><%=LogonUserFullName %></div>
+		<div class="line">|</div>
+		<div class="logout"><a href="#" onclick="confirmationLogout();"><img src="images/bLogout.gif" border="0" /></a></div>
+		<div class="logoRight"></div>
+	</div> <!-- div class="header" -->
+    
+    <!-- TOP BAR -->
+	<div id="top-bar">
+		
+		<div class="page-full-width cf">
+
+			<ul id="nav" class="fl">
+	
+				<!--<li class="v-sep"><a href="#" class="round button dark ic-left-arrow image-left">Go to website</a></li>-->
+				<!--<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong>admin</strong></a></li>-->
+			
+				<li class="v-sep"><div class="round button dark ic-right-arrow image-left">File</div>
+                    <ul>
+                        <li><a href="Deal/TempLimitInfo.aspx" onclick="return loadPageOnFrame(this.href);">Temp Limit</a></li>
+                        <li><a href="Deal/CountryInfo.aspx" onclick="return loadPageOnFrame(this.href);">Country Limit</a></li>
+                        <li><a href="Deal/CounterpartyInfo.aspx" onclick="return loadPageOnFrame(this.href);">Counterparty Limit</a></li>
+                        <li><a href="Deal/BondInstrumentInfo.aspx" onclick="return loadPageOnFrame(this.href);">Bond Definition</a></li>
+                        <li><a href="Deal/ReconcileInfo.aspx" onclick="return loadPageOnFrame(this.href);">Deal Reconcile</a></li>
+                    </ul>
+                </li>
+                <li class="v-sep"><div class="round button dark ic-right-arrow image-left">Deal Entry</div> 
+                    <ul>
+                        <li><a href="Deal/FIEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">Fixed Income Deal Entry</a></li>
+                        <li><a href="Deal/SwapEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">Interest Rate Derivatives Deal Entry</a></li>
+                        <li><a href="Deal/FXSpotEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">FX Spot Deal Entry</a></li>
+                        <li><a href="Deal/FXForwardEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">FX Forward Deal Entry</a></li>
+                        <li><a href="Deal/FXSwapEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">FX Swap Deal Entry</a></li>
+                        <li><a href="Deal/RepoEntryInfo.aspx" onclick="return loadPageOnFrame(this.href);">Repo Deal Entry</a></li>
+                    </ul>
+                </li>
+                <li class="v-sep"><div class="round button dark ic-right-arrow image-left">Views</div> 
+                    <ul>
+                        <li><a href="View/DealView.aspx" onclick="return loadPageOnFrame(this.href);">Deal Inquiry</a></li>
+                        <%--<li><a href="View/CashflowView.aspx" onclick="return loadPageOnFrame(this.href);">Cash Flow</a></li>--%>
+                        <%--<li><a href="View/LimitUtilView.aspx" onclick="return loadPageOnFrame(this.href);">Limit Utilization</a></li>--%>
+                    </ul>
+ 
+                </li>
+                <li class="v-sep"><div class="round button dark ic-right-arrow image-left">Reports</div> 
+                    <ul>
+                        <li><a href="Report/PCEReport.aspx" onclick="return loadPageOnFrame(this.href);">Pre-Settlement Limit Report</a></li>
+                        <li><a href="Report/PCEDetailReport.aspx" onclick="return loadPageOnFrame(this.href);">Pre-Settlement Limit Detailed Report</a></li>
+                        <li><a href="Report/SCEReport.aspx" onclick="return loadPageOnFrame(this.href);">Settlement Limit Report</a></li>
+                        <li><a href="Report/SCEDetailReport.aspx" onclick="return loadPageOnFrame(this.href);">Settlement Limit Detailed Report</a></li>
+                        <li><a href="Report/LimitAuditReport.aspx" onclick="return loadPageOnFrame(this.href);">Limit Audit Report</a></li> 
+                        <li><a href="Report/LimitOverwriteReport.aspx" onclick="return loadPageOnFrame(this.href);">Limit Overwrite Report</a></li>                                                
+                        <li><a href="Report/RepoReport.aspx" onclick="return loadPageOnFrame(this.href);">Repo Report</a></li>
+                        <li><a href="Report/CountryReport.aspx" onclick="return loadPageOnFrame(this.href);">Country Limit Report</a></li>                                                
+                                            
+                    </ul>
+ 
+                </li>
+                <li class="v-sep"><div class="round button dark ic-right-arrow image-left">Admin</div> 
+                    <ul>
+                        <li><a href="Admin/UserMaster.aspx" onclick="return loadPageOnFrame(this.href);">User</a></li>
+                        <li><a href="Admin/UserProfileMaster.aspx" onclick="return loadPageOnFrame(this.href);">Profile</a></li>
+                        <li><a href="Admin/UserFunctionMaster.aspx" onclick="return loadPageOnFrame(this.href);">Functional</a></li>
+                        <li><a href="Admin/UserProfileFunction.aspx" onclick="return loadPageOnFrame(this.href);">Permission</a></li>
+                        <li><a href="Admin/InstrumentsMaster.aspx" onclick="return loadPageOnFrame(this.href);">Instruments</a></li>
+                        <li><a href="Admin/CurrencyMaster.aspx" onclick="return loadPageOnFrame(this.href);">Currency</a></li>
+                        <li><a href="Admin/SpotRateMaster.aspx" onclick="return loadPageOnFrame(this.href);">Spot Rate</a></li>
+                        <li><a href="Admin/BondMarketMaster.aspx" onclick="return loadPageOnFrame(this.href);">Bond Market</a></li>
+                        <li><a href="Admin/CSATypeMaster.aspx" onclick="return loadPageOnFrame(this.href);">CSA Type</a></li>
+                        <li><a href="Deal/PCCFInfo.aspx" onclick="return loadPageOnFrame(this.href);">Pre-settlement Credit Conversion Factor</a></li>
+                        <li><a href="Admin/FactorConfigMaster.aspx" onclick="return loadPageOnFrame(this.href);">PCCF Formula Config</a></li>
+                        <li><a href="Admin/TBMAConfigMaster.aspx" onclick="return loadPageOnFrame(this.href);">TBMA Config</a></li>
+                        <li><a href="Deal/ImportOpicsInfo.aspx" onclick="return loadPageOnFrame(this.href);">Import OPICS Deals</a></li>
+                        
+                    </ul>
+                </li>
+                <%if (SessionInfo.ProfileName == "SUP")
+                  { %>
+                <li class="v-sep"><div class="round button dark menu-settings image-left">Configurations</div>
+ 
+                    <ul>
+                        <%--<li><a href="Admin/CouponMaster.aspx" onclick="return loadPageOnFrame(this.href);">Coupon Type</a></li>--%>
+                        <li><a href="Admin/LimitMaster.aspx" onclick="return loadPageOnFrame(this.href);">Limit</a></li>
+                        <li><a href="Admin/ProductMaster.aspx" onclick="return loadPageOnFrame(this.href);">Product</a></li>
+                        <li><a href="Admin/LimitProduct.aspx" onclick="return loadPageOnFrame(this.href);">Limit-Product Configuration</a></li>
+                        <li><a href="Admin/FrequencyMaster.aspx" onclick="return loadPageOnFrame(this.href);">Frequency</a></li>
+                        <li><a href="Admin/PortfolioMaster.aspx" onclick="return loadPageOnFrame(this.href);">Portfolio</a></li>
+                        <li><a href="Admin/StatusMaster.aspx" onclick="return loadPageOnFrame(this.href);">Status</a></li>
+                    </ul>
+                </li>
+            	<%} %>
+			</ul> <!-- end nav -->
+
+		</div> <!-- end full-width -->	
+	
+	</div> <!-- end top-bar -->
+
+    <div id="dialog"></div> <!-- dialog -->
+    <table  cellpadding="0" cellspacing="0" width="100%" id="contenttable">
+    <tr height="100%">
+        <td width="100%">
+            <iframe id="Iframe" name="ifMain" src="blank.htm" allowtransparency hidefocus 
+                align="center" height="100%" width="100%" frameborder="no" onload="SetiFrameHeight()"></iframe>    
+        </td>
+    </tr>
+	</table>
+
+	<!-- FOOTER -->
+	<div id="footer">
+
+		<p>&copy; Copyright 2013 <a href="http://www.kiatnakin.co.th">Kiatnakin Bank.,co.ltd</a>. All rights reserved.</p>
+
+	</div> <!-- end footer -->
+    <div id="dialogLogout" title="Confirmation Logout" style="display:none;">
+        Are you sure you want to log out?
+    </div>​
+     
+</body>
+</html>
